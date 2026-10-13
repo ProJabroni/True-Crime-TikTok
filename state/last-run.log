@@ -9,12 +9,47 @@ No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Bank robberies
-  76 unused articles
-Trying: 1986 FBI Miami shootout
+Looking in Category:Kidnappings in the United States
+  319 unused articles
+Trying: Anna Mae Aquash
   Gemini gemini-3.8-flash busy (503), retrying
-  script written by gemini-3.8-flash
-  10 scenes, 181 words
-Making video: The 1986 FBI Miami Shootout (1986 FBI Miami shootout)
-  image + voice 1/10
-CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN secrets are required for images.
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  Gemini gemini-flash-latest busy (503), retrying
+  Gemini gemini-flash-latest busy (503), retrying
+  Gemini gemini-flash-latest busy (503), retrying
+  Gemini gemini-flash-latest failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  Gemini gemini-3.5-flash-lite busy (503), retrying
+  Gemini gemini-3.5-flash-lite busy (503), retrying
+  script written by gemini-3.5-flash-lite
+  11 scenes, 207 words
+Making video: The Tragic Murder of Anna Mae Aquash (Anna Mae Aquash)
+  image + voice 1/11
+  image attempt 1 failed: 400 {"errors":[{"message":"AiError: Bad input: Error: Additional or unevaluated properties '/seed' at '/' not allowed (f299b738-bbc7-4869-937f-da7413ff7941)","code":5006}],"success":false,"result":{},"mes
+  image attempt 2 failed: 400 {"errors":[{"message":"AiError: Bad input: Error: Additional or unevaluated properties '/seed' at '/' not allowed (739ebbd8-2b6c-4f10-875f-0db13da71493)","code":5006}],"success":false,"result":{},"mes
+  image attempt 3 failed: 400 {"errors":[{"message":"AiError: Bad input: Error: Additional or unevaluated properties '/seed' at '/' not allowed (8e030521-ecd1-4838-9e51-d3789a17db6b)","code":5006}],"success":false,"result":{},"mes
+  image attempt 4 failed: 400 {"errors":[{"message":"AiError: Bad input: Error: Additional or unevaluated properties '/seed' at '/' not allowed (82a8c30e-79ba-49c9-8914-52bea1e28418)","code":5006}],"success":false,"result":{},"mes
+  image attempt 5 failed: 400 {"errors":[{"message":"AiError: Bad input: Error: Additional or unevaluated properties '/seed' at '/' not allowed (4803ae0d-1725-4cab-a694-426155d66e15)","code":5006}],"success":false,"result":{},"mes
+Traceback (most recent call last):
+  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/make_video.py", line 471, in <module>
+    main()
+  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/make_video.py", line 442, in main
+    make_image(s["image_prompt"], image, seed + i * 10)
+  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/make_video.py", line 278, in make_image
+    raise RuntimeError(f"could not generate image for: {prompt}")
+RuntimeError: could not generate image for: A desolate winter prairie landscape under a gray, overcast sky with sparse dry grass and melting snow patches.
