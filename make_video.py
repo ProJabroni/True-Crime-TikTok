@@ -426,9 +426,12 @@ def main():
         except (ValueError, json.JSONDecodeError, requests.RequestException) as e:
             log(f"  failed: {e}")
             script = None
-    save_json(USED_FILE, used)  # skipped articles are remembered too
     if not script:
+        save_json(USED_FILE, used)  # skipped articles are remembered
         sys.exit("No usable article this run; try again.")
+    # Remember skipped articles now, but the chosen case only once its video is finished,
+    # so a failed run doesn't use it up.
+    save_json(USED_FILE, [t for t in used if t not in (title, real_title)])
 
     log(f"Making video: {script.get('title')} ({real_title})")
     seed = random.randint(1, 10**8)
@@ -443,6 +446,7 @@ def main():
     final = OUT / "video.mp4"
     total = render_video(scenes, script.get("title", ""), WORK, final)
     log(f"Video ready: {total:.1f} seconds, {final.stat().st_size / 1e6:.1f} MB")
+    save_json(USED_FILE, used)
 
     tags = list(dict.fromkeys([t.strip().lstrip("#").lower().replace(" ", "")
                                for t in script.get("hashtags", []) + CFG.get("extra_hashtags", [])
