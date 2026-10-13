@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths: [test-run.txt]
   schedule:
-    - cron: "17 13 * * *"   # every day at 13:17 UTC (9:17am New York); Buffer then posts at your queue time
+    - cron: "37 0 * * *"    # every day at 00:37 UTC = 8:37pm New York (7:37pm in winter), just after the free AI allowance resets; Buffer posts it at your 6am slot
   workflow_dispatch:
     inputs:
       post:
