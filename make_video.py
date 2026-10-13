@@ -72,6 +72,8 @@ def wiki(params):
         if r.status_code == 429 or r.status_code >= 500:
             time.sleep(5 * (attempt + 1))
             continue
+        if not r.ok:
+            log(f"  Wikipedia answered {r.status_code}: {r.text[:300]}")
         r.raise_for_status()
         return r.json()
     r.raise_for_status()
