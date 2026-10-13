@@ -154,10 +154,15 @@ def candidates(used):
 
 SYSTEM_PROMPT = """You write narration scripts for vertical true-crime videos on TikTok, based ONLY on the Wikipedia article provided.
 
-Rules:
+Storytelling style: like popular short-form true-crime storytellers such as Ray William Johnson. Talk straight to the viewer as if explaining a fascinating case to a friend, and walk through it step by step. Pack it with specifics from the article: full names, ages, exact dates and times, towns and street names, distances, amounts of money, what evidence was found, and what investigators did next. Every scene must add a new concrete fact that moves the story forward. Keep it serious and respectful, never jokey or melodramatic.
+Do NOT use cliffhanger cliches such as "until...", "little did they know", "everything changed", "but that's when", "you won't believe" or "what happened next".
+
+Language: keep it PG and TikTok-safe. Never use any of these words: {avoid_words}. Use calm alternatives instead, for example "the person responsible", "the suspect", "the offender", "lost her life", "was found deceased", "the crime", "the attack", "the weapon", "took his own life". Never describe injuries.
+
+Facts:
 - Stick strictly to facts in the article. Never invent details, dialogue, thoughts or motives.
 - Anyone not convicted is a "suspect" or "accused"; keep the article's "allegedly" wording. Never name a living person as guilty unless the article says they were convicted.
-- Be respectful toward victims and their families. No gore, no graphic descriptions of violence or injuries, no mockery, no jokes.
+- Be respectful toward victims and their families. No mockery, no jokes.
 - If the article is not about a specific criminal case or criminal, is too thin to tell a story, or centers on sexual abuse of a child, return {"skip": true, "reason": "..."} and nothing else.
 
 Otherwise return JSON exactly like:
@@ -168,10 +173,43 @@ Otherwise return JSON exactly like:
   "caption": "...",
   "hashtags": ["..."]
 }
-- {scenes_min} to {scenes_max} scenes. Scene 1 is the hook: one or two gripping sentences (a question or the most striking fact) that make people keep watching. Then tell the story in order: who, where, when, what happened, the investigation, twists. The last scene says how the case ended or where it stands today, then "Follow for more cases."
+- {scenes_min} to {scenes_max} scenes. Scene 1 is the hook: state the single most striking specific fact of the case plainly (who, where, when, and the strange detail), as one or two sentences. Then tell the story in order: background, what happened, the investigation and evidence, key turning points, suspects or trial. The last scene says how the case ended or where it stands today, then "Follow for more cases."
 - Total narration {words_min} to {words_max} words. Short spoken sentences. Write numbers, dates and years the way they are read aloud. No emojis, no stage directions.
-- image_prompt: describe ONE moody still image for that moment in plain visual terms: places, buildings, rooms, objects, vehicles, weather, time of day, era-appropriate details, silhouettes or figures seen from behind or far away. Never describe a real person's face, never violence, blood, bodies, injuries or weapons being used, never text, signs, newspapers or logos.
-- caption: under 150 characters, intriguing, no spoilers. hashtags: 4 to 6, lowercase, without the # sign."""
+- image_prompt: describe ONE clear, well-lit, realistic still image for that moment in plain visual terms: places, buildings, rooms, objects, vehicles, weather, era-appropriate details, people seen from behind or far away. Prefer daytime or brightly lit scenes; if it must be night, include bright lights. Never describe a real person's face, never violence, blood, bodies, injuries or weapons being used, never text, signs, newspapers or logos.
+- title, caption and hashtags follow the same language rules. caption: under 150 characters, intriguing, no spoilers. hashtags: 4 to 6, lowercase, without the # sign."""
+
+
+def avoid_regex():
+    words = sorted(CFG.get("avoid_words", []), key=len, reverse=True)
+    return re.compile(r"\b(" + "|".join(map(re.escape, words)) + r")\b", re.I) if words else None
+
+
+def bad_words(script):
+    rx = avoid_regex()
+    if not rx:
+        return []
+    texts = [script.get("title", ""), script.get("caption", "")] + [s["narration"] for s in script["scenes"]]
+    return sorted({m.group(0).lower() for t in texts for m in rx.finditer(t)})
+
+
+SOFTEN = [
+    (r"\bserial (killer|murderer)(s?)\b", r"serial offender\2"),
+    (r"\b(killer|murderer)(s?)\b", r"perpetrator\2"),
+    (r"\b(murdered|killed)\b", "unalived"),
+    (r"\b(shot|stabbed|strangled)\b", "attacked"),
+    (r"\b(murder|killing|shooting|stabbing)s\b", "crimes"),
+    (r"\b(murder|killing|shooting|stabbing)\b", "crime"),
+    (r"\bshootout\b", "standoff"),
+    (r"\bguns\b", "weapons"), (r"\bgun\b", "weapon"),
+    (r"\bfound dead\b", "found deceased"), (r"\bdead\b", "deceased"),
+    (r"\bsuicide\b", "taking his own life"),
+]
+
+
+def soften(text):
+    for pattern, repl in SOFTEN:
+        text = re.sub(pattern, repl, text, flags=re.I)
+    return text
 
 
 def call_gemini(system, user):
@@ -231,11 +269,12 @@ def parse_json(text):
 
 
 def write_script(title, text):
-    system = SYSTEM_PROMPT
+    system = SYSTEM_PROMPT.replace("{avoid_words}", ", ".join(CFG.get("avoid_words", [])))
     for key in ("scenes_min", "scenes_max", "words_min", "words_max"):
         system = system.replace("{" + key + "}", str(CFG[key]))
-    user = f"Article title: {title}\n\n{text[:20000]}"
-    best, best_words = None, -1
+    article_part = f"Article title: {title}\n\n{text[:20000]}"
+    user = article_part
+    best, best_score = None, None
     for attempt in range(3):
         raw = call_gemini(system, user) or call_cloudflare_text(system, user)
         if raw is None:
@@ -250,19 +289,34 @@ def write_script(title, text):
             continue
         script["scenes"] = scenes[: CFG["scenes_max"] + 2]
         words = sum(len(s["narration"].split()) for s in script["scenes"])
-        log(f"  {len(script['scenes'])} scenes, {words} words")
-        if words > best_words:
-            best, best_words = script, words
-        if words >= CFG["words_min"] * 0.9:
+        banned = bad_words(script)
+        long_enough = words >= CFG["words_min"] * 0.9
+        log(f"  {len(script['scenes'])} scenes, {words} words" + (f", avoid-words used: {banned}" if banned else ""))
+        score = (long_enough, not banned, words)
+        if best_score is None or score > best_score:
+            best, best_score = script, score
+        if long_enough and not banned:
             break
-        log("  too short, asking for a longer version")
-        user = (f"IMPORTANT: your last script was only {words} words. The total narration MUST be "
-                f"{CFG['words_min']} to {CFG['words_max']} words: add more true details from the article "
-                f"(background, timeline, investigation, aftermath).\n\nArticle title: {title}\n\n{text[:20000]}")
+        fixes = []
+        if not long_enough:
+            fixes.append(f"Your last script was only {words} words. The total narration MUST be "
+                         f"{CFG['words_min']} to {CFG['words_max']} words: add more specific true details "
+                         f"from the article (names, dates, places, evidence, investigation, aftermath).")
+        if banned:
+            fixes.append(f"Your last script used these words, which are not allowed: {', '.join(banned)}. "
+                         f"Rewrite without them, using calm PG alternatives.")
+        log("  asking for a rewrite")
+        user = "IMPORTANT: " + " ".join(fixes) + "\n\n" + article_part
     if best is None:
         raise ValueError("no usable script")
-    if best_words < CFG["words_min"] * 0.9:
-        raise ValueError(f"script still too short ({best_words} words), trying another case")
+    if not best_score[0]:
+        raise ValueError(f"script still too short ({best_score[2]} words), trying another case")
+    if not best_score[1]:  # last resort: swap the remaining words for PG ones
+        log(f"  softening remaining words: {bad_words(best)}")
+        best["title"] = soften(best.get("title", ""))
+        best["caption"] = soften(best.get("caption", ""))
+        for sc in best["scenes"]:
+            sc["narration"] = soften(sc["narration"])
     return best
 
 
@@ -425,7 +479,7 @@ def render_scene(i, image, audio, dur, out):
     ][i % 4]
     vf = (f"scale=1620:2880:force_original_aspect_ratio=increase,crop=1620:2880,"
           f"zoompan=z='{z}':x='{x}':y='{y}':d={frames}:s={W}x{H}:fps={FPS},"
-          f"eq=contrast=1.06:saturation=0.85,vignette=PI/5,format=yuv420p")
+          f"eq=brightness=0.02:contrast=1.04:saturation=1.05,format=yuv420p")
     ffmpeg("-i", image, "-i", audio,
            "-filter_complex", f"[0:v]{vf}[v];[1:a]aresample=44100,apad[a]",
            "-map", "[v]", "-map", "[a]", "-t", f"{dur:.3f}", "-r", FPS,
@@ -512,12 +566,16 @@ def main():
     log(f"Video ready: {total:.1f} seconds, {final.stat().st_size / 1e6:.1f} MB")
     save_json(USED_FILE, used)
 
+    avoid = [w.lower() for w in CFG.get("avoid_words", [])]
     tags = list(dict.fromkeys([t.strip().lstrip("#").lower().replace(" ", "")
                                for t in script.get("hashtags", []) + CFG.get("extra_hashtags", [])
                                if t.strip()]))
+    tags = [t for t in tags if not any(w in t for w in avoid)]
+    rx = avoid_regex()
+    source = "Wikipedia" if rx and rx.search(real_title) else f"Wikipedia, \"{real_title}\""
     caption = (f"{script.get('caption', '').strip()}\n\n"
                + " ".join("#" + t for t in tags)
-               + f"\n\nSource: Wikipedia, \"{real_title}\" (CC BY-SA 4.0)")
+               + f"\n\nSource: {source} (CC BY-SA 4.0)")
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     save_json(OUT / "meta.json", {
         "date": today,
