@@ -39,8 +39,11 @@ jobs:
           set -o pipefail
           mkdir -p out
           { sudo apt-get update -qq
-            sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+            sudo apt-get install -y -qq ffmpeg fonts-dejavu-core fonts-comic-neue > /dev/null
             pip install -q -r requirements.txt
+            # Free comic lettering font (SIL Open Font License) for titles and sound effects
+            curl -sSfL -o fonts/Bangers-Regular.ttf https://github.com/google/fonts/raw/main/ofl/bangers/Bangers-Regular.ttf \
+              && echo "Bangers font ready" || echo "Bangers font download failed; using a fallback font"
             ffmpeg -version | head -1; } 2>&1 | tee out/install.log
 
       - name: Make the video

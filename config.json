@@ -19,7 +19,9 @@
   "cloudflare_text_model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
   "cloudflare_image_model": "@cf/black-forest-labs/flux-1-schnell",
   "image_steps": 6,
-  "image_style": "realistic cinematic documentary photograph, bright natural lighting, well-lit, clear detail, true-to-life colors, sharp focus, subject centered in frame, no text, no faces",
+  "image_style": "bold comic book illustration, graphic novel art, thick black ink outlines, halftone dot shading, vibrant saturated colors, bright clean lighting, dynamic dramatic angle, cel shading, no text, no speech bubbles, no lettering",
+  "image_style_manga_example": "black and white manga illustration, detailed ink linework, screentone shading, dramatic speed lines, high contrast, no text, no speech bubbles, no lettering",
+  "sfx": true,
 
   "avoid_words": ["kill", "kills", "killed", "killing", "killings", "killer", "killers",
                   "murder", "murders", "murdered", "murdering", "murderer", "murderers",

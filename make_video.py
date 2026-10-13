@@ -169,14 +169,15 @@ Otherwise return JSON exactly like:
 {
   "skip": false,
   "title": "short on-screen title, max 6 words",
-  "scenes": [ { "narration": "...", "image_prompt": "..." } ],
+  "scenes": [ { "narration": "...", "image_prompt": "...", "sfx": "" } ],
   "caption": "...",
   "hashtags": ["..."]
 }
 - {scenes_min} to {scenes_max} scenes. Scene 1 is the hook: state the single most striking specific fact of the case plainly (who, where, when, and the strange detail), as one or two sentences. Then tell the story in order: background, what happened, the investigation and evidence, key turning points, suspects or trial. The last scene says how the case ended or where it stands today, then "Follow for more cases."
 - Total narration {words_min} to {words_max} words. Short spoken sentences. Write numbers, dates and years the way they are read aloud. No emojis, no stage directions.
-- image_prompt: describe ONE clear, well-lit, realistic still image for that moment in plain visual terms: places, buildings, rooms, objects, vehicles, weather, era-appropriate details, people seen from behind or far away. Prefer daytime or brightly lit scenes; if it must be night, include bright lights. Never describe a real person's face, never violence, blood, bodies, injuries or weapons being used, never text, signs, newspapers or logos.
-- title, caption and hashtags follow the same language rules. caption: under 150 characters, intriguing, no spoilers. hashtags: 4 to 6, lowercase, without the # sign."""
+- image_prompt: describe the CONTENT of ONE bright, clear comic-book panel for that moment in plain visual terms (the art style is added automatically): places, buildings, rooms, objects, vehicles, weather, era-appropriate details, people seen from behind or far away, dramatic camera angles. Prefer daytime or brightly lit scenes. Never describe a real person's face, never violence, blood, bodies, injuries or weapons being used, never text, speech bubbles, signs, newspapers or logos.
+- sfx: comic-book sound effects for about one scene in three, otherwise an empty string. One or two words in capitals ending with "!" or "...", for an everyday sound that fits that moment, e.g. "RIIING!", "SLAM!", "SCREECH!", "WHOOSH!", "KNOCK KNOCK!", "CLICK!", "FLASH!", "BAM!" (gavel), "WEE-OOO!" (siren), "CRASH!", "THUD!". Never use one for a gunshot, a blow, or the moment someone is harmed.
+- title, caption, sfx and hashtags follow the same language rules. caption: under 150 characters, intriguing, no spoilers. hashtags: 4 to 6, lowercase, without the # sign."""
 
 
 def avoid_regex():
@@ -188,7 +189,8 @@ def bad_words(script):
     rx = avoid_regex()
     if not rx:
         return []
-    texts = [script.get("title", ""), script.get("caption", "")] + [s["narration"] for s in script["scenes"]]
+    texts = ([script.get("title", ""), script.get("caption", "")]
+             + [s["narration"] for s in script["scenes"]] + [str(s.get("sfx") or "") for s in script["scenes"]])
     return sorted({m.group(0).lower() for t in texts for m in rx.finditer(t)})
 
 
@@ -315,8 +317,11 @@ def write_script(title, text):
         log(f"  softening remaining words: {bad_words(best)}")
         best["title"] = soften(best.get("title", ""))
         best["caption"] = soften(best.get("caption", ""))
+        rx = avoid_regex()
         for sc in best["scenes"]:
             sc["narration"] = soften(sc["narration"])
+            if rx and rx.search(str(sc.get("sfx") or "")):
+                sc["sfx"] = ""
     return best
 
 
@@ -436,8 +441,10 @@ def build_captions(scenes, title):
         "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, "
         "Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, "
         "Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
-        "Style: Cap,DejaVu Sans,84,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,-1,0,0,0,100,100,0,0,1,6,3,2,90,90,620,1",
-        "Style: Title,DejaVu Sans,72,&H0000D7FF,&H00FFFFFF,&H00000000,&H96000000,-1,0,0,0,100,100,1,0,1,6,3,8,80,80,240,1",
+        # Comic look: yellow narration boxes with black text, punchy title and sound-effect lettering.
+        "Style: Cap,Comic Neue,78,&H00000000,&H00000000,&H0099F5FF,&H00000000,-1,0,0,0,100,100,0,0,3,16,0,2,90,90,560,1",
+        "Style: Title,Bangers,104,&H0000E1FF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,3,0,1,8,6,8,70,70,230,1",
+        "Style: SFX,Bangers,190,&H0000E1FF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,4,0,1,11,8,5,40,40,0,1",
         "", "[Events]",
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
     ]
@@ -448,6 +455,13 @@ def build_captions(scenes, title):
     end = scenes[-1]["start"] + scenes[-1]["dur"]
     lines.append(f"Dialogue: 1,{ass_time(end - 3.0)},{ass_time(end)},Title,,0,0,0,,"
                  "{\\fad(300,0)}FOLLOW FOR MORE CASES")
+    for i, sc in enumerate(s for s in scenes if s.get("sfx")):
+        x, angle = (330, 10) if i % 2 == 0 else (750, -10)
+        start = sc["start"] + 0.15
+        lines.append(
+            f"Dialogue: 2,{ass_time(start)},{ass_time(min(start + 1.4, sc['start'] + sc['dur']))},SFX,,0,0,0,,"
+            f"{{\\pos({x},560)\\frz{angle}\\fscx30\\fscy30\\t(0,140,\\fscx120\\fscy120)"
+            f"\\t(140,260,\\fscx100\\fscy100)\\fad(0,250)}}{ass_text(sc['sfx'])}")
     if CFG.get("captions", True):
         for sc in scenes:
             chunks = chunk_words(sc["narration"])
@@ -504,7 +518,7 @@ def render_video(scenes, title, work, final):
         render_scene(i, sc["image"], sc["audio"], sc["dur"], work / f"scene_{i:02d}.mp4")
     (work / "list.txt").write_text("".join(f"file 'scene_{i:02d}.mp4'\n" for i in range(len(scenes))))
     (work / "captions.ass").write_text(build_captions(scenes, title))
-    ffmpeg("-f", "concat", "-safe", "0", "-i", "list.txt", "-vf", "ass=captions.ass",
+    ffmpeg("-f", "concat", "-safe", "0", "-i", "list.txt", "-vf", f"ass=captions.ass:fontsdir={ROOT / 'fonts'}",
            "-c:v", "libx264", "-preset", "medium", "-crf", "22", "-pix_fmt", "yuv420p",
            "-c:a", "copy", "-movflags", "+faststart", final.resolve(), cwd=work)
     return t
@@ -557,7 +571,8 @@ def main():
         image, audio = WORK / f"scene_{i:02d}.jpg", WORK / f"scene_{i:02d}.mp3"
         make_image(s["image_prompt"], image, seed + i * 10)
         make_voice(s["narration"], audio)
-        scenes.append({"narration": s["narration"], "image": image, "audio": audio})
+        sfx = str(s.get("sfx") or "").strip().upper()[:20] if CFG.get("sfx", True) else ""
+        scenes.append({"narration": s["narration"], "sfx": sfx, "image": image, "audio": audio})
 
     final = OUT / "video.mp4"
     total = render_video(scenes, script.get("title", ""), WORK, final)

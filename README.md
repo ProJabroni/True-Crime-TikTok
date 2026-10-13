@@ -5,7 +5,7 @@ article and sends it to TikTok through Buffer. Everything runs on GitHub's free 
 and free services. No server, no credit card.
 
 **How it works:** picks an unused, well-documented case from Wikipedia → writes a factual
-script (Google Gemini, or Cloudflare as a backup) → makes one AI picture per scene
+script (Google Gemini, or Cloudflare as a backup) → makes one comic-book style picture per scene
 (Cloudflare Workers AI) → narrates it (Cloudflare's free Deepgram voices) → adds captions and
 slow zoom/pan motion (ffmpeg) → puts the video on GitHub Pages → queues it in Buffer, which
 posts it to TikTok.
@@ -47,6 +47,9 @@ Edit `config.json` (pencil icon on GitHub):
 - `words_min` / `words_max`: video length (about 150 words ≈ 1 minute)
 - `cloudflare_voice`: narrator voice, e.g. `zeus`, `orion`, `arcas`, `apollo` (male) or `luna`, `athena`, `hera` (female)
 - `buffer_mode`: `addToQueue` (next queue slot) or `shareNow`
+- `image_style`: the art style. Default is color comic book; for manga, copy the text of
+  `image_style_manga_example` into `image_style`
+- `sfx`: comic sound effects like "SLAM!" or "RIIING!" on screen (`true` / `false`)
 
 `state/history.json` lists every video made; `state/used.json` stops cases repeating.
 
