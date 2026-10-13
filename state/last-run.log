@@ -9,9 +9,14 @@ No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Missing person cases in the United States
-  736 unused articles
-Trying: Murder of Georgann Hawkins
+Looking in Category:Unsolved murders in the United States
+  603 unused articles
+Trying: The Black Dahlia (film)
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  script written by gemini-3.8-flash
+  skipped by writer: The article is about a feature film rather than an actual criminal case or criminal.
+Trying: 2011 Waltham triple murder
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
@@ -25,8 +30,15 @@ Trying: Murder of Georgann Hawkins
 
   Gemini gemini-flash-latest busy (503), retrying
   Gemini gemini-flash-latest busy (503), retrying
-  Gemini gemini-flash-latest busy (503), retrying
-  Gemini gemini-flash-latest failed: 503 {
+  Gemini gemini-flash-latest busy (429), retrying
+  Gemini gemini-flash-latest failed: 429 {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota ex
+  Gemini gemini-3.5-flash-lite busy (503), retrying
+  Gemini gemini-3.5-flash-lite busy (503), retrying
+  Gemini gemini-3.5-flash-lite busy (503), retrying
+  Gemini gemini-3.5-flash-lite failed: 503 {
   "error": {
     "code": 503,
     "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
@@ -34,29 +46,27 @@ Trying: Murder of Georgann Hawkins
   }
 }
 
-  script written by gemini-3.5-flash-lite
-  11 scenes, 233 words
-Making video: The Disappearance of Georgann Hawkins (Murder of Georgann Hawkins)
-  image + voice 1/11
-  voice attempt 1 failed: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=cb4045e1d5cd487a86b3a47d692715dc&Sec-MS-GEC=8CE299E8525DB4A276E5B62800F6144C98A2149188F06EAEC7A5B50D66B90507&Sec-MS-GEC-Version=1-143.0.3650.75'
-  voice attempt 2 failed: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=7d9a7c45074a43ae8f8021479f9f5a79&Sec-MS-GEC=8CE299E8525DB4A276E5B62800F6144C98A2149188F06EAEC7A5B50D66B90507&Sec-MS-GEC-Version=1-143.0.3650.75'
-  voice attempt 3 failed: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=fe8b7b21574342d0a288bad5adc5b193&Sec-MS-GEC=8CE299E8525DB4A276E5B62800F6144C98A2149188F06EAEC7A5B50D66B90507&Sec-MS-GEC-Version=1-143.0.3650.75'
-  voice attempt 4 failed: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=b725b6f19f2343dc9fc4fdfe2da11b8c&Sec-MS-GEC=8CE299E8525DB4A276E5B62800F6144C98A2149188F06EAEC7A5B50D66B90507&Sec-MS-GEC-Version=1-143.0.3650.75'
-  voice attempt 5 failed: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=afcc730c5752476b9342cd1146601ce6&Sec-MS-GEC=8CE299E8525DB4A276E5B62800F6144C98A2149188F06EAEC7A5B50D66B90507&Sec-MS-GEC-Version=1-143.0.3650.75'
-Traceback (most recent call last):
-  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/make_video.py", line 471, in <module>
-    main()
-  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/make_video.py", line 443, in main
-    asyncio.run(make_voice(s["narration"], audio))
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/runners.py", line 195, in run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/make_video.py", line 291, in make_voice
-    raise RuntimeError("text-to-speech failed")
-RuntimeError: text-to-speech failed
+  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
+  10 scenes, 139 words
+Making video: Triple Murder (2011 Waltham triple murder)
+  image + voice 1/10
+  image + voice 2/10
+  image + voice 3/10
+  image + voice 4/10
+  image + voice 5/10
+  image + voice 6/10
+  image + voice 7/10
+  image + voice 8/10
+  image + voice 9/10
+  image + voice 10/10
+  rendering scene 1/10
+  rendering scene 2/10
+  rendering scene 3/10
+  rendering scene 4/10
+  rendering scene 5/10
+  rendering scene 6/10
+  rendering scene 7/10
+  rendering scene 8/10
+  rendering scene 9/10
+  rendering scene 10/10
+Video ready: 55.2 seconds, 11.4 MB
