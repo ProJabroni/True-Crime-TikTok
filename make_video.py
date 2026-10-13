@@ -188,7 +188,7 @@ def call_gemini(system, user):
             r = requests.post(url, headers={"x-goog-api-key": GEMINI_KEY}, json=body, timeout=240)
             if r.status_code in (429, 500, 502, 503, 504):
                 log(f"  Gemini {model} busy ({r.status_code}), retrying")
-                time.sleep(20 * (attempt + 1))
+                time.sleep(8 * (attempt + 1))
                 continue
             break
         if r.status_code != 200:
@@ -265,7 +265,7 @@ def make_image(prompt, path, seed):
         full = f"{base}, {CFG['image_style']}"[:2000]
         try:
             r = requests.post(url, headers={"Authorization": f"Bearer {CF_TOKEN}"},
-                              json={"prompt": full, "steps": CFG["image_steps"], "seed": seed + attempt},
+                              json={"prompt": full, "steps": CFG["image_steps"]},
                               timeout=180)
             image = r.json().get("result", {}).get("image") if r.ok else None
             if image:
