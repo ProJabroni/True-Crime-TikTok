@@ -6,7 +6,7 @@ and free services. No server, no credit card.
 
 **How it works:** picks an unused, well-documented case from Wikipedia → writes a factual
 script (Google Gemini, or Cloudflare as a backup) → makes one AI picture per scene
-(Cloudflare Workers AI) → narrates it (Microsoft's free neural voices) → adds captions and
+(Cloudflare Workers AI) → narrates it (Cloudflare's free Deepgram voices) → adds captions and
 slow zoom/pan motion (ffmpeg) → puts the video on GitHub Pages → queues it in Buffer, which
 posts it to TikTok.
 
@@ -45,7 +45,7 @@ After that it runs by itself every day. Change the time in `.github/workflows/da
 Edit `config.json` (pencil icon on GitHub):
 - `categories`: Wikipedia categories to pick cases from
 - `words_min` / `words_max`: video length (about 150 words ≈ 1 minute)
-- `voice`: e.g. `en-US-ChristopherNeural`, `en-US-GuyNeural`, `en-US-AndrewNeural`, `en-US-AriaNeural`
+- `cloudflare_voice`: narrator voice, e.g. `zeus`, `orion`, `arcas`, `apollo` (male) or `luna`, `athena`, `hera` (female)
 - `buffer_mode`: `addToQueue` (next queue slot) or `shareNow`
 
 `state/history.json` lists every video made; `state/used.json` stops cases repeating.

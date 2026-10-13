@@ -278,17 +278,56 @@ def make_image(prompt, path, seed):
     raise RuntimeError(f"could not generate image for: {prompt}")
 
 
-async def make_voice(text, path):
+def cloudflare_voice(text, path):
+    """Narration from Cloudflare Workers AI (Deepgram Aura voices), free daily allowance."""
+    if not (CF_ACCOUNT and CF_TOKEN):
+        return False
+    for model in CFG["cloudflare_voice_models"]:
+        url = f"https://api.cloudflare.com/client/v4/accounts/{CF_ACCOUNT}/ai/run/{model}"
+        for attempt in range(3):
+            try:
+                r = requests.post(url, headers={"Authorization": f"Bearer {CF_TOKEN}"},
+                                  json={"text": text, "speaker": CFG["cloudflare_voice"]}, timeout=180)
+            except requests.RequestException as e:
+                log(f"  voice ({model}) attempt {attempt + 1} failed: {e}")
+                time.sleep(5 * (attempt + 1))
+                continue
+            if r.ok and "json" not in r.headers.get("content-type", "") and len(r.content) > 2000:
+                path.write_bytes(r.content)
+                return True
+            if r.ok:  # some models answer with base64 audio inside JSON
+                audio = (r.json().get("result") or {}).get("audio")
+                if audio:
+                    path.write_bytes(base64.b64decode(audio))
+                    return True
+            log(f"  voice ({model}) attempt {attempt + 1} failed: {r.status_code} {r.text[:200]}")
+            if r.status_code == 400:
+                break  # this model doesn't accept the request; try the next one
+            time.sleep(5 * (attempt + 1))
+    return False
+
+
+async def edge_voice(text, path):
+    """Narration from Microsoft's free Edge voices (sometimes blocked on GitHub's machines)."""
     import edge_tts
-    for attempt in range(5):
+    for attempt in range(2):
         try:
             await edge_tts.Communicate(text, CFG["voice"], rate=CFG["voice_rate"]).save(str(path))
             if path.exists() and path.stat().st_size > 2000:
-                return
+                return True
         except Exception as e:  # noqa: BLE001
-            log(f"  voice attempt {attempt + 1} failed: {e}")
-        await asyncio.sleep(5 * (attempt + 1))
-    raise RuntimeError("text-to-speech failed")
+            log(f"  edge voice attempt {attempt + 1} failed: {str(e)[:120]}")
+        await asyncio.sleep(5)
+    return False
+
+
+def make_voice(text, path):
+    engines = ["cloudflare", "edge"] if CFG.get("voice_engine", "cloudflare") == "cloudflare" else ["edge", "cloudflare"]
+    for engine in engines:
+        ok = cloudflare_voice(text, path) if engine == "cloudflare" else asyncio.run(edge_voice(text, path))
+        if ok:
+            return
+    raise RuntimeError("text-to-speech failed with every voice service")
 
 
 def duration(path):
@@ -440,7 +479,7 @@ def main():
         log(f"  image + voice {i + 1}/{len(script['scenes'])}")
         image, audio = WORK / f"scene_{i:02d}.jpg", WORK / f"scene_{i:02d}.mp3"
         make_image(s["image_prompt"], image, seed + i * 10)
-        asyncio.run(make_voice(s["narration"], audio))
+        make_voice(s["narration"], audio)
         scenes.append({"narration": s["narration"], "image": image, "audio": audio})
 
     final = OUT / "video.mp4"

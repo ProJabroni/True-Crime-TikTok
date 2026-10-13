@@ -20,6 +20,9 @@
   "image_steps": 6,
   "image_style": "cinematic documentary photograph, dark moody true-crime atmosphere, muted desaturated colors, dramatic low-key lighting, film grain, subject centered in frame, no text, no faces",
 
+  "voice_engine": "cloudflare",
+  "cloudflare_voice_models": ["@cf/deepgram/aura-2-en", "@cf/deepgram/aura-1"],
+  "cloudflare_voice": "zeus",
   "voice": "en-US-ChristopherNeural",
   "voice_rate": "-4%",
   "scene_gap_seconds": 0.35,
