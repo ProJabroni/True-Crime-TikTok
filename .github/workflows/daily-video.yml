@@ -1,6 +1,9 @@
 name: Daily true crime video
 
 on:
+  push:                     # editing test-run.txt makes a test video (never posts)
+    branches: [main]
+    paths: [test-run.txt]
   schedule:
     - cron: "17 13 * * *"   # every day at 13:17 UTC (9:17am New York); Buffer then posts at your queue time
   workflow_dispatch:
