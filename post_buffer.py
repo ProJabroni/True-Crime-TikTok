@@ -94,8 +94,12 @@ def main():
         ... on MutationError { message }
       }
     }"""
+    draft = os.environ.get("BUFFER_DRAFT", "").lower() == "true"
     post = {"channelId": channel, "text": META["caption"], "schedulingType": "automatic",
             "mode": CFG.get("buffer_mode", "addToQueue"), "assets": [{"video": {"url": url}}]}
+    if draft:  # test runs: save as a Buffer draft, which never publishes
+        post["saveToDraft"] = True
+        log("Test run: saving to Buffer as a draft (it will not be published).")
     # Ask Buffer to switch on TikTok's AI-generated content label; retry without if unsupported.
     attempts = [{**post, "metadata": {"tiktok": {"isAiGenerated": True}}}, post]
     for i, data_input in enumerate(attempts):
@@ -110,10 +114,11 @@ def main():
         result = data["data"]["createPost"]
         if result.get("__typename") == "PostActionSuccess":
             post_id = result["post"]["id"]
-            log(f"Queued in Buffer for TikTok (post {post_id}).")
+            log(f"{'Saved as a Buffer draft' if draft else 'Queued in Buffer for TikTok'} (post {post_id}).")
             if i == 1:
                 log("Note: turn on the AI-generated label for these posts in TikTok/Buffer.")
-            record("queued in Buffer", video=url, buffer_post=post_id, ai_label=(i == 0))
+            record("Buffer draft (test)" if draft else "queued in Buffer",
+                   video=url, buffer_post=post_id, ai_label=(i == 0))
             return
         record("Buffer error", video=url, error=result.get("message", str(result)))
         sys.exit(f"Buffer could not create the post: {result.get('message', result)}")

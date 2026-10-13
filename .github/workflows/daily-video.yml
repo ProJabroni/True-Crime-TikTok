@@ -97,11 +97,11 @@ jobs:
           echo "$URL" > ../state/latest-video.txt
           echo "### Watch the video: $URL" >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Send to TikTok through Buffer
-        if: env.POST == 'true'
+      - name: Send to TikTok through Buffer (test runs save a draft instead)
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_CHANNEL_ID: ${{ secrets.BUFFER_CHANNEL_ID }}
+          BUFFER_DRAFT: ${{ env.POST != 'true' }}
           VIDEO_URL: ${{ steps.pages.outputs.url }}
         run: |
           set -o pipefail
