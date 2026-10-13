@@ -39,7 +39,7 @@ CF_ACCOUNT = os.environ.get("CLOUDFLARE_ACCOUNT_ID", "").strip()
 CF_TOKEN = os.environ.get("CLOUDFLARE_API_TOKEN", "").strip()
 GEMINI_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
 
-SKIP_TITLES = re.compile(r"^(List|Lists|Timeline|Index|Outline) of", re.I)
+SKIP_TITLES = re.compile(r"^(List|Lists|Timeline|Index|Outline) of|\((\d{4} )?(film|TV series|television series|miniseries|book|novel|album|song|documentary|play|musical|video game|podcast|opera|TV film|episode)\)$", re.I)
 END_SECTIONS = re.compile(
     r"\n==+\s*(See also|References|Notes|External links|Further reading|Bibliography|"
     r"Sources|Citations|Footnotes|In popular culture|Media|Popular culture)\s*==+",
@@ -188,7 +188,7 @@ def call_gemini(system, user):
             r = requests.post(url, headers={"x-goog-api-key": GEMINI_KEY}, json=body, timeout=240)
             if r.status_code in (429, 500, 502, 503, 504):
                 log(f"  Gemini {model} busy ({r.status_code}), retrying")
-                time.sleep(8 * (attempt + 1))
+                time.sleep(15 * (attempt + 1))
                 continue
             break
         if r.status_code != 200:
@@ -235,20 +235,33 @@ def write_script(title, text):
     for key in ("scenes_min", "scenes_max", "words_min", "words_max"):
         system = system.replace("{" + key + "}", str(CFG[key]))
     user = f"Article title: {title}\n\n{text[:20000]}"
-    raw = call_gemini(system, user) or call_cloudflare_text(system, user)
-    if raw is None:
-        sys.exit("No script model worked. Check the GEMINI_API_KEY / CLOUDFLARE_* secrets.")
-    script = parse_json(raw)
-    if script.get("skip"):
-        return script
-    scenes = [s for s in script.get("scenes", [])
-              if isinstance(s, dict) and s.get("narration", "").strip() and s.get("image_prompt", "").strip()]
-    if len(scenes) < 5:
-        raise ValueError(f"script has only {len(scenes)} usable scenes")
-    script["scenes"] = scenes[: CFG["scenes_max"] + 2]
-    words = sum(len(s["narration"].split()) for s in script["scenes"])
-    log(f"  {len(script['scenes'])} scenes, {words} words")
-    return script
+    best, best_words = None, -1
+    for attempt in range(2):
+        raw = call_gemini(system, user) or call_cloudflare_text(system, user)
+        if raw is None:
+            sys.exit("No script model worked. Check the GEMINI_API_KEY / CLOUDFLARE_* secrets.")
+        script = parse_json(raw)
+        if script.get("skip"):
+            return script
+        scenes = [s for s in script.get("scenes", [])
+                  if isinstance(s, dict) and s.get("narration", "").strip() and s.get("image_prompt", "").strip()]
+        if len(scenes) < 5:
+            log(f"  script has only {len(scenes)} usable scenes")
+            continue
+        script["scenes"] = scenes[: CFG["scenes_max"] + 2]
+        words = sum(len(s["narration"].split()) for s in script["scenes"])
+        log(f"  {len(script['scenes'])} scenes, {words} words")
+        if words > best_words:
+            best, best_words = script, words
+        if words >= CFG["words_min"] * 0.9:
+            break
+        log("  too short, asking for a longer version")
+        user = (f"IMPORTANT: your last script was only {words} words. The total narration MUST be "
+                f"{CFG['words_min']} to {CFG['words_max']} words: add more true details from the article "
+                f"(background, timeline, investigation, aftermath).\n\nArticle title: {title}\n\n{text[:20000]}")
+    if best is None:
+        raise ValueError("no usable script")
+    return best
 
 
 # ---------------------------------------------------------------- media
