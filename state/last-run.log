@@ -9,9 +9,9 @@ No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Kidnappings in the United States
-  319 unused articles
-Trying: Anna Mae Aquash
+Looking in Category:Missing person cases in the United States
+  736 unused articles
+Trying: Murder of Georgann Hawkins
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
@@ -34,22 +34,29 @@ Trying: Anna Mae Aquash
   }
 }
 
-  Gemini gemini-3.5-flash-lite busy (503), retrying
-  Gemini gemini-3.5-flash-lite busy (503), retrying
   script written by gemini-3.5-flash-lite
-  11 scenes, 207 words
-Making video: The Tragic Murder of Anna Mae Aquash (Anna Mae Aquash)
+  11 scenes, 233 words
+Making video: The Disappearance of Georgann Hawkins (Murder of Georgann Hawkins)
   image + voice 1/11
-  image attempt 1 failed: 400 {"errors":[{"message":"AiError: Bad input: Error: Additional or unevaluated properties '/seed' at '/' not allowed (f299b738-bbc7-4869-937f-da7413ff7941)","code":5006}],"success":false,"result":{},"mes
-  image attempt 2 failed: 400 {"errors":[{"message":"AiError: Bad input: Error: Additional or unevaluated properties '/seed' at '/' not allowed (739ebbd8-2b6c-4f10-875f-0db13da71493)","code":5006}],"success":false,"result":{},"mes
-  image attempt 3 failed: 400 {"errors":[{"message":"AiError: Bad input: Error: Additional or unevaluated properties '/seed' at '/' not allowed (8e030521-ecd1-4838-9e51-d3789a17db6b)","code":5006}],"success":false,"result":{},"mes
-  image attempt 4 failed: 400 {"errors":[{"message":"AiError: Bad input: Error: Additional or unevaluated properties '/seed' at '/' not allowed (82a8c30e-79ba-49c9-8914-52bea1e28418)","code":5006}],"success":false,"result":{},"mes
-  image attempt 5 failed: 400 {"errors":[{"message":"AiError: Bad input: Error: Additional or unevaluated properties '/seed' at '/' not allowed (4803ae0d-1725-4cab-a694-426155d66e15)","code":5006}],"success":false,"result":{},"mes
+  voice attempt 1 failed: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=cb4045e1d5cd487a86b3a47d692715dc&Sec-MS-GEC=8CE299E8525DB4A276E5B62800F6144C98A2149188F06EAEC7A5B50D66B90507&Sec-MS-GEC-Version=1-143.0.3650.75'
+  voice attempt 2 failed: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=7d9a7c45074a43ae8f8021479f9f5a79&Sec-MS-GEC=8CE299E8525DB4A276E5B62800F6144C98A2149188F06EAEC7A5B50D66B90507&Sec-MS-GEC-Version=1-143.0.3650.75'
+  voice attempt 3 failed: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=fe8b7b21574342d0a288bad5adc5b193&Sec-MS-GEC=8CE299E8525DB4A276E5B62800F6144C98A2149188F06EAEC7A5B50D66B90507&Sec-MS-GEC-Version=1-143.0.3650.75'
+  voice attempt 4 failed: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=b725b6f19f2343dc9fc4fdfe2da11b8c&Sec-MS-GEC=8CE299E8525DB4A276E5B62800F6144C98A2149188F06EAEC7A5B50D66B90507&Sec-MS-GEC-Version=1-143.0.3650.75'
+  voice attempt 5 failed: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=afcc730c5752476b9342cd1146601ce6&Sec-MS-GEC=8CE299E8525DB4A276E5B62800F6144C98A2149188F06EAEC7A5B50D66B90507&Sec-MS-GEC-Version=1-143.0.3650.75'
 Traceback (most recent call last):
   File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/make_video.py", line 471, in <module>
     main()
-  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/make_video.py", line 442, in main
-    make_image(s["image_prompt"], image, seed + i * 10)
-  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/make_video.py", line 278, in make_image
-    raise RuntimeError(f"could not generate image for: {prompt}")
-RuntimeError: could not generate image for: A desolate winter prairie landscape under a gray, overcast sky with sparse dry grass and melting snow patches.
+  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/make_video.py", line 443, in main
+    asyncio.run(make_voice(s["narration"], audio))
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/make_video.py", line 291, in make_voice
+    raise RuntimeError("text-to-speech failed")
+RuntimeError: text-to-speech failed
