@@ -1,0 +1,107 @@
+name: Daily true crime video
+
+on:
+  schedule:
+    - cron: "17 13 * * *"   # every day at 13:17 UTC (9:17am New York); Buffer then posts at your queue time
+  workflow_dispatch:
+    inputs:
+      post:
+        description: "Post to TikTok through Buffer (turn off to just make a test video)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  pages: read
+
+concurrency:
+  group: daily-video
+  cancel-in-progress: false
+
+jobs:
+  video:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      POST: ${{ github.event_name == 'schedule' || inputs.post }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ffmpeg and Python packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          pip install -q -r requirements.txt
+
+      - name: Make the video
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: python make_video.py
+
+      - name: Attach the video to this run (download it from the run summary)
+        uses: actions/upload-artifact@v4
+        with:
+          name: video
+          path: |
+            out/video.mp4
+            out/meta.json
+          retention-days: 7
+
+      - name: Check out the GitHub Pages branch
+        if: env.POST == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: site
+
+      - name: Put the video on GitHub Pages
+        if: env.POST == 'true'
+        id: pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          SLUG=$(jq -r .slug out/meta.json)
+          KEEP=$(jq -r '.keep_videos_online // 10' config.json)
+          cd site
+          mkdir -p videos
+          cp ../out/video.mp4 "videos/$SLUG.mp4"
+          ls videos/*.mp4 | sort -r | tail -n +$((KEEP + 1)) | xargs -r rm -f
+          touch .nojekyll
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Replace the branch history each time so old videos don't pile up in the repo.
+          git checkout -q --orphan fresh
+          git add -A
+          git commit -qm "Publish $SLUG"
+          git push -qf origin fresh:gh-pages
+          BASE=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq .html_url 2>/dev/null || true)
+          if [ -z "$BASE" ]; then
+            OWNER=$(echo "${GITHUB_REPOSITORY%%/*}" | tr '[:upper:]' '[:lower:]')
+            BASE="https://$OWNER.github.io/${GITHUB_REPOSITORY#*/}/"
+          fi
+          echo "url=${BASE%/}/videos/$SLUG.mp4" >> "$GITHUB_OUTPUT"
+
+      - name: Send to TikTok through Buffer
+        if: env.POST == 'true'
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_CHANNEL_ID: ${{ secrets.BUFFER_CHANNEL_ID }}
+          VIDEO_URL: ${{ steps.pages.outputs.url }}
+        run: python post_buffer.py
+
+      - name: Remember which cases were used
+        if: always() && hashFiles('state/used.json') != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/
+          git diff --cached --quiet && exit 0
+          git commit -qm "Update used cases"
+          git pull -q --rebase origin "$GITHUB_REF_NAME"
+          git push -q origin "HEAD:$GITHUB_REF_NAME"

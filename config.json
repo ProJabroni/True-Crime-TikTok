@@ -1,0 +1,32 @@
+{
+  "categories": [
+    "Category:Unsolved murders in the United States",
+    "Category:Missing person cases in the United States",
+    "Category:Kidnappings in the United States",
+    "Category:Heists",
+    "Category:Bank robberies",
+    "Category:Prison escapes",
+    "Category:Fugitives"
+  ],
+  "min_article_chars": 4000,
+  "scenes_min": 9,
+  "scenes_max": 12,
+  "words_min": 180,
+  "words_max": 220,
+
+  "gemini_models": ["gemini-3.8-flash", "gemini-flash-latest", "gemini-3.5-flash-lite"],
+  "cloudflare_text_model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+  "cloudflare_image_model": "@cf/black-forest-labs/flux-1-schnell",
+  "image_steps": 6,
+  "image_style": "cinematic documentary photograph, dark moody true-crime atmosphere, muted desaturated colors, dramatic low-key lighting, film grain, subject centered in frame, no text, no faces",
+
+  "voice": "en-US-ChristopherNeural",
+  "voice_rate": "-4%",
+  "scene_gap_seconds": 0.35,
+  "captions": true,
+  "show_title_card": true,
+
+  "buffer_mode": "addToQueue",
+  "extra_hashtags": ["truecrime"],
+  "keep_videos_online": 10
+}
