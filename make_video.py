@@ -236,7 +236,7 @@ def write_script(title, text):
         system = system.replace("{" + key + "}", str(CFG[key]))
     user = f"Article title: {title}\n\n{text[:20000]}"
     best, best_words = None, -1
-    for attempt in range(2):
+    for attempt in range(3):
         raw = call_gemini(system, user) or call_cloudflare_text(system, user)
         if raw is None:
             sys.exit("No script model worked. Check the GEMINI_API_KEY / CLOUDFLARE_* secrets.")
@@ -261,6 +261,8 @@ def write_script(title, text):
                 f"(background, timeline, investigation, aftermath).\n\nArticle title: {title}\n\n{text[:20000]}")
     if best is None:
         raise ValueError("no usable script")
+    if best_words < CFG["words_min"] * 0.9:
+        raise ValueError(f"script still too short ({best_words} words), trying another case")
     return best
 
 
@@ -389,6 +391,9 @@ def build_captions(scenes, title):
         end = min(scenes[0]["start"] + scenes[0]["dur"], 4.0)
         lines.append(f"Dialogue: 1,{ass_time(0)},{ass_time(end)},Title,,0,0,0,,"
                      f"{{\\fad(200,300)}}{ass_text(title.upper())}")
+    end = scenes[-1]["start"] + scenes[-1]["dur"]
+    lines.append(f"Dialogue: 1,{ass_time(end - 3.0)},{ass_time(end)},Title,,0,0,0,,"
+                 "{\\fad(300,0)}FOLLOW FOR MORE CASES")
     if CFG.get("captions", True):
         for sc in scenes:
             chunks = chunk_words(sc["narration"])
@@ -435,6 +440,11 @@ def render_video(scenes, title, work, final):
         sc["dur"] = sc["voice_dur"] + CFG["scene_gap_seconds"]
         sc["start"] = t
         t += sc["dur"]
+    # Guarantee the minimum length: hold the last picture a little longer if needed.
+    if t < CFG.get("min_seconds", 61):
+        log(f"  {t:.1f}s is under {CFG.get('min_seconds', 61)}s, extending the ending")
+        scenes[-1]["dur"] += CFG.get("min_seconds", 61) - t
+        t = CFG.get("min_seconds", 61)
     for i, sc in enumerate(scenes):
         log(f"  rendering scene {i + 1}/{len(scenes)}")
         render_scene(i, sc["image"], sc["audio"], sc["dur"], work / f"scene_{i:02d}.mp4")
@@ -497,6 +507,8 @@ def main():
 
     final = OUT / "video.mp4"
     total = render_video(scenes, script.get("title", ""), WORK, final)
+    if total < CFG.get("min_seconds", 61) - 0.5:
+        sys.exit(f"Video is only {total:.1f}s; not posting a video under the minimum length.")
     log(f"Video ready: {total:.1f} seconds, {final.stat().st_size / 1e6:.1f} MB")
     save_json(USED_FILE, used)
 

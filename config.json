@@ -11,8 +11,9 @@
   "min_article_chars": 4000,
   "scenes_min": 9,
   "scenes_max": 12,
-  "words_min": 180,
-  "words_max": 220,
+  "words_min": 190,
+  "words_max": 230,
+  "min_seconds": 61,
 
   "gemini_models": ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-3.5-flash-lite", "gemini-3.1-flash-lite"],
   "cloudflare_text_model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",

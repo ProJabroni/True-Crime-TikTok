@@ -63,14 +63,12 @@ jobs:
           retention-days: 7
 
       - name: Check out the GitHub Pages branch
-        if: env.POST == 'true'
         uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: site
 
-      - name: Put the video on GitHub Pages
-        if: env.POST == 'true'
+      - name: Put the video on GitHub Pages (also gives you a link to watch it)
         id: pages
         env:
           GH_TOKEN: ${{ github.token }}
@@ -94,7 +92,10 @@ jobs:
             OWNER=$(echo "${GITHUB_REPOSITORY%%/*}" | tr '[:upper:]' '[:lower:]')
             BASE="https://$OWNER.github.io/${GITHUB_REPOSITORY#*/}/"
           fi
-          echo "url=${BASE%/}/videos/$SLUG.mp4" >> "$GITHUB_OUTPUT"
+          URL="${BASE%/}/videos/$SLUG.mp4"
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "$URL" > ../state/latest-video.txt
+          echo "### Watch the video: $URL" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Send to TikTok through Buffer
         if: env.POST == 'true'
