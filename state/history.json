@@ -18,5 +18,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-14-danilo-cavalcante.mp4",
     "buffer_post": "6acf00671f3f10bcb7af3c72",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-14",
+    "title": "The Walkie-Talkie Bank Heist",
+    "wikipedia": "https://en.wikipedia.org/wiki/Baker_Street_robbery",
+    "seconds": 122.2,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-14-baker-street-robbery.mp4",
+    "buffer_post": "6acf9b08f16b5a3e782933ae",
+    "ai_label": true
   }
 ]
