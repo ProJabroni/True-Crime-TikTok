@@ -32,10 +32,10 @@ Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
 Cloudflare's free allowance is not available right now; using the local picture generator.
-Looking in Category:Prison escapes
-  248 unused articles
-Trying: Daniel Khalife
-  Gemini gemini-3.8-flash busy (429), retrying
+Looking in Category:Fugitives
+  1022 unused articles
+Trying: Danilo Cavalcante
+  Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (429), retrying
   Gemini gemini-3.8-flash busy (429), retrying
   Gemini gemini-3.8-flash failed: 429 {
@@ -53,11 +53,10 @@ Trying: Daniel Khalife
   }
 }
 
-  Gemini gemini-3.5-flash-lite busy (503), retrying
   script written by gemini-3.5-flash-lite
-  11 scenes, 275 words
-Making video: The Soldier Who Spied for Iran (Daniel Khalife)
-  image + voice 1/11
+  12 scenes, 233 words
+Making video: How did a prisoner vanish up a wall? (Danilo Cavalcante)
+  image + voice 1/12
 /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
   warnings.warn(
 [transformers] `CLIPImageProcessor` requires torchvision (not installed); falling back to `CLIPImageProcessorPil` for backward compatibility. Install torchvision to use the default backend, or import `CLIPImageProcessorPil` directly to silence this warning.
@@ -71,43 +70,47 @@ Making video: The Soldier Who Spied for Iran (Daniel Khalife)
 
 The config attributes {'skip_prk_steps': True} were passed to LCMScheduler, but are not expected and will be ignored. Please verify your scheduler_config.json configuration file.
 No LoRA keys associated to CLIPTextModel found with the prefix='text_encoder'. This is safe to ignore if LoRA state dict didn't originally have any CLIPTextModel related params. You can also try specifying `prefix=None` to resolve the warning. Otherwise, open an issue if you think it's unexpected: https://github.com/huggingface/diffusers/issues/new
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
 /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/torch/nn/modules/rnn.py:1011: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.2 and num_layers=1
   super().__init__("LSTM", *args, **kwargs)
 /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/torch/nn/utils/weight_norm.py:145: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
   WeightNorm.apply(module, name, dim)
 Collecting en-core-web-sm==3.8.0
   Downloading en_core_web_sm-3.8.0-py3-none-any.whl (12.8 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 67.0 MB/s  0:00:00
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 48.1 MB/s  0:00:00
 Installing collected packages: en-core-web-sm
 Successfully installed en-core-web-sm-3.8.0
 [38;5;2m✔ Download and installation successful[0m
 You can now load the package via spacy.load('en_core_web_sm')
 /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
   warnings.warn(
-  image + voice 2/11
-  image + voice 3/11
-  image + voice 4/11
-  image + voice 5/11
-  image + voice 6/11
-  image + voice 7/11
-  image + voice 8/11
-  image + voice 9/11
-  image + voice 10/11
-  image + voice 11/11
-  rendering scene 1/11
-  rendering scene 2/11
-  rendering scene 3/11
-  rendering scene 4/11
-  rendering scene 5/11
-  rendering scene 6/11
-  rendering scene 7/11
-  rendering scene 8/11
-  rendering scene 9/11
-  rendering scene 10/11
-  rendering scene 11/11
-Video ready: 140.7 seconds, 30.4 MB
+  image + voice 2/12
+  image + voice 3/12
+  image + voice 4/12
+  image + voice 5/12
+  image + voice 6/12
+  image + voice 7/12
+  image + voice 8/12
+  image + voice 9/12
+  image + voice 10/12
+  image + voice 11/12
+  image + voice 12/12
+  rendering scene 1/12
+  rendering scene 2/12
+  rendering scene 3/12
+  rendering scene 4/12
+  rendering scene 5/12
+  rendering scene 6/12
+  rendering scene 7/12
+  rendering scene 8/12
+  rendering scene 9/12
+  rendering scene 10/12
+  rendering scene 11/12
+  rendering scene 12/12
+Video ready: 114.4 seconds, 25.9 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-14-daniel-khalife.mp4
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-14-danilo-cavalcante.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6acedf9eb610c3011f9803c3).
+Test run: saving to Buffer as a draft (it will not be published).
+Saved as a Buffer draft (post 6acf00671f3f10bcb7af3c72).

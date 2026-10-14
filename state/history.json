@@ -8,5 +8,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-14-daniel-khalife.mp4",
     "buffer_post": "6acedf9eb610c3011f9803c3",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-14",
+    "title": "How did a prisoner vanish up a wall?",
+    "wikipedia": "https://en.wikipedia.org/wiki/Danilo_Cavalcante",
+    "seconds": 114.4,
+    "status": "Buffer draft (test)",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-14-danilo-cavalcante.mp4",
+    "buffer_post": "6acf00671f3f10bcb7af3c72",
+    "ai_label": true
   }
 ]
