@@ -41,6 +41,9 @@ bottom to watch it.
 
 After that it runs by itself every day. Change the time in `.github/workflows/daily-video.yml`.
 
+**Make a real video right now** (it goes to your Buffer queue): edit `post-now.txt`
+(pencil icon, change anything, Commit). **Make a test video** (Buffer draft only): edit `test-run.txt`.
+
 ## Changing things
 Edit `config.json` (pencil icon on GitHub):
 - `categories`: Wikipedia categories to pick cases from

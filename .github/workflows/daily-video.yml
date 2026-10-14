@@ -1,11 +1,14 @@
 name: Daily true crime video
 
 on:
-  push:                     # editing test-run.txt makes a test video (never posts)
+  push:                     # edit test-run.txt = test video (Buffer draft only); edit post-now.txt = real video now
     branches: [main]
-    paths: [test-run.txt]
-  schedule:
-    - cron: "37 0 * * *"    # every day at 00:37 UTC = 8:37pm New York (7:37pm in winter), just after the free AI allowance resets; Buffer posts it at your 6am slot
+    paths: [test-run.txt, post-now.txt]
+  schedule:                 # GitHub's timer can run late or skip, so there are backup times.
+    - cron: "37 0 * * *"    # 8:37pm New York (7:37pm in winter), just after the free AI allowance resets
+    - cron: "53 1 * * *"    # backup: 9:53pm New York
+    - cron: "23 3 * * *"    # backup: 11:23pm New York
+                            # A backup does nothing if that night's video is already in Buffer.
   workflow_dispatch:
     inputs:
       post:
@@ -22,11 +25,31 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  check:
+    runs-on: ubuntu-24.04
+    outputs:
+      skip: ${{ steps.guard.outputs.skip }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Skip if tonight's video is already in Buffer
+        id: guard
+        run: |
+          TODAY=$(date -u +%F)
+          if [ "${{ github.event_name }}" = "schedule" ] && \
+             jq -e --arg d "$TODAY" 'map(select(.date == $d and (.status | test("queued|made, not posted")))) | length > 0' state/history.json > /dev/null; then
+            echo "Tonight's video is already done; nothing to do." | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
   video:
+    needs: check
+    if: needs.check.outputs.skip != 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     env:
-      POST: ${{ github.event_name == 'schedule' || inputs.post }}
+      POST: ${{ github.event_name == 'schedule' || inputs.post || contains(github.event.head_commit.message, 'post-now') }}
     steps:
       - uses: actions/checkout@v4
 
@@ -39,7 +62,8 @@ jobs:
           set -o pipefail
           mkdir -p out
           { sudo apt-get update -qq
-            sudo apt-get install -y -qq ffmpeg fonts-dejavu-core fonts-comic-neue > /dev/null
+            sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+            sudo apt-get install -y -qq fonts-comic-neue > /dev/null || echo "Comic Neue font not available; using a fallback font"
             pip install -q -r requirements.txt
             # Free comic lettering font (SIL Open Font License) for titles and sound effects
             curl -sSfL -o fonts/Bangers-Regular.ttf https://github.com/google/fonts/raw/main/ofl/bangers/Bangers-Regular.ttf \
