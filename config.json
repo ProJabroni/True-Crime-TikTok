@@ -30,7 +30,7 @@
                   "dismembered", "decapitated", "torture", "tortured", "molested", "sexual"],
 
   "voice_engine": "cloudflare",
-  "cloudflare_voice_models": ["@cf/deepgram/aura-2-en", "@cf/deepgram/aura-1"],
+  "cloudflare_voice_models": ["@cf/deepgram/aura-1", "@cf/deepgram/aura-2-en"],
   "cloudflare_voice": "zeus",
   "voice": "en-US-ChristopherNeural",
   "voice_rate": "-4%",

@@ -79,6 +79,23 @@ def wiki(params):
     r.raise_for_status()
 
 
+FICTION_CATS = re.compile(
+    r"fiction|characters|films|television|tv series|novels|books|comics|manga|anime|video games|"
+    r"songs|albums|plays|operas|musicals|podcasts|documentar|in popular culture|mythology|folklore|legends",
+    re.I)
+
+
+def is_fiction_or_media(title):
+    """True if Wikipedia files the article under fictional characters, films, TV, books, etc."""
+    data = wiki({"action": "query", "prop": "categories", "titles": title, "cllimit": "max",
+                 "clshow": "!hidden", "redirects": "1"})
+    cats = [c["title"] for p in data.get("query", {}).get("pages", []) for c in p.get("categories", [])]
+    hits = [c for c in cats if FICTION_CATS.search(c)]
+    if hits:
+        log(f"  not a real case ({hits[0]}), skipping")
+    return bool(hits)
+
+
 def category_pages(cat, depth=2, budget=None):
     """Article titles in a category, including subcategories up to `depth` levels."""
     budget = budget if budget is not None else {"calls": 60}
@@ -90,7 +107,7 @@ def category_pages(cat, depth=2, budget=None):
         for m in data.get("query", {}).get("categorymembers", []):
             if m["ns"] == 0:
                 pages.append(m["title"])
-            elif m["ns"] == 14:
+            elif m["ns"] == 14 and not FICTION_CATS.search(m["title"]):
                 subcats.append(m["title"])
         if "continue" in data and len(pages) < 3000:
             cont = data["continue"]
@@ -163,7 +180,7 @@ Facts:
 - Stick strictly to facts in the article. Never invent details, dialogue, thoughts or motives.
 - Anyone not convicted is a "suspect" or "accused"; keep the article's "allegedly" wording. Never name a living person as guilty unless the article says they were convicted.
 - Be respectful toward victims and their families. No mockery, no jokes.
-- If the article is not about a specific criminal case or criminal, is too thin to tell a story, or centers on sexual abuse of a child, return {"skip": true, "reason": "..."} and nothing else.
+- If the article is not about a specific REAL criminal case or real criminal (for example it is about a fictional character, a film, TV show, book or game), is too thin to tell a story, or centers on sexual abuse of a child, return {"skip": true, "reason": "..."} and nothing else.
 
 Otherwise return JSON exactly like:
 {
@@ -257,6 +274,8 @@ def call_cloudflare_text(system, user):
         if r.ok:
             log(f"  script written by {CFG['cloudflare_text_model']}")
             return r.json()["choices"][0]["message"]["content"]
+        if quota_exhausted(r):
+            sys.exit(QUOTA_MSG)
         log(f"  Cloudflare text failed: {r.status_code} {r.text[:300]}")
         time.sleep(10 * (attempt + 1))
     return None
@@ -330,6 +349,25 @@ def write_script(title, text):
 SAFE_PROMPT = "an empty rain-soaked street at night under a flickering streetlight, distant police lights"
 
 
+QUOTA_MSG = ("Cloudflare's free daily AI allowance is used up, so no pictures or voice can be made right now. "
+             "It resets at 00:00 UTC (8pm New York in summer, 7pm in winter); the next scheduled run will try again.")
+
+
+def quota_exhausted(r):
+    return r.status_code == 429 and "daily free allocation" in r.text
+
+
+def cloudflare_quota_ok():
+    """Tiny, near-free request to see if today's Cloudflare allowance is still available."""
+    url = f"https://api.cloudflare.com/client/v4/accounts/{CF_ACCOUNT}/ai/run/@cf/deepgram/aura-1"
+    try:
+        r = requests.post(url, headers={"Authorization": f"Bearer {CF_TOKEN}"},
+                          json={"text": "Hi.", "speaker": "zeus"}, timeout=60)
+    except requests.RequestException:
+        return True  # network blip: carry on and let the real calls decide
+    return not quota_exhausted(r)
+
+
 def make_image(prompt, path, seed):
     if not (CF_ACCOUNT and CF_TOKEN):
         sys.exit("CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN secrets are required for images.")
@@ -341,6 +379,8 @@ def make_image(prompt, path, seed):
             r = requests.post(url, headers={"Authorization": f"Bearer {CF_TOKEN}"},
                               json={"prompt": full, "steps": CFG["image_steps"]},
                               timeout=180)
+            if quota_exhausted(r):
+                sys.exit(QUOTA_MSG)
             image = r.json().get("result", {}).get("image") if r.ok else None
             if image:
                 path.write_bytes(base64.b64decode(image))
@@ -366,6 +406,8 @@ def cloudflare_voice(text, path):
                 log(f"  voice ({model}) attempt {attempt + 1} failed: {e}")
                 time.sleep(5 * (attempt + 1))
                 continue
+            if quota_exhausted(r):
+                sys.exit(QUOTA_MSG)
             if r.ok and "json" not in r.headers.get("content-type", "") and len(r.content) > 2000:
                 path.write_bytes(r.content)
                 return True
@@ -535,6 +577,10 @@ def main():
     for f in WORK.iterdir():
         f.unlink()
     used = load_json(USED_FILE, [])
+    if not (CF_ACCOUNT and CF_TOKEN):
+        sys.exit("CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN secrets are required.")
+    if not cloudflare_quota_ok():
+        sys.exit(QUOTA_MSG)
 
     script = None
     for title in candidates(set(used))[:5]:
@@ -544,6 +590,8 @@ def main():
             real_title, text, url = article(title)
             if real_title not in used:
                 used.append(real_title)
+            if is_fiction_or_media(real_title):
+                continue
             if len(text) < CFG["min_article_chars"]:
                 log("  too short, skipping")
                 continue
