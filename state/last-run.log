@@ -18,15 +18,23 @@ No containers need to be restarted.
 No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+Cloudflare's free allowance is not available right now; using the local picture generator.
 Looking in Category:Prison escapes
-  531 unused articles
-Trying: Rick Sanchez
-  Gemini gemini-3.8-flash busy (429), retrying
-  script written by gemini-3.8-flash
-  skipped by writer: The article is about a fictional cartoon character and not a real-world criminal case or criminal.
-Trying: Clay Morrow
+  248 unused articles
+Trying: Daniel Khalife
   Gemini gemini-3.8-flash busy (429), retrying
   Gemini gemini-3.8-flash busy (429), retrying
   Gemini gemini-3.8-flash busy (429), retrying
@@ -45,20 +53,61 @@ Trying: Clay Morrow
   }
 }
 
+  Gemini gemini-3.5-flash-lite busy (503), retrying
   script written by gemini-3.5-flash-lite
-  11 scenes, 312 words
-Making video: The Rise and Fall of Clay Morrow (Clay Morrow)
+  11 scenes, 275 words
+Making video: The Soldier Who Spied for Iran (Daniel Khalife)
   image + voice 1/11
-  image attempt 1 failed: 429 {"errors":[{"message":"AiError: AiError: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage. (2f528361-
-  image attempt 2 failed: 429 {"errors":[{"message":"AiError: AiError: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage. (b021b213-
-  image attempt 3 failed: 429 {"errors":[{"message":"AiError: AiError: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage. (3a229975-
-  image attempt 4 failed: 429 {"errors":[{"message":"AiError: AiError: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage. (451a3d27-
-  image attempt 5 failed: 429 {"errors":[{"message":"AiError: AiError: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage. (0285808f-
-Traceback (most recent call last):
-  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/make_video.py", line 608, in <module>
-    main()
-  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/make_video.py", line 572, in main
-    make_image(s["image_prompt"], image, seed + i * 10)
-  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/make_video.py", line 352, in make_image
-    raise RuntimeError(f"could not generate image for: {prompt}")
-RuntimeError: could not generate image for: A rustic motorcycle clubhouse exterior with a vintage sign hanging over the porch under a sunny California sky.
+/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+[transformers] `CLIPImageProcessor` requires torchvision (not installed); falling back to `CLIPImageProcessorPil` for backward compatibility. Install torchvision to use the default backend, or import `CLIPImageProcessorPil` directly to silence this warning.
+[transformers] `SiglipImageProcessor` requires torchvision (not installed); falling back to `SiglipImageProcessorPil` for backward compatibility. Install torchvision to use the default backend, or import `SiglipImageProcessorPil` directly to silence this warning.
+[transformers] `Siglip2ImageProcessor` requires torchvision (not installed); falling back to `Siglip2ImageProcessorPil` for backward compatibility. Install torchvision to use the default backend, or import `Siglip2ImageProcessorPil` directly to silence this warning.
+  loading the local picture generator (first time takes a few minutes)
+/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:206: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/diffusers/utils/deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+  deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+
+The config attributes {'skip_prk_steps': True} were passed to LCMScheduler, but are not expected and will be ignored. Please verify your scheduler_config.json configuration file.
+No LoRA keys associated to CLIPTextModel found with the prefix='text_encoder'. This is safe to ignore if LoRA state dict didn't originally have any CLIPTextModel related params. You can also try specifying `prefix=None` to resolve the warning. Otherwise, open an issue if you think it's unexpected: https://github.com/huggingface/diffusers/issues/new
+/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/torch/nn/modules/rnn.py:1011: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.2 and num_layers=1
+  super().__init__("LSTM", *args, **kwargs)
+/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/torch/nn/utils/weight_norm.py:145: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+Collecting en-core-web-sm==3.8.0
+  Downloading en_core_web_sm-3.8.0-py3-none-any.whl (12.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 67.0 MB/s  0:00:00
+Installing collected packages: en-core-web-sm
+Successfully installed en-core-web-sm-3.8.0
+[38;5;2m✔ Download and installation successful[0m
+You can now load the package via spacy.load('en_core_web_sm')
+/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+  image + voice 2/11
+  image + voice 3/11
+  image + voice 4/11
+  image + voice 5/11
+  image + voice 6/11
+  image + voice 7/11
+  image + voice 8/11
+  image + voice 9/11
+  image + voice 10/11
+  image + voice 11/11
+  rendering scene 1/11
+  rendering scene 2/11
+  rendering scene 3/11
+  rendering scene 4/11
+  rendering scene 5/11
+  rendering scene 6/11
+  rendering scene 7/11
+  rendering scene 8/11
+  rendering scene 9/11
+  rendering scene 10/11
+  rendering scene 11/11
+Video ready: 140.7 seconds, 30.4 MB
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-14-daniel-khalife.mp4
+Using Buffer TikTok channel: truecrimedaily001
+Queued in Buffer for TikTok (post 6acedf9eb610c3011f9803c3).
