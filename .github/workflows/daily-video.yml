@@ -4,11 +4,11 @@ on:
   push:                     # edit test-run.txt = test video (Buffer draft only); edit post-now.txt = real video now
     branches: [main]
     paths: [test-run.txt, post-now.txt]
-  schedule:                 # GitHub's timer can run late or skip, so there are backup times.
-    - cron: "37 0 * * *"    # 8:37pm New York (7:37pm in winter), just after the free AI allowance resets
-    - cron: "53 1 * * *"    # backup: 9:53pm New York
-    - cron: "23 3 * * *"    # backup: 11:23pm New York
-                            # A backup does nothing if that night's video is already in Buffer.
+  schedule:                 # Make the video in the afternoon so it's ready for Buffer's 7pm post.
+    - cron: "7 19 * * *"    # 3:07pm New York (2:07pm in winter)
+    - cron: "13 20 * * *"   # backup: 4:13pm New York, only if GitHub's timer skipped or the run failed
+    - cron: "17 21 * * *"   # backup: 5:17pm New York, same
+                            # A backup does nothing if today's video is already in Buffer.
   workflow_dispatch:
     inputs:
       post:

@@ -39,7 +39,10 @@ posts it to TikTok.
 first test. When it finishes (about 10 minutes), open the run and download **video** at the
 bottom to watch it.
 
-After that it runs by itself every day. Change the time in `.github/workflows/daily-video.yml`.
+After that it runs by itself every day: the video is made around 3pm New York time (with
+backup tries at 4pm and 5pm in case GitHub's timer is late) and Buffer posts it at 7pm.
+Set the posting time in Buffer (one slot per day); change the making time in
+`.github/workflows/daily-video.yml`.
 
 **Make a real video right now** (it goes to your Buffer queue): edit `post-now.txt`
 (pencil icon, change anything, Commit). **Make a test video** (Buffer draft only): edit `test-run.txt`.
