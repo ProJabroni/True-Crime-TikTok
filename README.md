@@ -44,6 +44,10 @@ After that it runs by itself every day. Change the time in `.github/workflows/da
 **Make a real video right now** (it goes to your Buffer queue): edit `post-now.txt`
 (pencil icon, change anything, Commit). **Make a test video** (Buffer draft only): edit `test-run.txt`.
 
+**When the free online services run out**, the video is still made: pictures come from a
+comic-style generator (DreamShaper + LCM, CreativeML OpenRAIL-M) and narration from the Kokoro voice
+model (Apache 2.0), both running on GitHub's machine. Slower and a bit simpler, but no daily limit.
+
 ## Changing things
 Edit `config.json` (pencil icon on GitHub):
 - `categories`: Wikipedia categories to pick cases from

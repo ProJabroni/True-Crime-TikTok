@@ -263,7 +263,8 @@ def call_gemini(system, user):
 
 
 def call_cloudflare_text(system, user):
-    if not (CF_ACCOUNT and CF_TOKEN):
+    global CF_AVAILABLE
+    if not (CF_AVAILABLE and CF_ACCOUNT and CF_TOKEN):
         return None
     url = f"https://api.cloudflare.com/client/v4/accounts/{CF_ACCOUNT}/ai/v1/chat/completions"
     body = {"model": CFG["cloudflare_text_model"], "max_tokens": 3000, "temperature": 0.8,
@@ -275,7 +276,8 @@ def call_cloudflare_text(system, user):
             log(f"  script written by {CFG['cloudflare_text_model']}")
             return r.json()["choices"][0]["message"]["content"]
         if quota_exhausted(r):
-            sys.exit(QUOTA_MSG)
+            CF_AVAILABLE = False
+            return None
         log(f"  Cloudflare text failed: {r.status_code} {r.text[:300]}")
         time.sleep(10 * (attempt + 1))
     return None
@@ -299,7 +301,7 @@ def write_script(title, text):
     for attempt in range(3):
         raw = call_gemini(system, user) or call_cloudflare_text(system, user)
         if raw is None:
-            sys.exit("No script model worked. Check the GEMINI_API_KEY / CLOUDFLARE_* secrets.")
+            sys.exit("No script writer was available (Gemini busy and Cloudflare allowance used up). Try again later.")
         script = parse_json(raw)
         if script.get("skip"):
             return script
@@ -353,6 +355,9 @@ QUOTA_MSG = ("Cloudflare's free daily AI allowance is used up, so no pictures or
              "It resets at 00:00 UTC (8pm New York in summer, 7pm in winter); the next scheduled run will try again.")
 
 
+CF_AVAILABLE = True  # flips to False once Cloudflare's free daily allowance runs out
+
+
 def quota_exhausted(r):
     return r.status_code == 429 and "daily free allocation" in r.text
 
@@ -368,9 +373,56 @@ def cloudflare_quota_ok():
     return not quota_exhausted(r)
 
 
+_LOCAL_SD = None
+
+
+def local_image(prompt, path, seed):
+    """Comic-style picture made on the GitHub machine itself (no limits, slower, simpler)."""
+    global _LOCAL_SD
+    import torch
+    from diffusers import AutoPipelineForText2Image, LCMScheduler
+    if _LOCAL_SD is None:
+        log("  loading the local picture generator (first time takes a few minutes)")
+        torch.set_num_threads(os.cpu_count() or 4)
+        pipe = AutoPipelineForText2Image.from_pretrained(CFG["local_image_model"], torch_dtype=torch.float32)
+        pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
+        pipe.load_lora_weights(CFG["local_image_lora"])
+        pipe.fuse_lora()
+        pipe.set_progress_bar_config(disable=True)
+        _LOCAL_SD = pipe
+    style = CFG.get("local_image_style", CFG["image_style"])
+    for attempt in range(3):
+        base = prompt if attempt < 2 else SAFE_PROMPT
+        out = _LOCAL_SD(prompt=f"{base}, {style}"[:900],
+                        negative_prompt="text, letters, words, watermark, signature, speech bubble, photo, "
+                                        "blurry, deformed, extra limbs, gore, blood, nsfw, nude",
+                        num_inference_steps=CFG.get("local_image_steps", 6), guidance_scale=1.5,
+                        width=512, height=768, generator=torch.Generator().manual_seed(seed + attempt))
+        flagged = (getattr(out, "nsfw_content_detected", None) or [False])[0]
+        if not flagged:
+            out.images[0].convert("RGB").save(path, "JPEG", quality=95)
+            return
+        log("  local picture flagged by the safety checker, trying again")
+    raise RuntimeError("local picture generator could not make a safe image")
+
+
 def make_image(prompt, path, seed):
-    if not (CF_ACCOUNT and CF_TOKEN):
-        sys.exit("CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN secrets are required for images.")
+    global CF_AVAILABLE
+    if CF_AVAILABLE and CF_ACCOUNT and CF_TOKEN:
+        try:
+            if cloudflare_image(prompt, path, seed):
+                return
+        except QuotaExhausted:
+            log("  Cloudflare's free allowance ran out; switching to the local picture generator")
+            CF_AVAILABLE = False
+    local_image(prompt, path, seed)
+
+
+class QuotaExhausted(Exception):
+    pass
+
+
+def cloudflare_image(prompt, path, seed):
     url = f"https://api.cloudflare.com/client/v4/accounts/{CF_ACCOUNT}/ai/run/{CFG['cloudflare_image_model']}"
     for attempt in range(5):
         base = prompt if attempt < 3 else SAFE_PROMPT  # last tries: something that can't be refused
@@ -380,21 +432,23 @@ def make_image(prompt, path, seed):
                               json={"prompt": full, "steps": CFG["image_steps"]},
                               timeout=180)
             if quota_exhausted(r):
-                sys.exit(QUOTA_MSG)
+                raise QuotaExhausted()
             image = r.json().get("result", {}).get("image") if r.ok else None
             if image:
                 path.write_bytes(base64.b64decode(image))
-                return
+                return True
             log(f"  image attempt {attempt + 1} failed: {r.status_code} {r.text[:200]}")
         except requests.RequestException as e:
             log(f"  image attempt {attempt + 1} failed: {e}")
         time.sleep(5 * (attempt + 1))
-    raise RuntimeError(f"could not generate image for: {prompt}")
+    log("  Cloudflare could not make this picture; using the local generator")
+    return False
 
 
 def cloudflare_voice(text, path):
     """Narration from Cloudflare Workers AI (Deepgram Aura voices), free daily allowance."""
-    if not (CF_ACCOUNT and CF_TOKEN):
+    global CF_AVAILABLE
+    if not (CF_AVAILABLE and CF_ACCOUNT and CF_TOKEN):
         return False
     for model in CFG["cloudflare_voice_models"]:
         url = f"https://api.cloudflare.com/client/v4/accounts/{CF_ACCOUNT}/ai/run/{model}"
@@ -407,7 +461,8 @@ def cloudflare_voice(text, path):
                 time.sleep(5 * (attempt + 1))
                 continue
             if quota_exhausted(r):
-                sys.exit(QUOTA_MSG)
+                CF_AVAILABLE = False
+                return False
             if r.ok and "json" not in r.headers.get("content-type", "") and len(r.content) > 2000:
                 path.write_bytes(r.content)
                 return True
@@ -425,7 +480,10 @@ def cloudflare_voice(text, path):
 
 async def edge_voice(text, path):
     """Narration from Microsoft's free Edge voices (sometimes blocked on GitHub's machines)."""
-    import edge_tts
+    try:
+        import edge_tts
+    except ImportError:
+        return False
     for attempt in range(2):
         try:
             await edge_tts.Communicate(text, CFG["voice"], rate=CFG["voice_rate"]).save(str(path))
@@ -437,12 +495,45 @@ async def edge_voice(text, path):
     return False
 
 
-def make_voice(text, path):
-    engines = ["cloudflare", "edge"] if CFG.get("voice_engine", "cloudflare") == "cloudflare" else ["edge", "cloudflare"]
-    for engine in engines:
-        ok = cloudflare_voice(text, path) if engine == "cloudflare" else asyncio.run(edge_voice(text, path))
+_KOKORO = None
+
+
+def kokoro_voice(text, path):
+    """Narration made on the GitHub machine itself with the free Kokoro voice model (no limits)."""
+    global _KOKORO
+    try:
+        import numpy as np
+        import soundfile as sf
+        from kokoro import KPipeline
+        if _KOKORO is None:
+            _KOKORO = KPipeline(lang_code="a", repo_id="hexgrad/Kokoro-82M")
+        chunks = []
+        for _, _, audio in _KOKORO(text, voice=CFG["kokoro_voice"], speed=CFG.get("kokoro_speed", 1.0)):
+            if audio is not None:
+                chunks.append(audio.cpu().numpy() if hasattr(audio, "cpu") else np.asarray(audio))
+        if not chunks:
+            return False
+        sf.write(str(path), np.concatenate(chunks), 24000)
+        return path.stat().st_size > 2000
+    except Exception as e:  # noqa: BLE001
+        log(f"  local voice failed: {str(e)[:200]}")
+        return False
+
+
+def make_voice(text, base):
+    """Writes the narration next to `base` (no extension) and returns the file it wrote."""
+    for engine in CFG.get("voice_engines", ["kokoro", "cloudflare", "edge"]):
+        if engine == "kokoro":
+            path = base.with_suffix(".wav")
+            ok = kokoro_voice(text, path)
+        elif engine == "cloudflare":
+            path = base.with_suffix(".mp3")
+            ok = cloudflare_voice(text, path)
+        else:
+            path = base.with_suffix(".mp3")
+            ok = asyncio.run(edge_voice(text, path))
         if ok:
-            return
+            return path
     raise RuntimeError("text-to-speech failed with every voice service")
 
 
@@ -577,10 +668,10 @@ def main():
     for f in WORK.iterdir():
         f.unlink()
     used = load_json(USED_FILE, [])
-    if not (CF_ACCOUNT and CF_TOKEN):
-        sys.exit("CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN secrets are required.")
-    if not cloudflare_quota_ok():
-        sys.exit(QUOTA_MSG)
+    global CF_AVAILABLE
+    CF_AVAILABLE = bool(CF_ACCOUNT and CF_TOKEN) and cloudflare_quota_ok()
+    if not CF_AVAILABLE:
+        log("Cloudflare's free allowance is not available right now; using the local picture generator.")
 
     script = None
     for title in candidates(set(used))[:5]:
@@ -616,9 +707,9 @@ def main():
     scenes = []
     for i, s in enumerate(script["scenes"]):
         log(f"  image + voice {i + 1}/{len(script['scenes'])}")
-        image, audio = WORK / f"scene_{i:02d}.jpg", WORK / f"scene_{i:02d}.mp3"
+        image = WORK / f"scene_{i:02d}.jpg"
         make_image(s["image_prompt"], image, seed + i * 10)
-        make_voice(s["narration"], audio)
+        audio = make_voice(s["narration"], WORK / f"scene_{i:02d}")
         sfx = str(s.get("sfx") or "").strip().upper()[:20] if CFG.get("sfx", True) else ""
         scenes.append({"narration": s["narration"], "sfx": sfx, "image": image, "audio": audio})
 

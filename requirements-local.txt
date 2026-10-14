@@ -1,0 +1,6 @@
+diffusers>=0.30
+transformers>=4.44
+accelerate>=0.33
+peft>=0.12
+kokoro>=0.9.4
+soundfile>=0.12

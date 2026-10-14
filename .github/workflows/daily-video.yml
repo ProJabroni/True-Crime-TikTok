@@ -56,6 +56,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements*.txt
+
+      - name: Reuse downloaded voice and picture models from earlier runs
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-models-${{ hashFiles('config.json') }}
+          restore-keys: hf-models-
 
       - name: Install ffmpeg and Python packages
         run: |
@@ -65,6 +74,11 @@ jobs:
             sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
             sudo apt-get install -y -qq fonts-comic-neue > /dev/null || echo "Comic Neue font not available; using a fallback font"
             pip install -q -r requirements.txt
+            # Local voice + picture generators (used when the free online services run out)
+            sudo apt-get install -y -qq espeak-ng > /dev/null || true
+            { pip install -q torch --index-url https://download.pytorch.org/whl/cpu \
+              && pip install -q -r requirements-local.txt \
+              && echo "Local voice and picture generators ready"; } || echo "Local generators could not be installed"
             # Free comic lettering font (SIL Open Font License) for titles and sound effects
             curl -sSfL -o fonts/Bangers-Regular.ttf https://github.com/google/fonts/raw/main/ofl/bangers/Bangers-Regular.ttf \
               && echo "Bangers font ready" || echo "Bangers font download failed; using a fallback font"
@@ -75,10 +89,11 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CLOUDFLARE_API_TOKENS }}
+          TOKENIZERS_PARALLELISM: "false"
         run: |
           set -o pipefail
           mkdir -p out
-          python make_video.py 2>&1 | tee out/run.log
+          python -u make_video.py 2>&1 | grep --line-buffered -v "it/s\]\|s/it\]" | tee out/run.log
 
       - name: Attach the video to this run (download it from the run summary)
         uses: actions/upload-artifact@v4
