@@ -186,13 +186,14 @@ Otherwise return JSON exactly like:
 {
   "skip": false,
   "title": "short on-screen title that teases the mystery, max 7 words",
+  "setting": { "when": "the date the story begins, as exact as the article gives it, always with the year", "where": "the town or city plus state or country where it happened" },
   "scenes": [ { "narration": "...", "image_prompt": "...", "sfx": "" } ],
   "caption": "...",
   "hashtags": ["..."]
 }
 - {scenes_min} to {scenes_max} scenes.
 - Scene 1 is the HOOK, and it decides whether people keep watching. It is ONE short, intriguing line (under 18 words), usually a question, built on the strangest or most surprising TRUE detail in the article, that makes the viewer need the answer. Tease the mystery; do not give away the ending, and never exaggerate or mislead. Good hooks for the style (do not copy them): "How was this man able to hitch a ride out of prison?", "Why did a quiet bank clerk walk out with a million dollars and never come back?", "What were police looking for under a suburban kitchen floor for forty years?". Avoid weak openers such as "This is the story of", "Meet", "Have you ever heard of", "You won't believe".
-- Scene 2 starts the story properly with who, where and when. Then tell the story in order: background, what happened, the investigation and evidence, key turning points, suspects or trial. The last scene says how the case ended or where it stands today, then "Follow for more cases."
+- Scene 2 starts the story properly with who, where and when: it MUST say out loud the date (always the year, plus the month and day when the article gives them) and the place (the town or city and the state or country). The viewer must know when and where this happened within the first half of the video, so never save the date or place for later. Then tell the story in order: background, what happened, the investigation and evidence, key turning points, suspects or trial. The last scene says how the case ended or where it stands today, then "Follow for more cases."
 - Total narration {words_min} to {words_max} words. Short spoken sentences. Write numbers, dates and years the way they are read aloud. No emojis, no stage directions.
 - image_prompt: describe the CONTENT of ONE bright, clear comic-book panel for that moment in plain visual terms (the art style is added automatically): places, buildings, rooms, objects, vehicles, weather, era-appropriate details, people seen from behind or far away, dramatic camera angles. Prefer daytime or brightly lit scenes. Never describe a real person's face, never violence, blood, bodies, injuries or weapons being used, never text, speech bubbles, signs, newspapers or logos.
 - sfx: comic-book sound effects for about one scene in three, otherwise an empty string. One or two words in capitals ending with "!" or "...", for an everyday sound that fits that moment, e.g. "RIIING!", "SLAM!", "SCREECH!", "WHOOSH!", "KNOCK KNOCK!", "CLICK!", "FLASH!", "BAM!" (gavel), "WEE-OOO!" (siren), "CRASH!", "THUD!". Never use one for a gunshot, a blow, or the moment someone is harmed.
@@ -293,6 +294,27 @@ def parse_json(text):
     return json.loads(text[start:end + 1])
 
 
+_TEENS = "eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen"
+_TENS = "ten|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety"
+YEAR_RX = re.compile(  # a year written in digits or read aloud ("nineteen ninety-four", "two thousand and three")
+    rf"\b(1\d{{3}}|20\d{{2}}|two thousand|(?:{_TEENS}|twenty)[ -](?:hundred|oh|o|{_TEENS}|{_TENS}))\b", re.I)
+
+
+def missing_setting(script):
+    """What the first half of the narration still needs: the year and/or the place."""
+    scenes = script["scenes"]
+    first_half = " ".join(s["narration"] for s in scenes[: (len(scenes) + 1) // 2])
+    missing = []
+    if not YEAR_RX.search(first_half):
+        missing.append("date")
+    where = str((script.get("setting") or {}).get("where") or "")
+    place_words = [w for w in re.findall(r"[A-Z][\w'.-]{2,}", where)
+                   if w.lower() not in {"the", "county", "city", "state", "united", "states", "republic"}]
+    if not place_words or not any(re.search(rf"\b{re.escape(w)}\b", first_half, re.I) for w in place_words):
+        missing.append("place")
+    return missing
+
+
 def write_script(title, text):
     system = SYSTEM_PROMPT.replace("{avoid_words}", ", ".join(CFG.get("avoid_words", [])))
     for key in ("scenes_min", "scenes_max", "words_min", "words_max"):
@@ -318,11 +340,13 @@ def write_script(title, text):
         long_enough = words >= CFG["words_min"] * 0.9
         hook_words = len(script["scenes"][0]["narration"].split())
         hook_ok = hook_words <= 25
-        log(f"  {len(script['scenes'])} scenes, {words} words" + (f", avoid-words used: {banned}" if banned else ""))
-        score = (long_enough, not banned, hook_ok, words)
+        no_setting = missing_setting(script)
+        log(f"  {len(script['scenes'])} scenes, {words} words" + (f", avoid-words used: {banned}" if banned else "")
+            + (f", first half is missing the {' and '.join(no_setting)}" if no_setting else ""))
+        score = (long_enough, not banned, not no_setting, hook_ok, words)
         if best_score is None or score > best_score:
             best, best_score = script, score
-        if long_enough and not banned and hook_ok:
+        if long_enough and not banned and not no_setting and hook_ok:
             break
         fixes = []
         if not long_enough:
@@ -332,6 +356,10 @@ def write_script(title, text):
         if banned:
             fixes.append(f"Your last script used these words, which are not allowed: {', '.join(banned)}. "
                          f"Rewrite without them, using calm PG alternatives.")
+        if no_setting:
+            fixes.append("Scene 2 must say out loud WHEN this happened (always the year, plus month and day if the "
+                         "article gives them) and WHERE (town or city plus state or country), and fill in \"setting\" "
+                         f"with the same date and place. Your last script's first half was missing the {' and '.join(no_setting)}.")
         if not hook_ok:
             fixes.append(f"Scene 1 must be ONE short intriguing hook line under 18 words (yours was {hook_words}); "
                          "move the details into scene 2.")
@@ -340,7 +368,7 @@ def write_script(title, text):
     if best is None:
         raise ValueError("no usable script")
     if not best_score[0]:
-        raise ValueError(f"script still too short ({best_score[3]} words), trying another case")
+        raise ValueError(f"script still too short ({best_score[-1]} words), trying another case")
     if not best_score[1]:  # last resort: swap the remaining words for PG ones
         log(f"  softening remaining words: {bad_words(best)}")
         best["title"] = soften(best.get("title", ""))
