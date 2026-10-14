@@ -193,7 +193,7 @@ Otherwise return JSON exactly like:
 }
 - {scenes_min} to {scenes_max} scenes.
 - Scene 1 is the HOOK, and it decides whether people keep watching. It is ONE short, intriguing line (under 18 words), usually a question, built on the strangest or most surprising TRUE detail in the article, that makes the viewer need the answer. Tease the mystery; do not give away the ending, and never exaggerate or mislead. Good hooks for the style (do not copy them): "How was this man able to hitch a ride out of prison?", "Why did a quiet bank clerk walk out with a million dollars and never come back?", "What were police looking for under a suburban kitchen floor for forty years?". Avoid weak openers such as "This is the story of", "Meet", "Have you ever heard of", "You won't believe".
-- Scene 2 starts the story properly with who, where and when: it MUST say out loud the date (always the year, plus the month and day when the article gives them) and the place (the town or city and the state or country). The viewer must know when and where this happened within the first half of the video, so never save the date or place for later. Then tell the story in order: background, what happened, the investigation and evidence, key turning points, suspects or trial. The last scene says how the case ended or where it stands today, then "Follow for more cases."
+- Scene 2 starts the story properly with who, where and when: it MUST say out loud the date (always the year, plus the month and day when the article gives them) and the place (the town or city and the state or country). The viewer must know when and where this happened within the first half of the video, so never save the date or place for later. Then tell the story in order: background, what happened, the investigation and evidence, key turning points, suspects or trial. The last scene says how the case ended or where it stands today. Do not add any "like", "follow" or "subscribe" line yourself; the closing call to action is added automatically.
 - Total narration {words_min} to {words_max} words. Short spoken sentences. Write numbers, dates and years the way they are read aloud. No emojis, no stage directions.
 - image_prompt: describe the CONTENT of ONE bright, clear comic-book panel for that moment in plain visual terms (the art style is added automatically): places, buildings, rooms, objects, vehicles, weather, era-appropriate details, people seen from behind or far away, dramatic camera angles. Prefer daytime or brightly lit scenes. Never describe a real person's face, never violence, blood, bodies, injuries or weapons being used, never text, speech bubbles, signs, newspapers or logos.
 - sfx: comic-book sound effects for about one scene in three, otherwise an empty string. One or two words in capitals ending with "!" or "...", for an everyday sound that fits that moment, e.g. "RIIING!", "SLAM!", "SCREECH!", "WHOOSH!", "KNOCK KNOCK!", "CLICK!", "FLASH!", "BAM!" (gavel), "WEE-OOO!" (siren), "CRASH!", "THUD!". Never use one for a gunshot, a blow, or the moment someone is harmed.
@@ -313,6 +313,19 @@ def missing_setting(script):
     if not place_words or not any(re.search(rf"\b{re.escape(w)}\b", first_half, re.I) for w in place_words):
         missing.append("place")
     return missing
+
+
+CTA_RX = re.compile(r"\b(follow|subscribe)\b.*\bfor more\b|^(and )?(like|follow|subscribe|smash)\b", re.I)
+
+
+def add_closing_line(script):
+    """Every video ends with the same spoken like-and-follow line (any the writer added is replaced)."""
+    last = script["scenes"][-1]
+    sentences = re.split(r"(?<=[.!?])\s+", last["narration"].strip())
+    kept = [x for x in sentences if not CTA_RX.search(x.strip())]
+    closing = CFG.get("closing_line", "Like and follow for more cases.")
+    last["narration"] = " ".join(kept + [closing]).strip()
+    return script
 
 
 def write_script(title, text):
@@ -622,7 +635,7 @@ def build_captions(scenes, title):
                      f"{{\\fad(200,300)}}{ass_text(title.upper())}")
     end = scenes[-1]["start"] + scenes[-1]["dur"]
     lines.append(f"Dialogue: 1,{ass_time(end - 3.0)},{ass_time(end)},Title,,0,0,0,,"
-                 "{\\fad(300,0)}FOLLOW FOR MORE CASES")
+                 "{\\fad(300,0)}LIKE & FOLLOW\\NFOR MORE CASES")
     for i, sc in enumerate(s for s in scenes if s.get("sfx")):
         x, angle = (330, 10) if i % 2 == 0 else (750, -10)
         start = sc["start"] + 0.15
@@ -737,6 +750,7 @@ def main():
     # so a failed run doesn't use it up.
     save_json(USED_FILE, [t for t in used if t not in (title, real_title)])
 
+    add_closing_line(script)
     log(f"Making video: {script.get('title')} ({real_title})")
     seed = random.randint(1, 10**8)
     scenes = []
