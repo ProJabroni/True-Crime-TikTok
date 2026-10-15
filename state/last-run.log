@@ -31,79 +31,53 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Bank robberies
-  76 unused articles
-Trying: Baker Street robbery
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  script written by gemini-3.5-flash-lite
-  12 scenes, 242 words
-Making video: The Walkie-Talkie Bank Heist (Baker Street robbery)
-  image + voice 1/12
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Looking in Category:Prison escapes
+  247 unused articles
+Trying: Marcel Bigeard
+  not a real case (Category:French male non-fiction writers), skipping
+Trying: Schindler's List
+  not a real case (Category:1990s epic films), skipping
+Trying: Operation Bringing Home the Goods
+  script written by gemini-3.8-flash
+  10 scenes, 199 words
+Making video: The Ten-Hour Jericho Prison Standoff (Operation Bringing Home the Goods)
+  image + voice 1/10
 /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/torch/nn/modules/rnn.py:1011: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.2 and num_layers=1
   super().__init__("LSTM", *args, **kwargs)
 /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/torch/nn/utils/weight_norm.py:145: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
   WeightNorm.apply(module, name, dim)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
 Collecting en-core-web-sm==3.8.0
   Downloading en_core_web_sm-3.8.0-py3-none-any.whl (12.8 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 117.2 MB/s  0:00:00
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 55.0 MB/s  0:00:00
 Installing collected packages: en-core-web-sm
 Successfully installed en-core-web-sm-3.8.0
 [38;5;2m✔ Download and installation successful[0m
 You can now load the package via spacy.load('en_core_web_sm')
 /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
   warnings.warn(
-  image + voice 2/12
-  image + voice 3/12
-  image + voice 4/12
-  image + voice 5/12
-  image + voice 6/12
-  image + voice 7/12
-  image + voice 8/12
-  image + voice 9/12
-  image + voice 10/12
-  image + voice 11/12
-  image + voice 12/12
-  rendering scene 1/12
-  rendering scene 2/12
-  rendering scene 3/12
-  rendering scene 4/12
-  rendering scene 5/12
-  rendering scene 6/12
-  rendering scene 7/12
-  rendering scene 8/12
-  rendering scene 9/12
-  rendering scene 10/12
-  rendering scene 11/12
-  rendering scene 12/12
-Video ready: 122.2 seconds, 33.0 MB
+  image + voice 2/10
+  image + voice 3/10
+  image + voice 4/10
+  image + voice 5/10
+  image + voice 6/10
+  image + voice 7/10
+  image + voice 8/10
+  image + voice 9/10
+  image + voice 10/10
+  rendering scene 1/10
+  rendering scene 2/10
+  rendering scene 3/10
+  rendering scene 4/10
+  rendering scene 5/10
+  rendering scene 6/10
+  rendering scene 7/10
+  rendering scene 8/10
+  rendering scene 9/10
+  rendering scene 10/10
+Video ready: 107.0 seconds, 24.2 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-14-baker-street-robbery.mp4
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-15-operation-bringing-home-the-goods.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6acf9b08f16b5a3e782933ae).
+Queued in Buffer for TikTok (post 6ad12b9ad27a77f8514d983f).

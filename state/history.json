@@ -28,5 +28,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-14-baker-street-robbery.mp4",
     "buffer_post": "6acf9b08f16b5a3e782933ae",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-15",
+    "title": "The Ten-Hour Jericho Prison Standoff",
+    "wikipedia": "https://en.wikipedia.org/wiki/Operation_Bringing_Home_the_Goods",
+    "seconds": 107.0,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-15-operation-bringing-home-the-goods.mp4",
+    "buffer_post": "6ad12b9ad27a77f8514d983f",
+    "ai_label": true
   }
 ]
