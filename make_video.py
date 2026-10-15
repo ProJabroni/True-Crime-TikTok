@@ -83,6 +83,16 @@ FICTION_CATS = re.compile(
     r"fiction|characters|films|television|tv series|novels|books|comics|manga|anime|video games|"
     r"songs|albums|plays|operas|musicals|podcasts|documentar|in popular culture|mythology|folklore|legends",
     re.I)
+# Wars, military operations, terrorism and political conflicts: not the channel's kind of story.
+SENSITIVE_CATS = re.compile(
+    r"military operations|\bwars?\b|battles|world war|prisoners of war|conflict|terroris|militant|insurgen|"
+    r"guerrilla|massacres|genocide|holocaust|coups|intifada|occupation|armed forces|military personnel|"
+    r"generals|soldiers of|resistance members",
+    re.I)
+
+
+def excluded_cat(title):
+    return FICTION_CATS.search(title) or SENSITIVE_CATS.search(title)
 
 
 def is_fiction_or_media(title):
@@ -90,9 +100,9 @@ def is_fiction_or_media(title):
     data = wiki({"action": "query", "prop": "categories", "titles": title, "cllimit": "max",
                  "clshow": "!hidden", "redirects": "1"})
     cats = [c["title"] for p in data.get("query", {}).get("pages", []) for c in p.get("categories", [])]
-    hits = [c for c in cats if FICTION_CATS.search(c)]
+    hits = [c for c in cats if excluded_cat(c)]
     if hits:
-        log(f"  not a real case ({hits[0]}), skipping")
+        log(f"  not the right kind of case ({hits[0]}), skipping")
     return bool(hits)
 
 
@@ -107,7 +117,7 @@ def category_pages(cat, depth=2, budget=None):
         for m in data.get("query", {}).get("categorymembers", []):
             if m["ns"] == 0:
                 pages.append(m["title"])
-            elif m["ns"] == 14 and not FICTION_CATS.search(m["title"]):
+            elif m["ns"] == 14 and not excluded_cat(m["title"]):
                 subcats.append(m["title"])
         if "continue" in data and len(pages) < 3000:
             cont = data["continue"]
@@ -180,7 +190,7 @@ Facts:
 - Stick strictly to facts in the article. Never invent details, dialogue, thoughts or motives.
 - Anyone not convicted is a "suspect" or "accused"; keep the article's "allegedly" wording. Never name a living person as guilty unless the article says they were convicted.
 - Be respectful toward victims and their families. No mockery, no jokes.
-- If the article is not about a specific REAL criminal case or real criminal (for example it is about a fictional character, a film, TV show, book or game), is too thin to tell a story, or centers on sexual abuse of a child, return {"skip": true, "reason": "..."} and nothing else.
+- If the article is not about a specific REAL criminal case or real criminal (for example it is about a fictional character, a film, TV show, book or game), is mainly about a war, military operation, terrorism or a political or ethnic conflict, is too thin to tell a story, or centers on sexual abuse of a child, return {"skip": true, "reason": "..."} and nothing else.
 
 Otherwise return JSON exactly like:
 {
