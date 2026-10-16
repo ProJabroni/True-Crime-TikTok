@@ -86,7 +86,7 @@ FICTION_CATS = re.compile(
 # Wars, military operations, terrorism and political conflicts: not the channel's kind of story.
 SENSITIVE_CATS = re.compile(
     r"military operations|\bwars?\b|battles|world war|prisoners of war|conflict|terroris|militant|insurgen|"
-    r"guerrilla|massacres|genocide|holocaust|coups|intifada|occupation|armed forces|military personnel|"
+    r"guerrilla|genocide|holocaust|coups|intifada|occupation|armed forces|military personnel|"
     r"generals|soldiers of|resistance members",
     re.I)
 
@@ -257,6 +257,7 @@ Otherwise return JSON exactly like:
 - Scene 2 starts the story properly with who, where and when: it MUST say out loud the date (always the year, plus the month and day when the article gives them) and the place (the town or city and the state or country). The viewer must know when and where this happened within the first half of the video, so never save the date or place for later. Then tell the story in order: background, what happened, the investigation and evidence, key turning points, suspects or trial. The last scene says how the case ended or where it stands today. Do not add any "like", "follow" or "subscribe" line yourself; the closing call to action is added automatically.
 - Total narration {words_min} to {words_max} words. Short spoken sentences. Write numbers, dates and years the way they are read aloud. No emojis, no stage directions.
 - characters: the 2 to 5 key people in the story (victim, suspect, detective, witness, family member...). tag is a short role in square brackets, e.g. "[Victim]", "[Detective]", "[Suspect]". look is a fixed visual description used in every picture: gender, approximate age, build, hair, and clothing typical of the era and place (e.g. "a woman in her twenties with shoulder-length brown hair, wearing a 1970s denim jacket and flared jeans"). Do not try to describe the real person's actual face; these are illustrated characters.
+- Use the [Tag] form ONLY inside image_prompt. In narration, title and caption, write normally (names or "the detective").
 - image_prompt: ONE bright, clear illustrated scene for that moment (the art style is added automatically). Most scenes should SHOW the characters involved, referred to ONLY by their tag (e.g. "[Detective] kneels beside a car on a rainy roadside, looking at the ground"), doing what the story says at that moment, with the setting, era, time of day and camera angle. Never put a real person's name in image_prompt. Show people alive and in ordinary or tense moments only: never violence, attacks, weapons being used, blood, injuries, bodies or crime-scene remains; for those moments show the place, a detail, or the investigators instead. Never show a child in danger. Avoid anything that normally carries writing: signs, shop fronts, newspapers, documents, screens, license plates, badges, posters, uniforms with lettering.
 - title, caption and hashtags follow the same language rules. caption: under 150 characters, intriguing, no spoilers. hashtags: 4 to 6, lowercase, without the # sign."""
 
@@ -525,6 +526,15 @@ def local_image(prompt, path, seed):
             return
         log("  local picture flagged by the safety checker, trying again")
     raise RuntimeError("local picture generator could not make a safe image")
+
+
+def untag(text):
+    """Turn any leftover [Tag] in spoken/visible text into plain words: "[Detective] said" -> "The detective said"."""
+    def repl(m):
+        role = m.group(1).strip().lower()
+        start = m.start() == 0 or text[:m.start()].rstrip()[-1:] in ".!?"
+        return ("The " if start else "the ") + role
+    return re.sub(r"\[([^\]]{1,30})\]", repl, text)
 
 
 def expand_characters(prompt, characters):
@@ -971,6 +981,10 @@ def main():
     save_json(USED_FILE, [t for t in used if t not in (title, real_title)])
 
     add_closing_line(script)
+    script["title"] = untag(script.get("title", ""))
+    script["caption"] = untag(script.get("caption", ""))
+    for sc in script["scenes"]:
+        sc["narration"] = untag(sc["narration"])
     log(f"Making video: {script.get('title')} ({real_title})")
     seed = random.randint(1, 10**8)
     scenes = []
