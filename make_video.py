@@ -228,7 +228,8 @@ Otherwise return JSON exactly like:
   "skip": false,
   "title": "short on-screen title that teases the mystery, max 7 words",
   "setting": { "when": "the date the story begins, as exact as the article gives it, always with the year", "where": "the town or city plus state or country where it happened" },
-  "scenes": [ { "narration": "...", "image_prompt": "...", "sfx": "" } ],
+  "characters": [ { "tag": "[Victim]", "look": "..." } ],
+  "scenes": [ { "narration": "...", "image_prompt": "..." } ],
   "caption": "...",
   "hashtags": ["..."]
 }
@@ -236,9 +237,9 @@ Otherwise return JSON exactly like:
 - Scene 1 is the HOOK, and it decides whether people keep watching. It is ONE short, intriguing line (under 18 words), usually a question, built on the strangest or most surprising TRUE detail in the article, that makes the viewer need the answer. Tease the mystery; do not give away the ending, and never exaggerate or mislead. Good hooks for the style (do not copy them): "How was this man able to hitch a ride out of prison?", "Why did a quiet bank clerk walk out with a million dollars and never come back?", "What were police looking for under a suburban kitchen floor for forty years?". Avoid weak openers such as "This is the story of", "Meet", "Have you ever heard of", "You won't believe".
 - Scene 2 starts the story properly with who, where and when: it MUST say out loud the date (always the year, plus the month and day when the article gives them) and the place (the town or city and the state or country). The viewer must know when and where this happened within the first half of the video, so never save the date or place for later. Then tell the story in order: background, what happened, the investigation and evidence, key turning points, suspects or trial. The last scene says how the case ended or where it stands today. Do not add any "like", "follow" or "subscribe" line yourself; the closing call to action is added automatically.
 - Total narration {words_min} to {words_max} words. Short spoken sentences. Write numbers, dates and years the way they are read aloud. No emojis, no stage directions.
-- image_prompt: describe the CONTENT of ONE bright, clear comic-book panel for that moment in plain visual terms (the art style is added automatically): places, buildings, rooms, objects, vehicles, weather, era-appropriate details, people seen from behind or far away, dramatic camera angles. Prefer daytime or brightly lit scenes. Never describe a real person's face, never violence, blood, bodies, injuries or weapons being used, never text, speech bubbles, signs, newspapers or logos.
-- sfx: comic-book sound effects for about one scene in three, otherwise an empty string. One or two words in capitals ending with "!" or "...", for an everyday sound that fits that moment, e.g. "RIIING!", "SLAM!", "SCREECH!", "WHOOSH!", "KNOCK KNOCK!", "CLICK!", "FLASH!", "BAM!" (gavel), "WEE-OOO!" (siren), "CRASH!", "THUD!". Never use one for a gunshot, a blow, or the moment someone is harmed.
-- title, caption, sfx and hashtags follow the same language rules. caption: under 150 characters, intriguing, no spoilers. hashtags: 4 to 6, lowercase, without the # sign."""
+- characters: the 2 to 5 key people in the story (victim, suspect, detective, witness, family member...). tag is a short role in square brackets, e.g. "[Victim]", "[Detective]", "[Suspect]". look is a fixed visual description used in every picture: gender, approximate age, build, hair, and clothing typical of the era and place (e.g. "a woman in her twenties with shoulder-length brown hair, wearing a 1970s denim jacket and flared jeans"). Do not try to describe the real person's actual face; these are illustrated characters.
+- image_prompt: ONE bright, clear illustrated scene for that moment (the art style is added automatically). Most scenes should SHOW the characters involved, referred to ONLY by their tag (e.g. "[Detective] kneels beside a car on a rainy roadside, looking at the ground"), doing what the story says at that moment, with the setting, era, time of day and camera angle. Never put a real person's name in image_prompt. Show people alive and in ordinary or tense moments only: never violence, attacks, weapons being used, blood, injuries, bodies or crime-scene remains; for those moments show the place, a detail, or the investigators instead. Never show a child in danger. Avoid anything that normally carries writing: signs, shop fronts, newspapers, documents, screens, license plates, badges, posters, uniforms with lettering.
+- title, caption and hashtags follow the same language rules. caption: under 150 characters, intriguing, no spoilers. hashtags: 4 to 6, lowercase, without the # sign."""
 
 
 def avoid_regex():
@@ -495,7 +496,60 @@ def local_image(prompt, path, seed):
     raise RuntimeError("local picture generator could not make a safe image")
 
 
+def expand_characters(prompt, characters):
+    """Replace [Tag] with that character's fixed look so they look the same in every picture."""
+    for ch in characters or []:
+        tag, look = str(ch.get("tag", "")).strip(), str(ch.get("look", "")).strip()
+        if tag and look:
+            if not tag.startswith("["):
+                tag = f"[{tag.strip('[]')}]"
+            prompt = prompt.replace(tag, look)
+    return re.sub(r"\[([^\]]{1,30})\]", r"\1", prompt)  # any unknown tag: keep just the role word
+
+
+def text_in_image(path):
+    """Number of readable words OCR finds in a picture (0 if the OCR tool isn't installed)."""
+    try:
+        out = subprocess.run(["tesseract", str(path), "-", "--psm", "11", "tsv"],
+                             capture_output=True, text=True, timeout=60).stdout
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        return 0
+    words = 0
+    for line in out.splitlines()[1:]:
+        cols = line.split("\t")
+        if len(cols) == 12:
+            try:
+                conf = float(cols[10])
+            except ValueError:
+                continue
+            word = cols[11].strip()
+            if not re.fullmatch(r"[A-Za-z]{3,}", word):
+                continue
+            # Signs are usually capitals; lowercase "words" are often just texture, so need more certainty.
+            if (word.isupper() and conf >= CFG.get("ocr_min_confidence", 75)) or (len(word) >= 4 and conf >= 88):
+                words += 1
+    return words
+
+
 def make_image(prompt, path, seed):
+    """Make a picture; if it has lettering on it, make up to `text_retries` more and keep the cleanest."""
+    best = None
+    for attempt in range(1 + CFG.get("text_retries", 2)):
+        tmp = path.with_name(f"{path.stem}_try{attempt}{path.suffix}")
+        make_image_once(prompt, tmp, seed + attempt * 101)
+        words = text_in_image(tmp)
+        if best is None or words < best[0]:
+            best = (words, tmp)
+        if words == 0:
+            break
+        if attempt < CFG.get("text_retries", 2):
+            log(f"  picture has lettering on it ({words} words), making another")
+        else:
+            log(f"  every try had some lettering; keeping the cleanest ({best[0]} words)")
+    best[1].replace(path)
+
+
+def make_image_once(prompt, path, seed):
     global CF_AVAILABLE
     if CF_AVAILABLE and CF_ACCOUNT and CF_TOKEN:
         try:
@@ -887,8 +941,8 @@ def main():
     for i, s in enumerate(script["scenes"]):
         log(f"  picture {i + 1}/{len(script['scenes'])}")
         image = WORK / f"scene_{i:02d}.jpg"
-        make_image(s["image_prompt"], image, seed + i * 10)
-        sfx = str(s.get("sfx") or "").strip().upper()[:20] if CFG.get("sfx", True) else ""
+        make_image(expand_characters(s["image_prompt"], script.get("characters")), image, seed + i * 10)
+        sfx = str(s.get("sfx") or "").strip().upper()[:20] if CFG.get("sfx", False) else ""
         scenes.append({"narration": s["narration"], "sfx": sfx, "image": image})
     log("  narrating")
     audios = make_all_voices([sc["narration"] for sc in scenes],

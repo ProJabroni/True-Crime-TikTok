@@ -75,7 +75,7 @@ jobs:
             sudo apt-get install -y -qq fonts-comic-neue > /dev/null || echo "Comic Neue font not available; using a fallback font"
             pip install -q -r requirements.txt
             # Local voice + picture generators (used when the free online services run out)
-            sudo apt-get install -y -qq espeak-ng > /dev/null || true
+            sudo apt-get install -y -qq espeak-ng tesseract-ocr > /dev/null || true
             { pip install -q torch --index-url https://download.pytorch.org/whl/cpu \
               && pip install -q -r requirements-local.txt \
               && echo "Local voice and picture generators ready"; } || echo "Local generators could not be installed"

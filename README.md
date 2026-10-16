@@ -62,7 +62,11 @@ Edit `config.json` (pencil icon on GitHub):
 - `buffer_mode`: `addToQueue` (next queue slot) or `shareNow`
 - `image_style`: the art style. Default is color comic book; for manga, copy the text of
   `image_style_manga_example` into `image_style`
-- `sfx`: comic sound effects like "SLAM!" or "RIIING!" on screen (`true` / `false`)
+- `sfx`: comic sound-effect words on screen (off: `false`)
+- `text_retries`: pictures are checked for lettering and remade up to this many times
+
+The script writer defines the key people in each story once (look, age, era clothing) and
+every picture reuses that description, so the same characters appear throughout.
 
 `state/history.json` lists every video made; `state/used.json` stops cases repeating.
 
