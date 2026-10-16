@@ -6,7 +6,7 @@ and free services. No server, no credit card.
 
 **How it works:** picks an unused, well-documented case from Wikipedia → writes a factual
 script (Google Gemini, or Cloudflare as a backup) → makes one comic-book style picture per scene
-(Cloudflare Workers AI) → narrates it (Cloudflare's free Deepgram voices) → adds captions and
+(Cloudflare Workers AI) → narrates it (Google's Gemini voices, free tier) → adds captions and
 slow zoom/pan motion (ffmpeg) → puts the video on GitHub Pages → queues it in Buffer, which
 posts it to TikTok.
 
@@ -53,7 +53,10 @@ model (Apache 2.0), both running on GitHub's machine. Slower and a bit simpler, 
 
 ## Changing things
 Edit `config.json` (pencil icon on GitHub):
-- `categories`: Wikipedia categories to pick cases from
+- `category_groups`: Wikipedia categories to pick cases from, by region (each region equally likely).
+  Only murder cases in the United States or Europe are used (`murder_cases_only`, `us_and_europe_only`)
+- `gemini_voice`: narrator voice. Good serious male voices: `Charon`, `Algenib` (gravelly), `Orus`,
+  `Iapetus`, `Gacrux`; female: `Kore`, `Schedar`, `Achernar`. `gemini_voice_style` sets the delivery
 - `words_min` / `words_max`: video length (about 150 words ≈ 1 minute)
 - `cloudflare_voice`: narrator voice, e.g. `zeus`, `orion`, `arcas`, `apollo` (male) or `luna`, `athena`, `hera` (female)
 - `buffer_mode`: `addToQueue` (next queue slot) or `shareNow`

@@ -95,15 +95,40 @@ def excluded_cat(title):
     return FICTION_CATS.search(title) or SENSITIVE_CATS.search(title)
 
 
-def is_fiction_or_media(title):
-    """True if Wikipedia files the article under fictional characters, films, TV, books, etc."""
+US_STATES = ("Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|Georgia \\(U\\.S\\. state\\)|"
+             "Hawaii|Idaho|Illinois|Indiana|Iowa|Kansas|Kentucky|Louisiana|Maine|Maryland|Massachusetts|Michigan|"
+             "Minnesota|Mississippi|Missouri|Montana|Nebraska|Nevada|New Hampshire|New Jersey|New Mexico|New York|"
+             "North Carolina|North Dakota|Ohio|Oklahoma|Oregon|Pennsylvania|Rhode Island|South Carolina|"
+             "South Dakota|Tennessee|Texas|Utah|Vermont|Virginia|Washington|West Virginia|Wisconsin|Wyoming|"
+             "Washington, D\\.C\\.|Los Angeles|Chicago|Houston|Philadelphia|Boston|Detroit|Seattle|San Francisco")
+EUROPE = ("Europe|European|United Kingdom|British|England|English|Scotland|Scottish|Wales|Welsh|Northern Ireland|"
+          "Ireland|Irish|Germany|German|France|French|Italy|Italian|Spain|Spanish|Portugal|Portuguese|Netherlands|Dutch|"
+          "Belgium|Belgian|Luxembourg|Switzerland|Swiss|Austria|Austrian|Denmark|Danish|Norway|Norwegian|Sweden|"
+          "Swedish|Finland|Finnish|Iceland|Icelandic|Poland|Polish|Czech|Slovakia|Slovak|Hungary|Hungarian|Romania|"
+          "Romanian|Bulgaria|Bulgarian|Greece|Greek|Croatia|Croatian|Slovenia|Slovenian|Serbia|Serbian|Estonia|"
+          "Estonian|Latvia|Latvian|Lithuania|Lithuanian|Malta|Maltese|Cyprus|Cypriot|London|Paris|Berlin|Rome|"
+          "Madrid|Amsterdam|Dublin|Glasgow|Edinburgh|Manchester|Liverpool|Birmingham|Munich|Hamburg|Vienna")
+PLACE_RX = re.compile(r"(?<!\w)(United States|U\.S\.|American|" + US_STATES + "|" + EUROPE + r")(?!\w)")
+MURDER_RX = re.compile(r"murder|homicide|serial killer|manslaughter|people killed|deaths by (stabbing|strangulation|"
+                       r"firearm|blunt|poison|asphyxia|drowning|beating)|killings in", re.I)
+
+
+def check_case(title):
+    """True if the article is a real murder case in the United States or Europe (judged by its categories)."""
     data = wiki({"action": "query", "prop": "categories", "titles": title, "cllimit": "max",
                  "clshow": "!hidden", "redirects": "1"})
     cats = [c["title"] for p in data.get("query", {}).get("pages", []) for c in p.get("categories", [])]
     hits = [c for c in cats if excluded_cat(c)]
     if hits:
         log(f"  not the right kind of case ({hits[0]}), skipping")
-    return bool(hits)
+        return False
+    if CFG.get("murder_cases_only", True) and not any(MURDER_RX.search(c) for c in cats):
+        log("  not a murder case, skipping")
+        return False
+    if CFG.get("us_and_europe_only", True) and not any(PLACE_RX.search(c) for c in cats):
+        log("  not in the United States or Europe, skipping")
+        return False
+    return True
 
 
 def category_pages(cat, depth=2, budget=None):
@@ -155,8 +180,14 @@ def article(title):
 
 def candidates(used):
     """A shortlist of unused, substantial articles from one random category."""
-    cats = list(CFG["categories"])
-    random.shuffle(cats)
+    groups = CFG.get("category_groups") or {"all": CFG.get("categories", [])}
+    names = list(groups)
+    random.shuffle(names)  # each region equally likely, whatever the number of categories in it
+    cats = []
+    for name in names:
+        group = list(groups[name])
+        random.shuffle(group)
+        cats += group
     for cat in cats:
         log(f"Looking in {cat}")
         try:
@@ -190,7 +221,7 @@ Facts:
 - Stick strictly to facts in the article. Never invent details, dialogue, thoughts or motives.
 - Anyone not convicted is a "suspect" or "accused"; keep the article's "allegedly" wording. Never name a living person as guilty unless the article says they were convicted.
 - Be respectful toward victims and their families. No mockery, no jokes.
-- If the article is not about a specific REAL criminal case or real criminal (for example it is about a fictional character, a film, TV show, book or game), is mainly about a war, military operation, terrorism or a political or ethnic conflict, is too thin to tell a story, or centers on sexual abuse of a child, return {"skip": true, "reason": "..."} and nothing else.
+- If the article is not about a specific REAL criminal case or real criminal (for example it is about a fictional character, a film, TV show, book or game), is not about a murder (or suspected murder) that happened in the United States or Europe, is mainly about a war, military operation, terrorism or a political or ethnic conflict, is too thin to tell a story, or centers on sexual abuse of a child, return {"skip": true, "reason": "..."} and nothing else.
 
 Otherwise return JSON exactly like:
 {
@@ -578,6 +609,95 @@ def kokoro_voice(text, path):
         return False
 
 
+def gemini_voice(text, path):
+    """Natural narration from Google's Gemini speech models (free tier). Writes a WAV file."""
+    import io
+    import wave
+    if not GEMINI_KEY:
+        return False
+    body = {
+        "input": [{"type": "user_input", "content": [{
+            "type": "text", "text": text,
+            "annotations": [{"type": "speech_metadata", "style": CFG["gemini_voice_style"]}]}]}],
+        "response_format": {"type": "audio", "mime_type": "audio/wav"},
+        "generation_config": {"speech_config": [{"voice": CFG["gemini_voice"]}]},
+    }
+
+    def find_audio(node):
+        if isinstance(node, dict):
+            if node.get("type") == "audio" and node.get("data"):
+                return node
+            if node.get("inlineData", {}).get("data"):
+                return {"data": node["inlineData"]["data"], "mime_type": node["inlineData"].get("mimeType", "")}
+            node = list(node.values())
+        if isinstance(node, list):
+            for item in node:
+                found = find_audio(item)
+                if found:
+                    return found
+        return None
+
+    for model in CFG["gemini_tts_models"]:
+        for attempt in range(4):
+            try:
+                r = requests.post("https://generativelanguage.googleapis.com/v1beta/interactions",
+                                  headers={"x-goog-api-key": GEMINI_KEY},
+                                  json={"model": model, **body}, timeout=180)
+            except requests.RequestException as e:
+                log(f"  Gemini voice ({model}) error: {e}")
+                time.sleep(10)
+                continue
+            if r.status_code in (429, 500, 502, 503, 504):
+                log(f"  Gemini voice ({model}) busy ({r.status_code}), waiting")
+                time.sleep(20 * (attempt + 1))
+                continue
+            if not r.ok:
+                log(f"  Gemini voice ({model}) failed: {r.status_code} {r.text[:200]}")
+                break
+            audio = find_audio(r.json())
+            if not audio:
+                log(f"  Gemini voice ({model}) returned no audio")
+                break
+            raw = base64.b64decode(audio["data"])
+            if raw[:4] != b"RIFF":  # headerless 16-bit PCM: wrap it in a WAV header
+                buf = io.BytesIO()
+                with wave.open(buf, "wb") as w:
+                    w.setnchannels(int(audio.get("channels") or 1))
+                    w.setsampwidth(2)
+                    w.setframerate(int(audio.get("sample_rate") or 24000))
+                    w.writeframes(raw)
+                raw = buf.getvalue()
+            path.write_bytes(raw)
+            time.sleep(CFG.get("gemini_voice_pause", 4))  # stay well inside the free per-minute limit
+            return path.stat().st_size > 2000
+    return False
+
+
+VOICE_ENGINES = {
+    "gemini": (".wav", gemini_voice),
+    "kokoro": (".wav", lambda t, p: kokoro_voice(t, p)),
+    "cloudflare": (".mp3", lambda t, p: cloudflare_voice(t, p)),
+    "edge": (".mp3", lambda t, p: asyncio.run(edge_voice(t, p))),
+}
+
+
+def make_all_voices(texts, bases):
+    """Narrate every scene with the SAME voice: if one engine fails part-way, redo all with the next."""
+    for engine in CFG.get("voice_engines", ["gemini", "kokoro", "cloudflare", "edge"]):
+        ext, fn = VOICE_ENGINES[engine]
+        paths = []
+        for i, (text, base) in enumerate(zip(texts, bases)):
+            path = base.with_suffix(ext)
+            if not fn(text, path):
+                log(f"  {engine} voice failed on scene {i + 1}; trying the next voice for all scenes")
+                break
+            paths.append(path)
+        if len(paths) == len(texts):
+            log(f"  narration voice: {engine}")
+            return paths
+    raise RuntimeError("text-to-speech failed with every voice service")
+
+
 def make_voice(text, base):
     """Writes the narration next to `base` (no extension) and returns the file it wrote."""
     for engine in CFG.get("voice_engines", ["kokoro", "cloudflare", "edge"]):
@@ -732,14 +852,14 @@ def main():
         log("Cloudflare's free allowance is not available right now; using the local picture generator.")
 
     script = None
-    for title in candidates(set(used))[:5]:
+    for title in candidates(set(used))[:8]:
         log(f"Trying: {title}")
         used.append(title)
         try:
             real_title, text, url = article(title)
             if real_title not in used:
                 used.append(real_title)
-            if is_fiction_or_media(real_title):
+            if not check_case(real_title):
                 continue
             if len(text) < CFG["min_article_chars"]:
                 log("  too short, skipping")
@@ -765,12 +885,16 @@ def main():
     seed = random.randint(1, 10**8)
     scenes = []
     for i, s in enumerate(script["scenes"]):
-        log(f"  image + voice {i + 1}/{len(script['scenes'])}")
+        log(f"  picture {i + 1}/{len(script['scenes'])}")
         image = WORK / f"scene_{i:02d}.jpg"
         make_image(s["image_prompt"], image, seed + i * 10)
-        audio = make_voice(s["narration"], WORK / f"scene_{i:02d}")
         sfx = str(s.get("sfx") or "").strip().upper()[:20] if CFG.get("sfx", True) else ""
-        scenes.append({"narration": s["narration"], "sfx": sfx, "image": image, "audio": audio})
+        scenes.append({"narration": s["narration"], "sfx": sfx, "image": image})
+    log("  narrating")
+    audios = make_all_voices([sc["narration"] for sc in scenes],
+                             [WORK / f"scene_{i:02d}" for i in range(len(scenes))])
+    for sc, audio in zip(scenes, audios):
+        sc["audio"] = audio
 
     final = OUT / "video.mp4"
     total = render_video(scenes, script.get("title", ""), WORK, final)

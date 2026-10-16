@@ -1,13 +1,30 @@
 {
-  "categories": [
-    "Category:Unsolved murders in the United States",
-    "Category:Missing person cases in the United States",
-    "Category:Kidnappings in the United States",
-    "Category:Heists",
-    "Category:Bank robberies",
-    "Category:Prison escapes",
-    "Category:Fugitives"
-  ],
+  "category_groups": {
+    "united_states": [
+      "Category:Unsolved murders in the United States",
+      "Category:Murder in the United States",
+      "Category:American serial killers",
+      "Category:American murderers"
+    ],
+    "europe": [
+      "Category:Unsolved murders in the United Kingdom",
+      "Category:Murder in England",
+      "Category:Murder in London",
+      "Category:Murder in Scotland",
+      "Category:Murder in the Republic of Ireland",
+      "Category:Murder in Germany",
+      "Category:Murder in France",
+      "Category:Murder in Italy",
+      "Category:Murder in Spain",
+      "Category:Murder in the Netherlands",
+      "Category:Murder in Sweden",
+      "Category:Murder in Belgium",
+      "Category:English serial killers",
+      "Category:German serial killers"
+    ]
+  },
+  "murder_cases_only": true,
+  "us_and_europe_only": true,
   "min_article_chars": 4000,
   "scenes_min": 9,
   "scenes_max": 12,
@@ -33,7 +50,11 @@
                   "shootout", "stab", "stabbed", "stabbing", "blood", "bloody", "corpse", "strangled",
                   "dismembered", "decapitated", "torture", "tortured", "molested", "sexual"],
 
-  "voice_engines": ["kokoro", "cloudflare", "edge"],
+  "voice_engines": ["gemini", "kokoro", "cloudflare", "edge"],
+  "gemini_tts_models": ["gemini-3.8-flash-tts", "gemini-3.8-flash-lite-tts"],
+  "gemini_voice": "Charon",
+  "gemini_voice_style": "a calm, serious true-crime documentary narrator: low, steady and natural, measured pace, short pauses for suspense, never cheerful",
+  "gemini_voice_pause": 4,
   "kokoro_voice": "am_michael",
   "kokoro_speed": 0.97,
   "cloudflare_voice_models": ["@cf/deepgram/aura-1", "@cf/deepgram/aura-2-en"],
