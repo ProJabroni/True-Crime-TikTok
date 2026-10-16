@@ -48,5 +48,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-16-rudolf-zimmermann.mp4",
     "buffer_post": "6ad1a4a7ee2c696029bb7d80",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-16",
+    "title": "The Halloween Mansion Mystery",
+    "wikipedia": "https://en.wikipedia.org/wiki/Orinda_shooting",
+    "seconds": 123.9,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-16-orinda-shooting.mp4",
+    "buffer_post": "6ad27e05346e510ac44f50c4",
+    "ai_label": true
   }
 ]
