@@ -38,5 +38,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-15-operation-bringing-home-the-goods.mp4",
     "buffer_post": "6ad12b9ad27a77f8514d983f",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-16",
+    "title": "Man Lures Girls",
+    "wikipedia": "https://en.wikipedia.org/wiki/Rudolf_Zimmermann",
+    "seconds": 123.1,
+    "status": "Buffer draft (test)",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-16-rudolf-zimmermann.mp4",
+    "buffer_post": "6ad1a4a7ee2c696029bb7d80",
+    "ai_label": true
   }
 ]
