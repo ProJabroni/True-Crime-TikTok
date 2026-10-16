@@ -113,6 +113,24 @@ MURDER_RX = re.compile(r"murder|homicide|serial killer|manslaughter|people kille
                        r"firearm|blunt|poison|asphyxia|drowning|beating)|killings in", re.I)
 
 
+DARK_CATS = re.compile(
+    r"child (sexual )?abuse|crimes against children|violence against children|murdered (american |english |british |"
+    r"german |french )?(children|girls|boys|infants)|child murder|infanticide|filicide|rapists|\brape\b|sexual (abuse|"
+    r"assault|violence)|sex offenders|sex crimes|paedophil|pedophil|child pornography|necrophil|cannibal",
+    re.I)
+DARK_TEXT = re.compile(r"\b(rap(e|ed|es|ing|ist)|molest\w*|sexual(ly)? (abus|assault)\w*|paedophil\w*|pedophil\w*)\b", re.I)
+
+
+def too_dark(cats, text):
+    """Cases centred on sexual violence or child victims are not for this channel."""
+    hit = next((c for c in cats if DARK_CATS.search(c)), None)
+    if hit:
+        return hit
+    if len(DARK_TEXT.findall(text)) >= CFG.get("dark_word_limit", 2):
+        return "sexual violence in the article"
+    return None
+
+
 def check_case(title):
     """True if the article is a real murder case in the United States or Europe (judged by its categories)."""
     data = wiki({"action": "query", "prop": "categories", "titles": title, "cllimit": "max",
@@ -128,7 +146,7 @@ def check_case(title):
     if CFG.get("us_and_europe_only", True) and not any(PLACE_RX.search(c) for c in cats):
         log("  not in the United States or Europe, skipping")
         return False
-    return True
+    return cats
 
 
 def category_pages(cat, depth=2, budget=None):
@@ -221,6 +239,7 @@ Facts:
 - Stick strictly to facts in the article. Never invent details, dialogue, thoughts or motives.
 - Anyone not convicted is a "suspect" or "accused"; keep the article's "allegedly" wording. Never name a living person as guilty unless the article says they were convicted.
 - Be respectful toward victims and their families. No mockery, no jokes.
+- If the case involves sexual violence or victims who were children, return {"skip": true, "reason": "..."}.
 - If the article is not about a specific REAL criminal case or real criminal (for example it is about a fictional character, a film, TV show, book or game), is not about a murder (or suspected murder) that happened in the United States or Europe, is mainly about a war, military operation, terrorism or a political or ethnic conflict, is too thin to tell a story, or centers on sexual abuse of a child, return {"skip": true, "reason": "..."} and nothing else.
 
 Otherwise return JSON exactly like:
@@ -276,6 +295,10 @@ def soften(text):
     return text
 
 
+class CaseRefused(ValueError):
+    """The script writer's safety filter refused this article: skip the case entirely."""
+
+
 def call_gemini(system, user):
     if not GEMINI_KEY:
         return None
@@ -296,8 +319,13 @@ def call_gemini(system, user):
         if r.status_code != 200:
             log(f"  Gemini {model} failed: {r.status_code} {r.text[:300]}")
             continue
+        data = r.json()
+        block = (data.get("promptFeedback") or {}).get("blockReason")
+        finish = ((data.get("candidates") or [{}])[0]).get("finishReason", "")
+        if block or finish in ("SAFETY", "PROHIBITED_CONTENT", "BLOCKLIST", "SPII"):
+            raise CaseRefused(f"Gemini's safety filter refused this case ({block or finish})")
         try:
-            parts = r.json()["candidates"][0]["content"]["parts"]
+            parts = data["candidates"][0]["content"]["parts"]
             text = "".join(p.get("text", "") for p in parts if not p.get("thought"))
             if text.strip():
                 log(f"  script written by {model}")
@@ -424,6 +452,9 @@ def write_script(title, text):
         raise ValueError("no usable script")
     if not best_score[0]:
         raise ValueError(f"script still too short ({best_score[-1]} words), trying another case")
+    if set(bad_words(best)) & {"rape", "raped", "molested", "sexual", "torture", "tortured", "dismembered",
+                               "decapitated", "corpse"}:
+        raise ValueError(f"script keeps needing words like {bad_words(best)}; case too dark, trying another")
     if not best_score[1]:  # last resort: swap the remaining words for PG ones
         log(f"  softening remaining words: {bad_words(best)}")
         best["title"] = soften(best.get("title", ""))
@@ -913,10 +944,15 @@ def main():
             real_title, text, url = article(title)
             if real_title not in used:
                 used.append(real_title)
-            if not check_case(real_title):
+            cats = check_case(real_title)
+            if not cats:
                 continue
             if len(text) < CFG["min_article_chars"]:
                 log("  too short, skipping")
+                continue
+            dark = too_dark(cats, text)
+            if dark:
+                log(f"  case involves sexual violence or child victims ({dark}), skipping")
                 continue
             script = write_script(real_title, text)
             if script.get("skip"):
