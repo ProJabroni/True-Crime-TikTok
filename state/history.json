@@ -68,5 +68,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-17-james-greenacre.mp4",
     "buffer_post": "6ad3cea20a208cb32335e272",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-17",
+    "title": "The Secrets of the Italian Diver",
+    "wikipedia": "https://en.wikipedia.org/wiki/Franco_Fuschi",
+    "seconds": 122.3,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-17-franco-fuschi.mp4",
+    "buffer_post": "6ad3dbb40b0d72757af2e188",
+    "ai_label": true
   }
 ]
