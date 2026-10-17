@@ -64,6 +64,8 @@ Edit `config.json` (pencil icon on GitHub):
   `image_style_manga_example` into `image_style`
 - `sfx`: comic sound-effect words on screen (off: `false`)
 - `text_retries`: pictures are checked for lettering and remade up to this many times
+- `music` / `music_volume`: low, ominous background music, made fresh for every video by
+  `music.py` (original, so nothing to license); it dips automatically while the narrator speaks
 
 The script writer defines the key people in each story once (look, age, era clothing) and
 every picture reuses that description, so the same characters appear throughout.

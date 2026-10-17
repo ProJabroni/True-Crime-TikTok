@@ -924,10 +924,36 @@ def render_video(scenes, title, work, final):
         render_scene(i, sc["image"], sc["audio"], sc["dur"], work / f"scene_{i:02d}.mp4")
     (work / "list.txt").write_text("".join(f"file 'scene_{i:02d}.mp4'\n" for i in range(len(scenes))))
     (work / "captions.ass").write_text(build_captions(scenes, title))
-    ffmpeg("-f", "concat", "-safe", "0", "-i", "list.txt", "-vf", f"ass=captions.ass:fontsdir={ROOT / 'fonts'}",
-           "-c:v", "libx264", "-preset", "medium", "-crf", "22", "-pix_fmt", "yuv420p",
-           "-c:a", "copy", "-movflags", "+faststart", final.resolve(), cwd=work)
+    subs = f"ass=captions.ass:fontsdir={ROOT / 'fonts'}"
+    music = make_background_music(t, work / "music.wav")
+    if music:
+        vol = CFG.get("music_volume", 0.15)
+        mix = (f"[0:v]{subs}[v];[0:a]asplit=2[voice][key];[1:a]volume={vol}[m];"
+               "[m][key]sidechaincompress=threshold=0.03:ratio=6:attack=40:release=700[duck];"
+               "[voice][duck]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11[a]")
+        ffmpeg("-f", "concat", "-safe", "0", "-i", "list.txt", "-i", music.name, "-filter_complex", mix,
+               "-map", "[v]", "-map", "[a]", "-c:v", "libx264", "-preset", "medium", "-crf", "22",
+               "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-ar", "44100", "-movflags", "+faststart",
+               final.resolve(), cwd=work)
+    else:
+        ffmpeg("-f", "concat", "-safe", "0", "-i", "list.txt", "-vf", subs, "-af", "loudnorm=I=-14:TP=-1.5:LRA=11",
+               "-c:v", "libx264", "-preset", "medium", "-crf", "22", "-pix_fmt", "yuv420p",
+               "-c:a", "aac", "-b:a", "192k", "-ar", "44100", "-movflags", "+faststart", final.resolve(), cwd=work)
     return t
+
+
+def make_background_music(seconds, path):
+    """Low, ominous background music made fresh for each video (see music.py). None if turned off or it fails."""
+    if not CFG.get("music", True):
+        return None
+    try:
+        from music import make_music
+        make_music(seconds + 0.5, path, seed=random.randint(1, 10**9))
+        log("  background music added")
+        return path
+    except Exception as e:  # noqa: BLE001
+        log(f"  background music skipped: {str(e)[:200]}")
+        return None
 
 
 # ---------------------------------------------------------------- main
