@@ -81,6 +81,11 @@ def main():
         p["text"] = (p.get("text") or "")[:60]
         out(f"Post {pid}:", json.dumps(p, ensure_ascii=False))
 
+    try:
+        from buffer_queue import waiting_tiktok_posts
+        out("TikTok posts waiting in Buffer:", waiting_tiktok_posts(KEY))
+    except Exception as e:  # noqa: BLE001
+        out("Could not count waiting posts:", str(e)[:300])
     (ROOT / "state" / "buffer-status.txt").write_text("\n".join(lines) + "\n")
 
 

@@ -31,17 +31,32 @@ jobs:
       skip: ${{ steps.guard.outputs.skip }}
     steps:
       - uses: actions/checkout@v4
-      - name: Skip if tonight's video is already in Buffer
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Skip if today's video is done, or one is still waiting in Buffer
         id: guard
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
         run: |
           TODAY=$(date -u +%F)
-          if [ "${{ github.event_name }}" = "schedule" ] && \
-             jq -e --arg d "$TODAY" 'map(select(.date == $d and (.status | test("queued|made, not posted")))) | length > 0' state/history.json > /dev/null; then
-            echo "Tonight's video is already done; nothing to do." | tee -a "$GITHUB_STEP_SUMMARY"
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "skip=false" >> "$GITHUB_OUTPUT"
+          SKIP=false
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            if jq -e --arg d "$TODAY" 'map(select(.date == $d and (.status | test("queued|made, not posted")))) | length > 0' state/history.json > /dev/null; then
+              echo "Today's video is already done; nothing to do." | tee -a "$GITHUB_STEP_SUMMARY"
+              SKIP=true
+            else
+              pip install -q requests
+              WAITING=$(python buffer_queue.py | tail -1)
+              MAX=$(jq -r '.max_waiting_in_buffer // 1' config.json)
+              echo "TikTok posts already waiting in Buffer: $WAITING (limit $MAX)"
+              if [ "${WAITING:-0}" -ge "$MAX" ] 2>/dev/null; then
+                echo "A video is still waiting in Buffer; skipping today so they don't pile up." | tee -a "$GITHUB_STEP_SUMMARY"
+                SKIP=true
+              fi
+            fi
           fi
+          echo "skip=$SKIP" >> "$GITHUB_OUTPUT"
 
   video:
     needs: check
