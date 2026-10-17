@@ -68,7 +68,9 @@ Edit `config.json` (pencil icon on GitHub):
   `music.py` (original, so nothing to license); it dips automatically while the narrator speaks
 
 The script writer defines the key people in each story once (look, age, era clothing) and
-every picture reuses that description, so the same characters appear throughout.
+every picture reuses that description, so the same characters appear throughout. It also records
+where and when the case happened, and every picture is drawn in that country and era (local
+architecture, cars, police uniforms, courtrooms), with at most one person per picture.
 
 `state/history.json` lists every video made; `state/used.json` stops cases repeating.
 

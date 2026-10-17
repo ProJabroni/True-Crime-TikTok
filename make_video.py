@@ -249,6 +249,7 @@ Otherwise return JSON exactly like:
   "skip": false,
   "title": "short on-screen title that teases the mystery, max 7 words",
   "setting": { "when": "the date the story begins, as exact as the article gives it, always with the year", "where": "the town or city plus state or country where it happened" },
+  "setting": { "country": "...", "place": "...", "era": "..." },
   "characters": [ { "tag": "[Victim]", "look": "..." } ],
   "scenes": [ { "narration": "...", "image_prompt": "..." } ],
   "caption": "...",
@@ -259,9 +260,10 @@ Otherwise return JSON exactly like:
 - Scene 2 starts the story properly with who, where and when: it MUST say out loud the date (always the year, plus the month and day when the article gives them) and the place (the town or city and the state or country). The viewer must know when and where this happened within the first half of the video, so never save the date or place for later. Then tell the story in order: background, what happened, the investigation and evidence, key turning points, suspects or trial. The last scene says how the case ended or where it stands today. Do not add any "like", "follow" or "subscribe" line yourself; the closing call to action is added automatically.
 - Total narration {words_min} to {words_max} words. Short spoken sentences. No emojis, no stage directions.
 - NEVER use digits in narration. Spell out every number, date, year, time and amount exactly as a narrator says it: "August thirty-first, nineteen eighty-five", "the third of March", "seven thirty in the evening", "twenty-three years old", "one point five million dollars".
+- setting: where and when the case happened, from the article: country (e.g. "Germany"), place (city or region, e.g. "a village near Munich, Bavaria") and era (e.g. "1940s"). Every picture is drawn in this setting.
 - characters: the 2 to 5 key people in the story (victim, suspect, detective, witness, family member...). tag is a short role in square brackets, e.g. "[Victim]", "[Detective]", "[Suspect]". look is a fixed visual description used in every picture: gender, approximate age, build, hair, and clothing typical of the era and place (e.g. "a woman in her twenties with shoulder-length brown hair, wearing a 1970s denim jacket and flared jeans"). Do not try to describe the real person's actual face; these are illustrated characters.
 - Use the [Tag] form ONLY inside image_prompt. In narration, title and caption, write normally (names or "the detective").
-- image_prompt: ONE bright, clear illustrated scene for that moment (the art style is added automatically). Each picture shows AT MOST ONE PERSON: a single character, alone in the frame. Never two or more people, no groups, crowds or bystanders; when a moment involves several people, show just the most important one, or the place or an object. Most scenes should SHOW one of the characters, referred to ONLY by their tag (e.g. "[Detective] kneels beside a car on a rainy roadside, looking at the ground"), doing what the story says at that moment, with the setting, era, time of day and camera angle. Never put a real person's name in image_prompt. Show people alive and in ordinary or tense moments only: never violence, attacks, weapons being used, blood, injuries, bodies or crime-scene remains; for those moments show the place, a detail, or the investigators instead. Never show a child in danger. Avoid anything that normally carries writing: signs, shop fronts, newspapers, documents, screens, license plates, badges, posters, uniforms with lettering.
+- image_prompt: ONE bright, clear illustrated scene for that moment (the art style is added automatically). Each picture shows AT MOST ONE PERSON: a single character, alone in the frame. Never two or more people, no groups, crowds or bystanders; when a moment involves several people, show just the most important one, or the place or an object. Most scenes should SHOW one of the characters, referred to ONLY by their tag (e.g. "[Detective] kneels beside a car on a rainy roadside, looking at the ground"), doing what the story says at that moment, with the setting, era, time of day and camera angle. Never put a real person's name in image_prompt. Show people alive and in ordinary or tense moments only: never violence, attacks, weapons being used, blood, injuries, bodies or crime-scene remains; for those moments show the place, a detail, or the investigators instead. Never show a child in danger. Everything in the picture must fit the real country and era of the case: local architecture, streets, cars, police uniforms, courtrooms and clothing (e.g. a German case gets German buildings, German police and a German courtroom, never American ones). Never show flags. Avoid anything that normally carries writing: signs, shop fronts, newspapers, documents, screens, license plates, badges, posters, uniforms with lettering.
 - title, caption and hashtags follow the same language rules. caption: under 150 characters, intriguing, no spoilers. hashtags: 4 to 6, lowercase, without the # sign."""
 
 
@@ -538,6 +540,25 @@ def untag(text):
         start = m.start() == 0 or text[:m.start()].rstrip()[-1:] in ".!?"
         return ("The " if start else "the ") + role
     return re.sub(r"\[([^\]]{1,30})\]", repl, text)
+
+
+def setting_text(setting):
+    """', in a village near Munich, Bavaria, Germany, 1940s, authentic Germany architecture ...' for every picture."""
+    if not isinstance(setting, dict):
+        return ""
+    country = str(setting.get("country") or "").strip()
+    place = str(setting.get("place") or "").strip()
+    era = str(setting.get("era") or "").strip()
+    where = place if (country and country.lower() in place.lower()) else ", ".join(x for x in (place, country) if x)
+    if not (where or era):
+        return ""
+    out = ", in " + (where or "the place of the case") + (f", {era}" if era else "")
+    if country:
+        out += f", authentic {country} architecture, vehicles, police uniforms, interiors and clothing"
+        out += " of that time" if era else ""
+        if not re.search(r"united states|usa|america", country, re.I):
+            out += ", nothing American"
+    return out
 
 
 def expand_characters(prompt, characters):
@@ -1028,7 +1049,8 @@ def main():
     for i, s in enumerate(script["scenes"]):
         log(f"  picture {i + 1}/{len(script['scenes'])}")
         image = WORK / f"scene_{i:02d}.jpg"
-        make_image(expand_characters(s["image_prompt"], script.get("characters")), image, seed + i * 10)
+        make_image(expand_characters(s["image_prompt"], script.get("characters")) + setting_text(script.get("setting")),
+                   image, seed + i * 10)
         sfx = str(s.get("sfx") or "").strip().upper()[:20] if CFG.get("sfx", False) else ""
         scenes.append({"narration": s["narration"], "sfx": sfx, "image": image})
     log("  narrating")
