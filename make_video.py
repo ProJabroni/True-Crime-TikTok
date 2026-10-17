@@ -263,7 +263,7 @@ Otherwise return JSON exactly like:
 - setting: where and when the case happened, from the article: country (e.g. "Germany"), place (city or region, e.g. "a village near Munich, Bavaria") and era (e.g. "1940s"). Every picture is drawn in this setting.
 - characters: the 2 to 5 key people in the story (victim, suspect, detective, witness, family member...). tag is a short role in square brackets, e.g. "[Victim]", "[Detective]", "[Suspect]". look is a fixed visual description used in every picture: gender, approximate age, build, hair, and clothing typical of the era and place (e.g. "a woman in her twenties with shoulder-length brown hair, wearing a 1970s denim jacket and flared jeans"). Do not try to describe the real person's actual face; these are illustrated characters.
 - Use the [Tag] form ONLY inside image_prompt. In narration, title and caption, write normally (names or "the detective").
-- image_prompt: ONE bright, clear illustrated scene for that moment (the art style is added automatically). Each picture shows AT MOST ONE PERSON: a single character, alone in the frame. Never two or more people, no groups, crowds or bystanders; when a moment involves several people, show just the most important one, or the place or an object. Most scenes should SHOW one of the characters, referred to ONLY by their tag (e.g. "[Detective] kneels beside a car on a rainy roadside, looking at the ground"), doing what the story says at that moment, with the setting, era, time of day and camera angle. Never put a real person's name in image_prompt. Show people alive and in ordinary or tense moments only: never violence, attacks, weapons being used, blood, injuries, bodies or crime-scene remains; for those moments show the place, a detail, or the investigators instead. Never show a child in danger. Everything in the picture must fit the real country and era of the case: local architecture, streets, cars, police uniforms, courtrooms and clothing (e.g. a German case gets German buildings, German police and a German courtroom, never American ones). Never show flags. Avoid anything that normally carries writing: signs, shop fronts, newspapers, documents, screens, license plates, badges, posters, uniforms with lettering.
+- image_prompt: ONE bright, clear illustrated scene for that moment (the art style is added automatically). Each picture shows AT MOST ONE PERSON: a single character, alone in the frame. Never two or more people, no groups, crowds or bystanders; when a moment involves several people, show just the most important one, or the place or an object. Most scenes should SHOW one of the characters, referred to ONLY by their tag (e.g. "[Detective] kneels beside a car on a rainy roadside, looking at the ground"), doing what the story says at that moment, with the setting, era, time of day and camera angle. Never put a real person's name in image_prompt. Show people alive and in ordinary or tense moments only: never violence, attacks, weapons being used, blood, injuries, bodies or crime-scene remains; for those moments show the place, a detail, or the investigators instead. Never show a child in danger. Everything in the picture must fit the real country and era of the case: local architecture, streets, transport (horse-drawn carriages before about 1900, never cars), lighting, police uniforms, courtrooms and clothing (e.g. a German case gets German buildings, German police and a German courtroom, never American ones). Never show flags. Avoid anything that normally carries writing: signs, shop fronts, newspapers, documents, screens, license plates, badges, posters, uniforms with lettering.
 - title, caption and hashtags follow the same language rules. caption: under 150 characters, intriguing, no spoilers. hashtags: 4 to 6, lowercase, without the # sign."""
 
 
@@ -542,23 +542,55 @@ def untag(text):
     return re.sub(r"\[([^\]]{1,30})\]", repl, text)
 
 
-def setting_text(setting):
-    """', in a village near Munich, Bavaria, Germany, 1940s, authentic Germany architecture ...' for every picture."""
-    if not isinstance(setting, dict):
+def era_year(era):
+    """'1836' / 'the 1830s' / 'mid-1800s' / '19th century' -> a representative year (or None)."""
+    era = str(era or "")
+    m = re.search(r"\b(1[0-9]{3}|20[0-9]{2})", era)
+    if m:
+        return int(m.group(1))
+    m = re.search(r"\b(1[0-9]|20)(?:th|st|nd|rd) century", era, re.I)
+    if m:
+        return (int(m.group(1)) - 1) * 100 + 50
+    return None
+
+
+def era_details(year, country):
+    """Period-correct transport, lighting and clothing, described positively (image models tend to draw
+    whatever is named, even after "no"), so an 1836 case gets carriages, not cars."""
+    if year is None:
         return ""
+    if year < 1890:
+        out = (f"{year // 10 * 10}s period scene: horse-drawn carriages and carts on the streets, "
+               "gas lamps and candlelight, period clothing")
+    elif year < 1920:
+        out = f"{year // 10 * 10}s period scene: horse-drawn carriages, period clothing"
+    elif year < 2000:
+        out = f"{year // 10 * 10}s period scene: vehicles, interiors and clothing from the {year // 10 * 10}s"
+    else:
+        out = "present-day scene"
+    if country:
+        out += f", police uniforms, buildings and interiors typical of {country}"
+    return out
+
+
+def setting_parts(setting):
+    """(prefix, details) for the picture prompt, e.g. ('London, England, 1836', 'horse-drawn carriages ...')."""
+    if not isinstance(setting, dict):
+        return "", ""
     country = str(setting.get("country") or "").strip()
     place = str(setting.get("place") or "").strip()
     era = str(setting.get("era") or "").strip()
     where = place if (country and country.lower() in place.lower()) else ", ".join(x for x in (place, country) if x)
-    if not (where or era):
-        return ""
-    out = ", in " + (where or "the place of the case") + (f", {era}" if era else "")
-    if country:
-        out += f", authentic {country} architecture, vehicles, police uniforms, interiors and clothing"
-        out += " of that time" if era else ""
-        if not re.search(r"united states|usa|america", country, re.I):
-            out += ", nothing American"
-    return out
+    prefix = ", ".join(x for x in (where, era) if x)
+    return prefix, era_details(era_year(era), country)
+
+
+def picture_prompt(scene_prompt, characters, setting):
+    """Final picture prompt: setting and era first (models weigh the start most), one person, period details."""
+    prefix, details = setting_parts(setting)
+    scene = expand_characters(scene_prompt, characters)
+    parts = [prefix, scene, details]
+    return ". ".join(x.strip().rstrip(".") for x in parts if x and x.strip())
 
 
 def expand_characters(prompt, characters):
@@ -580,8 +612,9 @@ def expand_characters(prompt, characters):
     return re.sub(r"\[([^\]]{1,30})\]", r"\1", prompt)  # any unknown tag: keep just the role word
 
 
-def text_in_image(path):
-    """Number of readable words OCR finds in a picture (0 if the OCR tool isn't installed)."""
+def text_in_image(path, boxes=None):
+    """Number of readable words OCR finds in a picture (0 if the OCR tool isn't installed).
+    If `boxes` is a list, each word's (left, top, width, height) is appended to it."""
     try:
         out = subprocess.run(["tesseract", str(path), "-", "--psm", "11", "tsv"],
                              capture_output=True, text=True, timeout=60).stdout
@@ -599,9 +632,29 @@ def text_in_image(path):
             if not re.fullmatch(r"[A-Za-z]{3,}", word):
                 continue
             # Signs are usually capitals; lowercase "words" are often just texture, so need more certainty.
-            if (word.isupper() and conf >= CFG.get("ocr_min_confidence", 75)) or (len(word) >= 4 and conf >= 88):
+            if (word.isupper() and conf >= CFG.get("ocr_min_confidence", 75)) or (len(word) >= 4 and conf >= 85):
                 words += 1
+                if boxes is not None:
+                    boxes.append(tuple(int(float(c)) for c in cols[6:10]))
     return words
+
+
+def blur_lettering(path):
+    """Blur any lettering OCR can still find in the picture we kept."""
+    boxes = []
+    if not text_in_image(path, boxes):
+        return
+    try:
+        from PIL import Image, ImageFilter
+    except ImportError:
+        return
+    img = Image.open(path).convert("RGB")
+    for left, top, width, height in boxes:
+        pad = max(6, height // 2)
+        box = (max(0, left - pad), max(0, top - pad), min(img.width, left + width + pad), min(img.height, top + height + pad))
+        img.paste(img.crop(box).filter(ImageFilter.GaussianBlur(radius=max(6, height // 2))), box[:2])
+    img.save(path, "JPEG", quality=95)
+    log(f"  blurred {len(boxes)} leftover bits of lettering")
 
 
 def make_image(prompt, path, seed):
@@ -620,6 +673,8 @@ def make_image(prompt, path, seed):
         else:
             log(f"  every try had some lettering; keeping the cleanest ({best[0]} words)")
     best[1].replace(path)
+    if best[0]:
+        blur_lettering(path)
 
 
 def make_image_once(prompt, path, seed):
@@ -1049,7 +1104,7 @@ def main():
     for i, s in enumerate(script["scenes"]):
         log(f"  picture {i + 1}/{len(script['scenes'])}")
         image = WORK / f"scene_{i:02d}.jpg"
-        make_image(expand_characters(s["image_prompt"], script.get("characters")) + setting_text(script.get("setting")),
+        make_image(picture_prompt(s["image_prompt"], script.get("characters"), script.get("setting")),
                    image, seed + i * 10)
         sfx = str(s.get("sfx") or "").strip().upper()[:20] if CFG.get("sfx", False) else ""
         scenes.append({"narration": s["narration"], "sfx": sfx, "image": image})

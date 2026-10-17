@@ -70,7 +70,8 @@ Edit `config.json` (pencil icon on GitHub):
 The script writer defines the key people in each story once (look, age, era clothing) and
 every picture reuses that description, so the same characters appear throughout. It also records
 where and when the case happened, and every picture is drawn in that country and era (local
-architecture, cars, police uniforms, courtrooms), with at most one person per picture.
+architecture, transport, police uniforms, courtrooms; horse-drawn carriages before about 1900),
+with at most one person per picture. Any lettering the check still finds is blurred out.
 
 `state/history.json` lists every video made; `state/used.json` stops cases repeating.
 
