@@ -660,18 +660,21 @@ def blur_lettering(path):
 def make_image(prompt, path, seed):
     """Make a picture; if it has lettering on it, make up to `text_retries` more and keep the cleanest."""
     best = None
-    for attempt in range(1 + CFG.get("text_retries", 2)):
+    attempt = 0
+    while True:
         tmp = path.with_name(f"{path.stem}_try{attempt}{path.suffix}")
         make_image_once(prompt, tmp, seed + attempt * 101)
         words = text_in_image(tmp)
         if best is None or words < best[0]:
             best = (words, tmp)
-        if words == 0:
+        # The slow on-GitHub generator gets one retry at most; the blur handles the rest.
+        retries = CFG.get("text_retries", 2) if CF_AVAILABLE else min(1, CFG.get("text_retries", 2))
+        if words == 0 or attempt >= retries:
+            if words:
+                log(f"  every try had some lettering; keeping the cleanest ({best[0]} words)")
             break
-        if attempt < CFG.get("text_retries", 2):
-            log(f"  picture has lettering on it ({words} words), making another")
-        else:
-            log(f"  every try had some lettering; keeping the cleanest ({best[0]} words)")
+        attempt += 1
+        log(f"  picture has lettering on it ({words} words), making another")
     best[1].replace(path)
     if best[0]:
         blur_lettering(path)
