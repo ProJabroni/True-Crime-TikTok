@@ -58,5 +58,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-16-orinda-shooting.mp4",
     "buffer_post": "6ad27e05346e510ac44f50c4",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-17",
+    "title": "The Mystery of the Vanished London Bride",
+    "wikipedia": "https://en.wikipedia.org/wiki/James_Greenacre",
+    "seconds": 120.7,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-17-james-greenacre.mp4",
+    "buffer_post": "6ad3cea20a208cb32335e272",
+    "ai_label": true
   }
 ]
