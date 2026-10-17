@@ -21,6 +21,8 @@ from pathlib import Path
 
 import requests
 
+from spoken import spoken
+
 ROOT = Path(__file__).resolve().parent
 CFG = json.loads((ROOT / "config.json").read_text())
 STATE = ROOT / "state"
@@ -255,10 +257,11 @@ Otherwise return JSON exactly like:
 - {scenes_min} to {scenes_max} scenes.
 - Scene 1 is the HOOK, and it decides whether people keep watching. It is ONE short, intriguing line (under 18 words), usually a question, built on the strangest or most surprising TRUE detail in the article, that makes the viewer need the answer. Tease the mystery; do not give away the ending, and never exaggerate or mislead. Good hooks for the style (do not copy them): "How was this man able to hitch a ride out of prison?", "Why did a quiet bank clerk walk out with a million dollars and never come back?", "What were police looking for under a suburban kitchen floor for forty years?". Avoid weak openers such as "This is the story of", "Meet", "Have you ever heard of", "You won't believe".
 - Scene 2 starts the story properly with who, where and when: it MUST say out loud the date (always the year, plus the month and day when the article gives them) and the place (the town or city and the state or country). The viewer must know when and where this happened within the first half of the video, so never save the date or place for later. Then tell the story in order: background, what happened, the investigation and evidence, key turning points, suspects or trial. The last scene says how the case ended or where it stands today. Do not add any "like", "follow" or "subscribe" line yourself; the closing call to action is added automatically.
-- Total narration {words_min} to {words_max} words. Short spoken sentences. Write numbers, dates and years the way they are read aloud. No emojis, no stage directions.
+- Total narration {words_min} to {words_max} words. Short spoken sentences. No emojis, no stage directions.
+- NEVER use digits in narration. Spell out every number, date, year, time and amount exactly as a narrator says it: "August thirty-first, nineteen eighty-five", "the third of March", "seven thirty in the evening", "twenty-three years old", "one point five million dollars".
 - characters: the 2 to 5 key people in the story (victim, suspect, detective, witness, family member...). tag is a short role in square brackets, e.g. "[Victim]", "[Detective]", "[Suspect]". look is a fixed visual description used in every picture: gender, approximate age, build, hair, and clothing typical of the era and place (e.g. "a woman in her twenties with shoulder-length brown hair, wearing a 1970s denim jacket and flared jeans"). Do not try to describe the real person's actual face; these are illustrated characters.
 - Use the [Tag] form ONLY inside image_prompt. In narration, title and caption, write normally (names or "the detective").
-- image_prompt: ONE bright, clear illustrated scene for that moment (the art style is added automatically). Most scenes should SHOW the characters involved, referred to ONLY by their tag (e.g. "[Detective] kneels beside a car on a rainy roadside, looking at the ground"), doing what the story says at that moment, with the setting, era, time of day and camera angle. Never put a real person's name in image_prompt. Show people alive and in ordinary or tense moments only: never violence, attacks, weapons being used, blood, injuries, bodies or crime-scene remains; for those moments show the place, a detail, or the investigators instead. Never show a child in danger. Avoid anything that normally carries writing: signs, shop fronts, newspapers, documents, screens, license plates, badges, posters, uniforms with lettering.
+- image_prompt: ONE bright, clear illustrated scene for that moment (the art style is added automatically). Each picture shows AT MOST ONE PERSON: a single character, alone in the frame. Never two or more people, no groups, crowds or bystanders; when a moment involves several people, show just the most important one, or the place or an object. Most scenes should SHOW one of the characters, referred to ONLY by their tag (e.g. "[Detective] kneels beside a car on a rainy roadside, looking at the ground"), doing what the story says at that moment, with the setting, era, time of day and camera angle. Never put a real person's name in image_prompt. Show people alive and in ordinary or tense moments only: never violence, attacks, weapons being used, blood, injuries, bodies or crime-scene remains; for those moments show the place, a detail, or the investigators instead. Never show a child in danger. Avoid anything that normally carries writing: signs, shop fronts, newspapers, documents, screens, license plates, badges, posters, uniforms with lettering.
 - title, caption and hashtags follow the same language rules. caption: under 150 characters, intriguing, no spoilers. hashtags: 4 to 6, lowercase, without the # sign."""
 
 
@@ -538,7 +541,15 @@ def untag(text):
 
 
 def expand_characters(prompt, characters):
-    """Replace [Tag] with that character's fixed look so they look the same in every picture."""
+    """Replace [Tag] with that character's fixed look so they look the same in every picture.
+    Only one person per picture: if several tags appear, the first one stays and the others are dropped."""
+    tags = list(dict.fromkeys(re.findall(r"\[[^\]]{1,30}\]", prompt)))
+    for extra in tags[1:]:
+        prompt = re.sub(r"\s*(?:,|\band\b|\bwith\b|\bwhile\b)?\s*" + re.escape(extra), "", prompt)
+    if tags:
+        prompt += ", only one person in the picture, alone, no other people, no crowd, no bystanders"
+    else:
+        prompt += ", no more than one person in the picture, no crowd"
     for ch in characters or []:
         tag, look = str(ch.get("tag", "")).strip(), str(ch.get("look", "")).strip()
         if tag and look:
@@ -1010,7 +1021,7 @@ def main():
     script["title"] = untag(script.get("title", ""))
     script["caption"] = untag(script.get("caption", ""))
     for sc in script["scenes"]:
-        sc["narration"] = untag(sc["narration"])
+        sc["narration"] = spoken(untag(sc["narration"]))  # "August 31" -> "August thirty-first" for the voice
     log(f"Making video: {script.get('title')} ({real_title})")
     seed = random.randint(1, 10**8)
     scenes = []
