@@ -263,7 +263,7 @@ Otherwise return JSON exactly like:
 - setting: where and when the case happened, from the article: country (e.g. "Germany"), place (city or region, e.g. "a village near Munich, Bavaria") and era (e.g. "1940s"). Every picture is drawn in this setting.
 - characters: the 2 to 5 key people in the story (victim, suspect, detective, witness, family member...). tag is a short role in square brackets, e.g. "[Victim]", "[Detective]", "[Suspect]". look is a fixed visual description used in every picture: gender, approximate age, build, hair, and clothing typical of the era and place (e.g. "a woman in her twenties with shoulder-length brown hair, wearing a 1970s denim jacket and flared jeans"). Do not try to describe the real person's actual face; these are illustrated characters.
 - Use the [Tag] form ONLY inside image_prompt. In narration, title and caption, write normally (names or "the detective").
-- image_prompt: ONE bright, clear illustrated scene for that moment (the art style is added automatically). Each picture shows AT MOST ONE PERSON: a single character, alone in the frame. Never two or more people, no groups, crowds or bystanders; when a moment involves several people, show just the most important one, or the place or an object. Most scenes should SHOW one of the characters, referred to ONLY by their tag (e.g. "[Detective] kneels beside a car on a rainy roadside, looking at the ground"), doing what the story says at that moment, with the setting, era, time of day and camera angle. Never put a real person's name in image_prompt. Show people alive and in ordinary or tense moments only: never violence, attacks, weapons being used, blood, injuries, bodies or crime-scene remains; for those moments show the place, a detail, or the investigators instead. Never show a child in danger. Everything in the picture must fit the real country and era of the case: local architecture, streets, transport (horse-drawn carriages before about 1900, never cars), lighting, police uniforms, courtrooms and clothing (e.g. a German case gets German buildings, German police and a German courtroom, never American ones). Never show flags. Avoid anything that normally carries writing: signs, shop fronts, newspapers, documents, screens, license plates, badges, posters, uniforms with lettering.
+- image_prompt: ONE bright, clear, SIMPLE illustrated picture for that moment (the art style is added automatically). Less is more: in most scenes show just one thing (one person, one object or one place) against a plain, uncluttered background, like a single key, a lit window at night, a car on an empty road, a face in shadow, a closed door. Keep each image_prompt under 25 words and never list many objects. Each picture shows AT MOST ONE PERSON: a single character, alone in the frame. Never two or more people, no groups, crowds or bystanders; when a moment involves several people, show just the most important one, or the place or an object. Most scenes should SHOW one of the characters, referred to ONLY by their tag (e.g. "[Detective] kneels beside a car on a rainy roadside, looking at the ground"), doing what the story says at that moment, with the setting, era, time of day and camera angle. Never put a real person's name in image_prompt. Show people alive and in ordinary or tense moments only: never violence, attacks, weapons being used, blood, injuries, bodies or crime-scene remains; for those moments show the place, a detail, or the investigators instead. Never show a child in danger. Everything in the picture must fit the real country and era of the case: local architecture, streets, transport (horse-drawn carriages before about 1900, never cars), lighting, police uniforms, courtrooms and clothing (e.g. a German case gets German buildings, German police and a German courtroom, never American ones). Never show flags. Avoid anything that normally carries writing: signs, shop fronts, newspapers, documents, screens, license plates, badges, posters, uniforms with lettering.
 - title, caption and hashtags follow the same language rules. caption: under 150 characters, intriguing, no spoilers. hashtags: 4 to 6, lowercase, without the # sign."""
 
 
@@ -555,21 +555,19 @@ def era_year(era):
 
 
 def era_details(year, country):
-    """Period-correct transport, lighting and clothing, described positively (image models tend to draw
-    whatever is named, even after "no"), so an 1836 case gets carriages, not cars."""
+    """A short period hint. Kept brief on purpose: listing props (carriages, lamps...) makes the image
+    model cram them into every picture, and the pictures should be simple."""
     if year is None:
         return ""
-    if year < 1890:
-        out = (f"{year // 10 * 10}s period scene: horse-drawn carriages and carts on the streets, "
-               "gas lamps and candlelight, period clothing")
-    elif year < 1920:
-        out = f"{year // 10 * 10}s period scene: horse-drawn carriages, period clothing"
+    decade = year // 10 * 10
+    if year < 1900:
+        out = f"{decade}s, horse-and-carriage era, period-accurate"
     elif year < 2000:
-        out = f"{year // 10 * 10}s period scene: vehicles, interiors and clothing from the {year // 10 * 10}s"
+        out = f"{decade}s, period-accurate"
     else:
-        out = "present-day scene"
+        out = "present day"
     if country:
-        out += f", police uniforms, buildings and interiors typical of {country}"
+        out += f", {country}"
     return out
 
 
@@ -600,9 +598,9 @@ def expand_characters(prompt, characters):
     for extra in tags[1:]:
         prompt = re.sub(r"\s*(?:,|\band\b|\bwith\b|\bwhile\b)?\s*" + re.escape(extra), "", prompt)
     if tags:
-        prompt += ", only one person in the picture, alone, no other people, no crowd, no bystanders"
+        prompt += ", a single figure alone, empty surroundings"
     else:
-        prompt += ", no more than one person in the picture, no crowd"
+        prompt += ", empty surroundings"
     for ch in characters or []:
         tag, look = str(ch.get("tag", "")).strip(), str(ch.get("look", "")).strip()
         if tag and look:

@@ -5,7 +5,7 @@ article and sends it to TikTok through Buffer. Everything runs on GitHub's free 
 and free services. No server, no credit card.
 
 **How it works:** picks an unused, well-documented case from Wikipedia → writes a factual
-script (Google Gemini, or Cloudflare as a backup) → makes one comic-book style picture per scene
+script (Google Gemini, or Cloudflare as a backup) → makes one simple, minimalist comic-style picture per scene
 (Cloudflare Workers AI) → narrates it (Google's Gemini voices, free tier) → adds captions and
 slow zoom/pan motion (ffmpeg) → puts the video on GitHub Pages → queues it in Buffer, which
 posts it to TikTok.

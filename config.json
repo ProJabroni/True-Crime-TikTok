@@ -36,7 +36,7 @@
   "cloudflare_text_model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
   "cloudflare_image_model": "@cf/black-forest-labs/flux-1-schnell",
   "image_steps": 6,
-  "image_style": "bold comic book illustration, graphic novel art, thick black ink outlines, halftone dot shading, vibrant saturated colors, bright clean lighting, expressive characters, cinematic composition, cel shading, absolutely no text, no words, no letters, no signs, no signage, no writing, no speech bubbles",
+  "image_style": "minimalist comic book illustration, simple composition, one clear focal point, clean uncluttered background, lots of empty space, limited color palette, bold black ink outlines, flat colors, subtle halftone shading, no text, no words, no letters, no signs",
   "image_style_manga_example": "black and white manga illustration, detailed ink linework, screentone shading, dramatic speed lines, high contrast, no text, no speech bubbles, no lettering",
   "sfx": false,
   "text_retries": 3,
@@ -44,7 +44,7 @@
   "local_image_model": "Lykon/dreamshaper-7",
   "local_image_lora": "latent-consistency/lcm-lora-sdv1-5",
   "local_image_steps": 6,
-  "local_image_style": "comic book illustration, graphic novel art, bold black ink outlines, halftone shading, vibrant colors, bright lighting, expressive characters, cel shading, highly detailed, no text",
+  "local_image_style": "minimalist comic book illustration, simple composition, one focal point, plain background, empty space, limited color palette, bold ink outlines, flat colors, no text",
 
   "avoid_words": ["kill", "kills", "killed", "killing", "killings", "killer", "killers",
                   "murder", "murders", "murdered", "murdering", "murderer", "murderers",
