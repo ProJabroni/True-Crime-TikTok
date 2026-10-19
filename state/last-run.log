@@ -31,78 +31,64 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:American serial killers
-  852 unused articles
-Trying: Robert Hansen
-  not the right kind of case (Category:Military personnel from Iowa), skipping
-Trying: Larry Eyler
-  case involves sexual violence or child victims (sexual violence in the article), skipping
-Trying: Bloody Benders
+Looking in Category:Murder in Scotland
+  207 unused articles
+Trying: Glasgow ice cream wars
+  not the right kind of case (Category:Organised crime conflicts in the United Kingdom), skipping
+Trying: David Beaton
   Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  script written by gemini-3.5-flash-lite
-  12 scenes, 231 words, avoid-words used: ['blood'], first half is missing the place
-  asking for a rewrite
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  script written by gemini-3.5-flash-lite
-  11 scenes, 196 words, first half is missing the place
-  asking for a rewrite
+  script written by gemini-3.8-flash
+  skipped by writer: The article is a historical biography of a sixteenth-century cardinal and statesman, not a specific criminal case, and centers around political and religious conflict during the Scottish Reformation.
+Trying: Abdelbaset al-Megrahi
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
   script written by gemini-3.8-flash
-  skipped by writer: The case involves a child victim (an infant daughter buried at the site) and mentions sexual violence.
-Trying: Robert Berdella
-  case involves sexual violence or child victims (Category:American people convicted of sexual assault), skipping
-Trying: Todd Kohlhepp
-  case involves sexual violence or child victims (Category:American people convicted of rape), skipping
-Trying: Ronald Gray
-  not the right kind of case (Category:20th-century African-American military personnel), skipping
-Trying: Carol City murders
-  case involves sexual violence or child victims (Category:Child sexual abuse in the United States), skipping
-Trying: Herb Baumeister
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
+  skipped by writer: The article centers on an act of international terrorism and political conflict.
+Trying: Daniel M'Naghten
   script written by gemini-3.8-flash
-  skipped by writer: The case involves victims who were children and mentions child sexual abuse.
-No usable article this run; try again.
+  12 scenes, 224 words, first half is missing the place
+  asking for a rewrite
+  script written by gemini-3.8-flash
+  12 scenes, 210 words, first half is missing the place
+  asking for a rewrite
+  script written by gemini-3.8-flash
+  12 scenes, 228 words
+Making video: The Delusion That Changed British Law (Daniel M'Naghten)
+  picture 1/12
+  picture 2/12
+  picture 3/12
+  picture 4/12
+  picture 5/12
+  picture 6/12
+  picture has lettering on it (1 words), making another
+  picture 7/12
+  picture 8/12
+  picture 9/12
+  picture 10/12
+  picture 11/12
+  picture 12/12
+  narrating
+  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
+  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
+  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
+  narration voice: gemini
+  rendering scene 1/12
+  rendering scene 2/12
+  rendering scene 3/12
+  rendering scene 4/12
+  rendering scene 5/12
+  rendering scene 6/12
+  rendering scene 7/12
+  rendering scene 8/12
+  rendering scene 9/12
+  rendering scene 10/12
+  rendering scene 11/12
+  rendering scene 12/12
+  background music added
+Video ready: 123.5 seconds, 21.9 MB
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-19-daniel-m-naghten.mp4
+Using Buffer TikTok channel: truecrimedaily001
+Queued in Buffer for TikTok (post 6ad684624d4b4350314f7670).

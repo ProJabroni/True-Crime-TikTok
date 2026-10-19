@@ -78,5 +78,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-17-franco-fuschi.mp4",
     "buffer_post": "6ad3dbb40b0d72757af2e188",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-19",
+    "title": "The Delusion That Changed British Law",
+    "wikipedia": "https://en.wikipedia.org/wiki/Daniel_M%27Naghten",
+    "seconds": 123.5,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-19-daniel-m-naghten.mp4",
+    "buffer_post": "6ad684624d4b4350314f7670",
+    "ai_label": true
   }
 ]
