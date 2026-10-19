@@ -31,80 +31,78 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Murder in Italy
-  267 unused articles
-Trying: Valerio Fioravanti
-  script written by gemini-3.8-flash
-  skipped by writer: The article is mainly about terrorism and political conflict.
-Trying: Turin Massacre (1864)
-  not a murder case, skipping
-Trying: Franco Fuschi
-  script written by gemini-3.8-flash
-  10 scenes, 198 words, first half is missing the place
+Looking in Category:American serial killers
+  852 unused articles
+Trying: Robert Hansen
+  not the right kind of case (Category:Military personnel from Iowa), skipping
+Trying: Larry Eyler
+  case involves sexual violence or child victims (sexual violence in the article), skipping
+Trying: Bloody Benders
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  script written by gemini-3.5-flash-lite
+  12 scenes, 231 words, avoid-words used: ['blood'], first half is missing the place
   asking for a rewrite
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  script written by gemini-3.5-flash-lite
+  11 scenes, 196 words, first half is missing the place
+  asking for a rewrite
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
   script written by gemini-3.8-flash
-  10 scenes, 203 words
-Making video: The Secrets of the Italian Diver (Franco Fuschi)
-  picture 1/10
-  picture 2/10
-  picture 3/10
-  picture 4/10
-  picture 5/10
-  picture 6/10
-  picture 7/10
-  picture 8/10
-  picture 9/10
-  picture 10/10
-  narrating
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  narration voice: gemini
-  rendering scene 1/10
-  rendering scene 2/10
-  rendering scene 3/10
-  rendering scene 4/10
-  rendering scene 5/10
-  rendering scene 6/10
-  rendering scene 7/10
-  rendering scene 8/10
-  rendering scene 9/10
-  rendering scene 10/10
-  background music added
-Video ready: 122.3 seconds, 31.8 MB
-  waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-17-franco-fuschi.mp4
-Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6ad3dbb40b0d72757af2e188).
+  skipped by writer: The case involves a child victim (an infant daughter buried at the site) and mentions sexual violence.
+Trying: Robert Berdella
+  case involves sexual violence or child victims (Category:American people convicted of sexual assault), skipping
+Trying: Todd Kohlhepp
+  case involves sexual violence or child victims (Category:American people convicted of rape), skipping
+Trying: Ronald Gray
+  not the right kind of case (Category:20th-century African-American military personnel), skipping
+Trying: Carol City murders
+  case involves sexual violence or child victims (Category:Child sexual abuse in the United States), skipping
+Trying: Herb Baumeister
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  script written by gemini-3.8-flash
+  skipped by writer: The case involves victims who were children and mentions child sexual abuse.
+No usable article this run; try again.
