@@ -88,5 +88,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-19-daniel-m-naghten.mp4",
     "buffer_post": "6ad684624d4b4350314f7670",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-20",
+    "title": "The Mystery in the English Lake",
+    "wikipedia": "https://en.wikipedia.org/wiki/Lady_in_the_Lake_trial",
+    "seconds": 118.7,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-20-lady-in-the-lake-trial.mp4",
+    "buffer_post": "6ad7c67f3a8f826b37f9b751",
+    "ai_label": true
   }
 ]
