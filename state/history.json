@@ -98,5 +98,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-20-lady-in-the-lake-trial.mp4",
     "buffer_post": "6ad7c67f3a8f826b37f9b751",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-21",
+    "title": "The Tragic End of a Champion",
+    "wikipedia": "https://en.wikipedia.org/wiki/Billy_Papke",
+    "seconds": 101.3,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-21-billy-papke.mp4",
+    "buffer_post": "6ad918a9199855ce0d3cb84e",
+    "ai_label": true
   }
 ]

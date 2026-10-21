@@ -19,6 +19,9 @@ No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
+
 Running kernel seems to be up-to-date.
 
 No services need to be restarted.
@@ -28,67 +31,168 @@ No containers need to be restarted.
 No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Murder in England
-  1192 unused articles
-Trying: Harry Allen (executioner)
-  not a murder case, skipping
-Trying: Bow, London
-  not a murder case, skipping
-Trying: Colin Campbell (murderer)
-  failed: Gemini's safety filter refused this case (PROHIBITED_CONTENT)
-Trying: Ian Gow
-  not the right kind of case (Category:English terrorism victims), skipping
-Trying: John Palmer (criminal)
+Looking in Category:Murder in the United States
+  916 unused articles
+Trying: Murder of Ruth Marie Terry
+  case involves sexual violence or child victims (Category:Sexual violence in the United States), skipping
+Trying: 2023 Nashville school shooting
+  case involves sexual violence or child victims (Category:Child murder in Tennessee), skipping
+Trying: Killing of Joseph Augustus Zarelli
+  case involves sexual violence or child victims (Category:Child murder in Pennsylvania), skipping
+Trying: Murder of Timothy McCoy
+  case involves sexual violence or child victims (Category:Child murder in Illinois), skipping
+Trying: 2019 Naval Air Station Pensacola shooting
+  not the right kind of case (Category:Islamic terrorism in Florida), skipping
+Trying: Mark Spotz
   Gemini gemini-3.8-flash busy (503), retrying
-  failed: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=240)
-Trying: Lady in the Lake trial
-  script written by gemini-3.8-flash
-  11 scenes, 197 words, first half is missing the place
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  script written by gemini-3.5-flash-lite
+  failed: Expecting property name enclosed in double quotes: line 73 column 3 (char 4003)
+Trying: Murders of Greg and Kimberly Malnory
+  case involves sexual violence or child victims (sexual violence in the article), skipping
+Trying: Billy Papke
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  script written by gemini-3.5-flash-lite
+  9 scenes, 153 words, first half is missing the place
   asking for a rewrite
-  script written by gemini-3.8-flash
-  11 scenes, 210 words, first half is missing the place
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  script written by gemini-3.5-flash-lite
+  11 scenes, 180 words, first half is missing the place
   asking for a rewrite
-  script written by gemini-3.8-flash
-  11 scenes, 200 words, first half is missing the place
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  script written by gemini-3.5-flash-lite
+  12 scenes, 184 words, first half is missing the place
   asking for a rewrite
-Making video: The Mystery in the English Lake (Lady in the Lake trial)
-  picture 1/11
-  picture 2/11
-  picture 3/11
-  picture 4/11
-  picture 5/11
-  picture 6/11
+Making video: The Tragic End of a Champion (Billy Papke)
+  picture 1/12
   picture has lettering on it (1 words), making another
-  picture 7/11
-  picture has lettering on it (1 words), making another
-  picture 8/11
-  picture 9/11
-  picture 10/11
-  picture 11/11
+  picture 2/12
+  picture 3/12
+  picture 4/12
+  picture 5/12
+  picture 6/12
+  picture 7/12
+  picture 8/12
+  picture 9/12
+  picture 10/12
+  picture 11/12
+  picture 12/12
   narrating
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
+  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
+  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   narration voice: gemini
-  rendering scene 1/11
-  rendering scene 2/11
-  rendering scene 3/11
-  rendering scene 4/11
-  rendering scene 5/11
-  rendering scene 6/11
-  rendering scene 7/11
-  rendering scene 8/11
-  rendering scene 9/11
-  rendering scene 10/11
-  rendering scene 11/11
+  rendering scene 1/12
+  rendering scene 2/12
+  rendering scene 3/12
+  rendering scene 4/12
+  rendering scene 5/12
+  rendering scene 6/12
+  rendering scene 7/12
+  rendering scene 8/12
+  rendering scene 9/12
+  rendering scene 10/12
+  rendering scene 11/12
+  rendering scene 12/12
   background music added
-Video ready: 118.7 seconds, 20.4 MB
+Video ready: 101.3 seconds, 18.5 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-20-lady-in-the-lake-trial.mp4
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-21-billy-papke.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6ad7c67f3a8f826b37f9b751).
+Queued in Buffer for TikTok (post 6ad918a9199855ce0d3cb84e).
