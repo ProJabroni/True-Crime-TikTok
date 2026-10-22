@@ -1,0 +1,6 @@
+sign_sample.jpg: OCR boxes [(681, 51, 204, 89)] | Gemini vision boxes []
+  painted over 1 bits of lettering
+sign_sample.jpg: after painting, OCR 1 | vision [(10, 633, 46, 85), (0, 769, 158, 34), (131, 660, 48, 40), (309, 1197, 403, 105)]
+sign_sample2.jpg: OCR boxes [(438, 99, 123, 122)] | Gemini vision boxes []
+  painted over 11 bits of lettering
+sign_sample2.jpg: after painting, OCR 0 | vision []
