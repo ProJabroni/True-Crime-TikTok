@@ -637,55 +637,84 @@ def text_in_image(path, boxes=None):
     return words
 
 
-_VISION_OK = True
+_VISION_FAILS = 0
+
+
+def _parse_boxes(text, w, h):
+    """Accept {"boxes": [[y0,x0,y1,x1], ...]}, a bare list, or [{"box_2d": [...]}, ...]."""
+    text = text.strip()
+    try:
+        data = json.loads(text)
+    except ValueError:
+        i = min([k for k in (text.find("{"), text.find("[")) if k >= 0], default=-1)
+        if i < 0:
+            raise
+        data = json.loads(text[i:max(text.rfind("}"), text.rfind("]")) + 1])
+    if isinstance(data, dict):
+        data = data.get("boxes", data.get("text_boxes", []))
+    boxes = []
+    for b in data or []:
+        if isinstance(b, dict):
+            b = b.get("box_2d") or b.get("box") or b.get("bbox")
+        if isinstance(b, (list, tuple)) and len(b) == 4:
+            y0, x0, y1, x1 = [max(0.0, min(1000.0, float(v))) for v in b]
+            # Ignore empty or implausibly big boxes (a sign is never a fifth of the picture).
+            if y1 > y0 and x1 > x0 and (y1 - y0) * (x1 - x0) < 0.2 * 1000 * 1000:
+                boxes.append((int(x0 * w / 1000), int(y0 * h / 1000),
+                              int((x1 - x0) * w / 1000), int((y1 - y0) * h / 1000)))
+    return boxes
 
 
 def vision_text_boxes(path):
     """Ask Gemini (vision) where any lettering is, including garbled or partial letters that OCR can't read.
-    Returns a list of (left, top, width, height) pixel boxes, [] if clean, or None if the check is unavailable."""
-    global _VISION_OK
-    if not (GEMINI_KEY and _VISION_OK and CFG.get("vision_text_check", True)):
+    Returns a list of (left, top, width, height) pixel boxes, [] if clean, or None if it couldn't tell
+    (then OCR alone decides for this picture). Gives up for the run only after several failures in a row."""
+    global _VISION_FAILS
+    if not (GEMINI_KEY and CFG.get("vision_text_check", True)) or _VISION_FAILS >= 4:
         return None
     from PIL import Image
     w, h = Image.open(path).size
-    prompt = ("Look for ANY text in this illustration: letters, words, numbers, signs, labels, logos, "
+    prompt = ("This is an illustration. Find ANY text in it: letters, words, numbers, signs, labels, logos, "
               "license plates, writing on paper or screens, even if garbled, partial, tiny or fake. "
-              'Reply with JSON only: {"boxes": [[ymin, xmin, ymax, xmax], ...]} using coordinates '
+              'Reply with JSON only, exactly like {"boxes": [[ymin, xmin, ymax, xmax]]}, coordinates '
               'normalized 0-1000, one box per text area. If there is no text at all, reply {"boxes": []}.')
-    body = {"contents": [{"parts": [
-                {"inline_data": {"mime_type": "image/jpeg", "data": base64.b64encode(path.read_bytes()).decode()}},
+    body = {"contents": [{"role": "user", "parts": [
+                {"inlineData": {"mimeType": "image/jpeg", "data": base64.b64encode(path.read_bytes()).decode()}},
                 {"text": prompt}]}],
             "generationConfig": {"responseMimeType": "application/json", "temperature": 0}}
+    problem = ""
     for model in CFG.get("vision_models", ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"]):
-        for attempt in range(2):
+        for attempt in range(3):
             try:
                 r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
                                   headers={"x-goog-api-key": GEMINI_KEY}, json=body, timeout=90)
-            except requests.RequestException:
+            except requests.RequestException as e:
+                problem = f"{model}: {e}"
                 time.sleep(5)
                 continue
             if r.status_code in (429, 500, 502, 503, 504):
-                time.sleep(10 * (attempt + 1))
+                problem = f"{model}: busy ({r.status_code})"
+                time.sleep(15 * (attempt + 1))
                 continue
             if not r.ok:
+                problem = f"{model}: {r.status_code} {r.text[:200]}"
                 break
+            data = r.json()
+            if (data.get("promptFeedback") or {}).get("blockReason"):
+                return None  # safety filter declined this picture; OCR decides for it
             try:
-                text = "".join(part.get("text", "") for part in r.json()["candidates"][0]["content"]["parts"])
-                data = json.loads(text[text.find("{"):text.rfind("}") + 1])
-            except (KeyError, IndexError, ValueError):
+                text = "".join(part.get("text", "") for part in data["candidates"][0]["content"]["parts"])
+                boxes = _parse_boxes(text, w, h)
+            except (KeyError, IndexError, ValueError) as e:
+                problem = f"{model}: unreadable reply ({e}): {str(data)[:200]}"
                 break
+            _VISION_FAILS = 0
             time.sleep(CFG.get("vision_pause", 2))
-            boxes = []
-            for b in data.get("boxes") or []:
-                if isinstance(b, (list, tuple)) and len(b) == 4:
-                    y0, x0, y1, x1 = [max(0, min(1000, float(v))) for v in b]
-                    # Ignore empty or implausibly big boxes (a sign is never a fifth of the picture).
-                    if y1 > y0 and x1 > x0 and (y1 - y0) * (x1 - x0) < 0.2 * 1000 * 1000:
-                        boxes.append((int(x0 * w / 1000), int(y0 * h / 1000),
-                                      int((x1 - x0) * w / 1000), int((y1 - y0) * h / 1000)))
             return boxes
-    log("  picture text check (Gemini vision) unavailable; using OCR only")
-    _VISION_OK = False
+    _VISION_FAILS += 1
+    log(f"  picture text check (Gemini vision) failed: {problem[:300]}")
+    if _VISION_FAILS >= 4:
+        log("  Gemini vision keeps failing; using OCR only for the rest of this video")
     return None
 
 
