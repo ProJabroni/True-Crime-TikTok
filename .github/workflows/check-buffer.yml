@@ -21,7 +21,9 @@ jobs:
       - name: Ask Buffer about our posts
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
-        run: python buffer_status.py
+        run: |
+          python buffer_status.py
+          python analytics.py || echo "analytics failed"
       - name: Save the report to state/buffer-status.txt
         if: always()
         run: |
