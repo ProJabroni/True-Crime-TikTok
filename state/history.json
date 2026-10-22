@@ -108,5 +108,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-21-billy-papke.mp4",
     "buffer_post": "6ad918a9199855ce0d3cb84e",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-22",
+    "title": "The Blizzard on Fairview Road",
+    "wikipedia": "https://en.wikipedia.org/wiki/Death_of_John_O%27Keefe",
+    "seconds": 121.0,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-22-death-of-john-o-keefe.mp4",
+    "buffer_post": "6ada698480b62e6575035058",
+    "ai_label": true
   }
 ]

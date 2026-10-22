@@ -41,45 +41,12 @@ Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
 Looking in Category:Murder in the United States
-  916 unused articles
-Trying: Murder of Ruth Marie Terry
-  case involves sexual violence or child victims (Category:Sexual violence in the United States), skipping
-Trying: 2023 Nashville school shooting
-  case involves sexual violence or child victims (Category:Child murder in Tennessee), skipping
-Trying: Killing of Joseph Augustus Zarelli
-  case involves sexual violence or child victims (Category:Child murder in Pennsylvania), skipping
-Trying: Murder of Timothy McCoy
-  case involves sexual violence or child victims (Category:Child murder in Illinois), skipping
-Trying: 2019 Naval Air Station Pensacola shooting
-  not the right kind of case (Category:Islamic terrorism in Florida), skipping
-Trying: Mark Spotz
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  script written by gemini-3.5-flash-lite
-  failed: Expecting property name enclosed in double quotes: line 73 column 3 (char 4003)
-Trying: Murders of Greg and Kimberly Malnory
+  974 unused articles
+Trying: Texas Killing Fields
   case involves sexual violence or child victims (sexual violence in the article), skipping
-Trying: Billy Papke
+Trying: Sarah Jo Pender
+  case involves sexual violence or child victims (sexual violence in the article), skipping
+Trying: Knockout game
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
@@ -103,7 +70,7 @@ Trying: Billy Papke
 }
 
   script written by gemini-3.5-flash-lite
-  9 scenes, 153 words, first half is missing the place
+  12 scenes, 171 words, avoid-words used: ['killed'], first half is missing the place
   asking for a rewrite
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
@@ -117,82 +84,52 @@ Trying: Billy Papke
 }
 
   Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  script written by gemini-3.5-flash-lite
-  11 scenes, 180 words, first half is missing the place
+  script written by gemini-3.6-flash
+  skipped by writer: The article is about a general crime trend and media phenomenon rather than a single specific real criminal case or real criminal.
+Trying: Navajo reservations and domestic abuse
+  case involves sexual violence or child victims (sexual violence in the article), skipping
+Trying: Murder trial of O. J. Simpson
+  not the right kind of case (Category:1994 in American television), skipping
+Trying: Death of John O'Keefe
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  script written by gemini-3.8-flash
+  11 scenes, 203 words, first half is missing the place
   asking for a rewrite
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  script written by gemini-3.5-flash-lite
-  12 scenes, 184 words, first half is missing the place
-  asking for a rewrite
-Making video: The Tragic End of a Champion (Billy Papke)
-  picture 1/12
-  picture has lettering on it (1 words), making another
-  picture 2/12
-  picture 3/12
-  picture 4/12
-  picture 5/12
-  picture 6/12
-  picture 7/12
-  picture 8/12
-  picture 9/12
-  picture 10/12
-  picture 11/12
-  picture 12/12
+  script written by gemini-3.8-flash
+  11 scenes, 207 words
+Making video: The Blizzard on Fairview Road (Death of John O'Keefe)
+  picture 1/11
+  picture 2/11
+  picture 3/11
+  picture 4/11
+  picture text check (Gemini vision) unavailable; using OCR only
+  picture 5/11
+  picture 6/11
+  picture 7/11
+  picture 8/11
+  picture 9/11
+  picture 10/11
+  picture 11/11
   narrating
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   narration voice: gemini
-  rendering scene 1/12
-  rendering scene 2/12
-  rendering scene 3/12
-  rendering scene 4/12
-  rendering scene 5/12
-  rendering scene 6/12
-  rendering scene 7/12
-  rendering scene 8/12
-  rendering scene 9/12
-  rendering scene 10/12
-  rendering scene 11/12
-  rendering scene 12/12
+  rendering scene 1/11
+  rendering scene 2/11
+  rendering scene 3/11
+  rendering scene 4/11
+  rendering scene 5/11
+  rendering scene 6/11
+  rendering scene 7/11
+  rendering scene 8/11
+  rendering scene 9/11
+  rendering scene 10/11
+  rendering scene 11/11
   background music added
-Video ready: 101.3 seconds, 18.5 MB
+Video ready: 121.0 seconds, 21.2 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-21-billy-papke.mp4
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-22-death-of-john-o-keefe.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6ad918a9199855ce0d3cb84e).
+Queued in Buffer for TikTok (post 6ada698480b62e6575035058).
