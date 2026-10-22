@@ -637,45 +637,121 @@ def text_in_image(path, boxes=None):
     return words
 
 
-def blur_lettering(path):
-    """Blur any lettering OCR can still find in the picture we kept."""
+_VISION_OK = True
+
+
+def vision_text_boxes(path):
+    """Ask Gemini (vision) where any lettering is, including garbled or partial letters that OCR can't read.
+    Returns a list of (left, top, width, height) pixel boxes, [] if clean, or None if the check is unavailable."""
+    global _VISION_OK
+    if not (GEMINI_KEY and _VISION_OK and CFG.get("vision_text_check", True)):
+        return None
+    from PIL import Image
+    w, h = Image.open(path).size
+    prompt = ("Look for ANY text in this illustration: letters, words, numbers, signs, labels, logos, "
+              "license plates, writing on paper or screens, even if garbled, partial, tiny or fake. "
+              'Reply with JSON only: {"boxes": [[ymin, xmin, ymax, xmax], ...]} using coordinates '
+              'normalized 0-1000, one box per text area. If there is no text at all, reply {"boxes": []}.')
+    body = {"contents": [{"parts": [
+                {"inline_data": {"mime_type": "image/jpeg", "data": base64.b64encode(path.read_bytes()).decode()}},
+                {"text": prompt}]}],
+            "generationConfig": {"responseMimeType": "application/json", "temperature": 0}}
+    for model in CFG.get("vision_models", ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"]):
+        for attempt in range(2):
+            try:
+                r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+                                  headers={"x-goog-api-key": GEMINI_KEY}, json=body, timeout=90)
+            except requests.RequestException:
+                time.sleep(5)
+                continue
+            if r.status_code in (429, 500, 502, 503, 504):
+                time.sleep(10 * (attempt + 1))
+                continue
+            if not r.ok:
+                break
+            try:
+                text = "".join(part.get("text", "") for part in r.json()["candidates"][0]["content"]["parts"])
+                data = json.loads(text[text.find("{"):text.rfind("}") + 1])
+            except (KeyError, IndexError, ValueError):
+                break
+            time.sleep(CFG.get("vision_pause", 2))
+            boxes = []
+            for b in data.get("boxes") or []:
+                if isinstance(b, (list, tuple)) and len(b) == 4:
+                    y0, x0, y1, x1 = [max(0, min(1000, float(v))) for v in b]
+                    # Ignore empty or implausibly big boxes (a sign is never a fifth of the picture).
+                    if y1 > y0 and x1 > x0 and (y1 - y0) * (x1 - x0) < 0.2 * 1000 * 1000:
+                        boxes.append((int(x0 * w / 1000), int(y0 * h / 1000),
+                                      int((x1 - x0) * w / 1000), int((y1 - y0) * h / 1000)))
+            return boxes
+    log("  picture text check (Gemini vision) unavailable; using OCR only")
+    _VISION_OK = False
+    return None
+
+
+def lettering_boxes(path):
+    """Boxes of lettering found by Gemini vision (catches garbled text) plus OCR."""
     boxes = []
-    if not text_in_image(path, boxes):
+    text_in_image(path, boxes)
+    seen = vision_text_boxes(path)
+    if seen:
+        boxes += seen
+    return boxes
+
+
+def remove_lettering(path, boxes):
+    """Paint over lettering using the surrounding picture (inpainting), or blur it if OpenCV is missing."""
+    if not boxes:
         return
     try:
-        from PIL import Image, ImageFilter
+        import cv2
+        import numpy as np
+        img = cv2.imread(str(path))
+        mask = np.zeros(img.shape[:2], np.uint8)
+        for left, top, width, height in boxes:
+            pad = max(6, int(0.15 * max(width, height)))
+            cv2.rectangle(mask, (max(0, left - pad), max(0, top - pad)),
+                          (min(img.shape[1] - 1, left + width + pad), min(img.shape[0] - 1, top + height + pad)), 255, -1)
+        out = cv2.inpaint(img, mask, 9, cv2.INPAINT_TELEA)
+        out = np.where(mask[..., None] > 0, cv2.GaussianBlur(out, (0, 0), 3), out)  # soften the patch
+        cv2.imwrite(str(path), out, [cv2.IMWRITE_JPEG_QUALITY, 95])
+        log(f"  painted over {len(boxes)} bits of lettering")
     except ImportError:
-        return
-    img = Image.open(path).convert("RGB")
-    for left, top, width, height in boxes:
-        pad = max(6, height // 2)
-        box = (max(0, left - pad), max(0, top - pad), min(img.width, left + width + pad), min(img.height, top + height + pad))
-        img.paste(img.crop(box).filter(ImageFilter.GaussianBlur(radius=max(6, height // 2))), box[:2])
-    img.save(path, "JPEG", quality=95)
-    log(f"  blurred {len(boxes)} leftover bits of lettering")
+        from PIL import Image, ImageFilter
+        img = Image.open(path).convert("RGB")
+        for left, top, width, height in boxes:
+            pad = max(6, height // 2)
+            box = (max(0, left - pad), max(0, top - pad), min(img.width, left + width + pad), min(img.height, top + height + pad))
+            img.paste(img.crop(box).filter(ImageFilter.GaussianBlur(radius=max(8, height // 2))), box[:2])
+        img.save(path, "JPEG", quality=95)
+        log(f"  blurred {len(boxes)} bits of lettering")
 
 
 def make_image(prompt, path, seed):
-    """Make a picture; if it has lettering on it, make up to `text_retries` more and keep the cleanest."""
+    """Make a picture with no lettering: check every try (OCR + Gemini vision), remake up to `text_retries`
+    times, keep the cleanest, then paint over whatever lettering is left."""
     best = None
     attempt = 0
     while True:
         tmp = path.with_name(f"{path.stem}_try{attempt}{path.suffix}")
         make_image_once(prompt, tmp, seed + attempt * 101)
-        words = text_in_image(tmp)
-        if best is None or words < best[0]:
-            best = (words, tmp)
-        # The slow on-GitHub generator gets one retry at most; the blur handles the rest.
-        retries = CFG.get("text_retries", 2) if CF_AVAILABLE else min(1, CFG.get("text_retries", 2))
-        if words == 0 or attempt >= retries:
-            if words:
-                log(f"  every try had some lettering; keeping the cleanest ({best[0]} words)")
+        boxes = lettering_boxes(tmp)
+        area = sum(bw * bh for _, _, bw, bh in boxes)
+        if best is None or area < best[0]:
+            best = (area, tmp, boxes)
+        # The slow on-GitHub generator gets one retry at most.
+        retries = CFG.get("text_retries", 3) if CF_AVAILABLE else min(1, CFG.get("text_retries", 3))
+        if not boxes or attempt >= retries:
+            if boxes:
+                log("  every try had some lettering; keeping the cleanest and painting it out")
             break
         attempt += 1
-        log(f"  picture has lettering on it ({words} words), making another")
+        log(f"  picture has lettering on it ({len(boxes)} spots), making another")
     best[1].replace(path)
-    if best[0]:
-        blur_lettering(path)
+    if best[2]:
+        remove_lettering(path, best[2])
+        # Check once more; anything still found gets painted over too.
+        remove_lettering(path, lettering_boxes(path))
 
 
 def make_image_once(prompt, path, seed):

@@ -71,7 +71,11 @@ The script writer defines the key people in each story once (look, age, era clot
 every picture reuses that description, so the same characters appear throughout. It also records
 where and when the case happened, and every picture is drawn in that country and era (local
 architecture, transport, police uniforms, courtrooms; horse-drawn carriages before about 1900),
-with at most one person per picture. Any lettering the check still finds is blurred out.
+with at most one person per picture. Every picture is checked for lettering by OCR and by Gemini's
+vision (which also spots garbled letters); it is remade up to 3 times and anything left is painted out.
+
+Editing `check-buffer.txt` also writes `state/analytics.md`: views, likes, watch time and more for
+every posted video, straight from Buffer.
 
 `state/history.json` lists every video made; `state/used.json` stops cases repeating.
 
