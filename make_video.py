@@ -610,7 +610,7 @@ def expand_characters(prompt, characters):
     return re.sub(r"\[([^\]]{1,30})\]", r"\1", prompt)  # any unknown tag: keep just the role word
 
 
-def text_in_image(path, boxes=None):
+def text_in_image(path, boxes=None, min_conf=None):
     """Number of readable words OCR finds in a picture (0 if the OCR tool isn't installed).
     If `boxes` is a list, each word's (left, top, width, height) is appended to it."""
     try:
@@ -630,7 +630,8 @@ def text_in_image(path, boxes=None):
             if not re.fullmatch(r"[A-Za-z]{3,}", word):
                 continue
             # Signs are usually capitals; lowercase "words" are often just texture, so need more certainty.
-            if (word.isupper() and conf >= CFG.get("ocr_min_confidence", 75)) or (len(word) >= 4 and conf >= 85):
+            upper_min = min_conf if min_conf is not None else CFG.get("ocr_min_confidence", 75)
+            if (word.isupper() and conf >= upper_min) or (len(word) >= 4 and conf >= max(85, upper_min)):
                 words += 1
                 if boxes is not None:
                     boxes.append(tuple(int(float(c)) for c in cols[6:10]))
@@ -719,13 +720,12 @@ def vision_text_boxes(path):
 
 
 def lettering_boxes(path):
-    """Boxes of lettering found by Gemini vision (catches garbled text) plus OCR."""
-    boxes = []
-    text_in_image(path, boxes)
+    """Boxes of lettering: Gemini vision (catches garbled text) plus OCR. When vision answered, OCR only
+    counts when it is very sure, because it sometimes reads brick walls or textures as letters."""
     seen = vision_text_boxes(path)
-    if seen:
-        boxes += seen
-    return boxes
+    boxes = []
+    text_in_image(path, boxes, min_conf=CFG.get("ocr_sure_confidence", 85) if seen is not None else None)
+    return boxes + (seen or [])
 
 
 def remove_lettering(path, boxes):
