@@ -1,0 +1,174 @@
+[
+  {
+    "date": "2026-10-14",
+    "title": "The Soldier Who Spied for Iran",
+    "seconds": 140.7,
+    "wikipedia": "https://en.wikipedia.org/wiki/Daniel_Khalife",
+    "buffer_post": "6acedf9eb610c3011f9803c3",
+    "buffer_status": "sent",
+    "sent_at": "2026-10-14T10:01:47.793Z",
+    "metrics_updated": "2026-10-22T06:06:42.744Z",
+    "metrics": {
+      "reactions": 0,
+      "comments": 0,
+      "engagementRate": 0,
+      "views": 102,
+      "shares": 0,
+      "reach": 99,
+      "totalTimeWatched": 35.42,
+      "averageTimeWatched": 18.98
+    }
+  },
+  {
+    "date": "2026-10-14",
+    "title": "The Walkie-Talkie Bank Heist",
+    "seconds": 122.2,
+    "wikipedia": "https://en.wikipedia.org/wiki/Baker_Street_robbery",
+    "buffer_post": "6acf9b08f16b5a3e782933ae",
+    "buffer_status": "error",
+    "sent_at": null,
+    "metrics_updated": "2026-10-14T15:08:56.397Z",
+    "metrics": {
+      "reactions": 0,
+      "comments": 0,
+      "engagementRate": 0,
+      "views": 0,
+      "shares": 0,
+      "reach": 0,
+      "totalTimeWatched": 0,
+      "averageTimeWatched": 0
+    }
+  },
+  {
+    "date": "2026-10-15",
+    "title": "The Ten-Hour Jericho Prison Standoff",
+    "seconds": 107.0,
+    "wikipedia": "https://en.wikipedia.org/wiki/Operation_Bringing_Home_the_Goods",
+    "buffer_post": "6ad12b9ad27a77f8514d983f",
+    "buffer_status": "sent",
+    "sent_at": "2026-10-15T23:01:28.273Z",
+    "metrics_updated": "2026-10-22T06:06:42.744Z",
+    "metrics": {
+      "reactions": 1,
+      "comments": 0,
+      "engagementRate": 0.95,
+      "views": 105,
+      "shares": 0,
+      "reach": 93,
+      "totalTimeWatched": 16.73,
+      "averageTimeWatched": 9.05
+    }
+  },
+  {
+    "date": "2026-10-16",
+    "title": "The Halloween Mansion Mystery",
+    "seconds": 123.9,
+    "wikipedia": "https://en.wikipedia.org/wiki/Orinda_shooting",
+    "buffer_post": "6ad27e05346e510ac44f50c4",
+    "buffer_status": "sent",
+    "sent_at": "2026-10-16T23:01:11.480Z",
+    "metrics_updated": "2026-10-22T06:06:42.744Z",
+    "metrics": {
+      "reactions": 5,
+      "comments": 0,
+      "engagementRate": 3.68,
+      "views": 136,
+      "shares": 0,
+      "reach": 122,
+      "totalTimeWatched": 73.97,
+      "averageTimeWatched": 29.2
+    }
+  },
+  {
+    "date": "2026-10-17",
+    "title": "The Mystery of the Vanished London Bride",
+    "wikipedia": "https://en.wikipedia.org/wiki/James_Greenacre",
+    "seconds": 120.7,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-17-james-greenacre.mp4",
+    "buffer_post": "6ad3cea20a208cb32335e272",
+    "ai_label": true,
+    "buffer_status": "not found (deleted in Buffer?)",
+    "metrics": {}
+  },
+  {
+    "date": "2026-10-17",
+    "title": "The Secrets of the Italian Diver",
+    "seconds": 122.3,
+    "wikipedia": "https://en.wikipedia.org/wiki/Franco_Fuschi",
+    "buffer_post": "6ad3dbb40b0d72757af2e188",
+    "buffer_status": "sent",
+    "sent_at": "2026-10-18T23:02:29.312Z",
+    "metrics_updated": "2026-10-22T06:06:42.744Z",
+    "metrics": {
+      "reactions": 1,
+      "comments": 0,
+      "engagementRate": 0.92,
+      "views": 109,
+      "shares": 0,
+      "reach": 109,
+      "totalTimeWatched": 42.52,
+      "averageTimeWatched": 21.81
+    }
+  },
+  {
+    "date": "2026-10-19",
+    "title": "The Delusion That Changed British Law",
+    "seconds": 123.5,
+    "wikipedia": "https://en.wikipedia.org/wiki/Daniel_M%27Naghten",
+    "buffer_post": "6ad684624d4b4350314f7670",
+    "buffer_status": "sent",
+    "sent_at": "2026-10-19T23:02:26.488Z",
+    "metrics_updated": "2026-10-22T06:06:42.744Z",
+    "metrics": {
+      "reactions": 4,
+      "comments": 0,
+      "engagementRate": 2.76,
+      "views": 145,
+      "shares": 0,
+      "reach": 141,
+      "totalTimeWatched": 32.77,
+      "averageTimeWatched": 13.38
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "title": "The Mystery in the English Lake",
+    "seconds": 118.7,
+    "wikipedia": "https://en.wikipedia.org/wiki/Lady_in_the_Lake_trial",
+    "buffer_post": "6ad7c67f3a8f826b37f9b751",
+    "buffer_status": "sent",
+    "sent_at": "2026-10-20T23:02:02.287Z",
+    "metrics_updated": "2026-10-22T06:06:42.744Z",
+    "metrics": {
+      "reactions": 5,
+      "comments": 0,
+      "engagementRate": 3.65,
+      "views": 137,
+      "shares": 0,
+      "reach": 9,
+      "totalTimeWatched": 64.22,
+      "averageTimeWatched": 27.33
+    }
+  },
+  {
+    "date": "2026-10-21",
+    "title": "The Tragic End of a Champion",
+    "seconds": 101.3,
+    "wikipedia": "https://en.wikipedia.org/wiki/Billy_Papke",
+    "buffer_post": "6ad918a9199855ce0d3cb84e",
+    "buffer_status": "sent",
+    "sent_at": "2026-10-21T23:01:24.194Z",
+    "metrics_updated": "2026-10-22T06:06:42.744Z",
+    "metrics": {
+      "reactions": 1,
+      "comments": 0,
+      "engagementRate": 1.03,
+      "views": 97,
+      "shares": 0,
+      "reach": 0,
+      "totalTimeWatched": 23.67,
+      "averageTimeWatched": 14.64
+    }
+  }
+]
