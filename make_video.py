@@ -684,8 +684,10 @@ def vision_text_boxes(path):
                 {"text": prompt}]}],
             "generationConfig": {"responseMimeType": "application/json", "temperature": 0}}
     problem = ""
-    for model in CFG.get("vision_models", ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"]):
-        for attempt in range(3):
+    models = CFG.get("vision_models", ["gemini-3.8-flash", "gemini-3.5-flash-lite"])
+    for model in models:
+        # The first (best) model gets a quick second chance; don't wait long when it's busy.
+        for attempt in range(2 if model == models[0] else 3):
             try:
                 r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
                                   headers={"x-goog-api-key": GEMINI_KEY}, json=body, timeout=90)
@@ -695,7 +697,7 @@ def vision_text_boxes(path):
                 continue
             if r.status_code in (429, 500, 502, 503, 504):
                 problem = f"{model}: busy ({r.status_code})"
-                time.sleep(15 * (attempt + 1))
+                time.sleep(5 if model == models[0] else 15 * (attempt + 1))
                 continue
             if not r.ok:
                 problem = f"{model}: {r.status_code} {r.text[:200]}"
@@ -779,8 +781,8 @@ def make_image(prompt, path, seed):
     best[1].replace(path)
     if best[2]:
         remove_lettering(path, best[2])
-        # Check once more; anything still found gets painted over too.
-        remove_lettering(path, lettering_boxes(path))
+    # Always take a second, independent look at the kept picture; anything found is painted over.
+    remove_lettering(path, lettering_boxes(path))
 
 
 def make_image_once(prompt, path, seed):
