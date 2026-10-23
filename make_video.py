@@ -88,12 +88,13 @@ FICTION_CATS = re.compile(
 # Wars, military operations, terrorism and political conflicts: not the channel's kind of story.
 SENSITIVE_CATS = re.compile(
     r"military operations|\bwars?\b|battles|world war|prisoners of war|conflict|terroris|militant|insurgen|"
-    r"guerrilla|genocide|holocaust|coups|intifada|occupation|armed forces|military personnel|"
-    r"generals|soldiers of|resistance members",
+    r"guerrilla|genocide|holocaust|coups|intifada|occupation",
     re.I)
 
 
 def excluded_cat(title):
+    if re.search(r"adapted into|depicted in|in popular culture", title, re.I) and not re.search(r"fictional", title, re.I):
+        return False  # "Crimes adapted into films" is still a real crime
     return FICTION_CATS.search(title) or SENSITIVE_CATS.search(title)
 
 
@@ -300,6 +301,9 @@ def soften(text):
     return text
 
 
+_GEMINI_TEXT_TIMEOUTS = 0
+
+
 class CaseRefused(ValueError):
     """The script writer's safety filter refused this article: skip the case entirely."""
 
@@ -312,15 +316,30 @@ def call_gemini(system, user):
         "contents": [{"role": "user", "parts": [{"text": user}]}],
         "generationConfig": {"responseMimeType": "application/json", "temperature": 0.8},
     }
+    global _GEMINI_TEXT_TIMEOUTS
+    if _GEMINI_TEXT_TIMEOUTS >= 3:
+        return None  # Gemini keeps hanging today; let the backup writer do it
     for model in CFG["gemini_models"]:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+        r = None
         for attempt in range(3):
-            r = requests.post(url, headers={"x-goog-api-key": GEMINI_KEY}, json=body, timeout=120)
+            try:
+                r = requests.post(url, headers={"x-goog-api-key": GEMINI_KEY}, json=body, timeout=90)
+            except requests.RequestException as e:
+                _GEMINI_TEXT_TIMEOUTS += 1
+                log(f"  Gemini {model} did not answer ({type(e).__name__}); trying the next writer")
+                r = None
+                break
             if r.status_code in (429, 500, 502, 503, 504):
                 log(f"  Gemini {model} busy ({r.status_code}), retrying")
                 time.sleep(15 * (attempt + 1))
                 continue
             break
+        if r is None:
+            if _GEMINI_TEXT_TIMEOUTS >= 3:
+                log("  Gemini keeps timing out; using the backup script writer for the rest of this run")
+                return None
+            continue
         if r.status_code != 200:
             log(f"  Gemini {model} failed: {r.status_code} {r.text[:300]}")
             continue
@@ -670,7 +689,7 @@ def vision_text_boxes(path):
     Returns a list of (left, top, width, height) pixel boxes, [] if clean, or None if it couldn't tell
     (then OCR alone decides for this picture). Gives up for the run only after several failures in a row."""
     global _VISION_FAILS
-    if not (GEMINI_KEY and CFG.get("vision_text_check", True)) or _VISION_FAILS >= 4:
+    if not (GEMINI_KEY and CFG.get("vision_text_check", True)) or _VISION_FAILS >= 2:
         return None
     from PIL import Image
     w, h = Image.open(path).size
@@ -689,11 +708,10 @@ def vision_text_boxes(path):
         for attempt in range(2 if model == models[0] else 3):
             try:
                 r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
-                                  headers={"x-goog-api-key": GEMINI_KEY}, json=body, timeout=90)
+                                  headers={"x-goog-api-key": GEMINI_KEY}, json=body, timeout=40)
             except requests.RequestException as e:
-                problem = f"{model}: {e}"
-                time.sleep(5)
-                continue
+                problem = f"{model}: {type(e).__name__}"
+                break  # hung or unreachable: don't wait on this model again for this picture
             if r.status_code in (429, 500, 502, 503, 504):
                 problem = f"{model}: busy ({r.status_code})"
                 time.sleep(5 if model == models[0] else 15 * (attempt + 1))
@@ -715,7 +733,7 @@ def vision_text_boxes(path):
             return boxes
     _VISION_FAILS += 1
     log(f"  picture text check (Gemini vision) failed: {problem[:300]}")
-    if _VISION_FAILS >= 4:
+    if _VISION_FAILS >= 2:
         log("  Gemini vision keeps failing; using OCR only for the rest of this video")
     return None
 
@@ -927,11 +945,11 @@ def gemini_voice(text, path):
         return None
 
     for model in CFG["gemini_tts_models"]:
-        for attempt in range(4):
+        for attempt in range(3):
             try:
                 r = requests.post("https://generativelanguage.googleapis.com/v1beta/interactions",
                                   headers={"x-goog-api-key": GEMINI_KEY},
-                                  json={"model": model, **body}, timeout=180)
+                                  json={"model": model, **body}, timeout=60)
             except requests.RequestException as e:
                 log(f"  Gemini voice ({model}) error: {e}")
                 time.sleep(10)
