@@ -660,27 +660,17 @@ _VISION_FAILS = 0
 
 
 def _parse_boxes(text, w, h):
-    """Accept {"boxes": [[y0,x0,y1,x1], ...]}, a bare list, or [{"box_2d": [...]}, ...]."""
-    text = text.strip()
-    try:
-        data = json.loads(text)
-    except ValueError:
-        i = min([k for k in (text.find("{"), text.find("[")) if k >= 0], default=-1)
-        if i < 0:
-            raise
-        data = json.loads(text[i:max(text.rfind("}"), text.rfind("]")) + 1])
-    if isinstance(data, dict):
-        data = data.get("boxes", data.get("text_boxes", []))
+    """Pull every [ymin, xmin, ymax, xmax] out of the reply, whatever shape the JSON is in (or even if it's
+    slightly broken JSON, which the lighter model sometimes returns)."""
     boxes = []
-    for b in data or []:
-        if isinstance(b, dict):
-            b = b.get("box_2d") or b.get("box") or b.get("bbox")
-        if isinstance(b, (list, tuple)) and len(b) == 4:
-            y0, x0, y1, x1 = [max(0.0, min(1000.0, float(v))) for v in b]
-            # Ignore empty or implausibly big boxes (a sign is never a fifth of the picture).
-            if y1 > y0 and x1 > x0 and (y1 - y0) * (x1 - x0) < 0.2 * 1000 * 1000:
-                boxes.append((int(x0 * w / 1000), int(y0 * h / 1000),
-                              int((x1 - x0) * w / 1000), int((y1 - y0) * h / 1000)))
+    for m in re.finditer(r"\[\s*(-?[\d.]+)\s*,\s*(-?[\d.]+)\s*,\s*(-?[\d.]+)\s*,\s*(-?[\d.]+)\s*\]", text):
+        y0, x0, y1, x1 = [max(0.0, min(1000.0, float(v))) for v in m.groups()]
+        # Ignore empty or implausibly big boxes (a sign is never a fifth of the picture).
+        if y1 > y0 and x1 > x0 and (y1 - y0) * (x1 - x0) < 0.2 * 1000 * 1000:
+            boxes.append((int(x0 * w / 1000), int(y0 * h / 1000),
+                          int((x1 - x0) * w / 1000), int((y1 - y0) * h / 1000)))
+    if not boxes and not re.search(r"boxes|\[", text):
+        raise ValueError("no boxes field in reply")
     return boxes
 
 
