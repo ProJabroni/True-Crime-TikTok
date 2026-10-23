@@ -40,37 +40,74 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Murder in Sweden
-  116 unused articles
-Trying: Saint Erik
-  not the right kind of case (Category:Finnish folklore), skipping
-Trying: Anna Lindh
-  failed: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=240)
-Trying: Murder of Katarina Jakobsson
-  case involves sexual violence or child victims (Category:Cannibalism in Europe), skipping
-Trying: 2015 Trollhättan school attack
-  not the right kind of case (Category:Neo-fascist terrorist incidents in the 2010s), skipping
-Trying: Historical murders and executions in Stockholm
-  Gemini gemini-3.8-flash busy (503), retrying
-  script written by gemini-3.8-flash
-  skipped by writer: The article is a broad historical overview of crime and executions across several centuries rather than a specific criminal case or individual criminal.
-Trying: Brandbergen murders
+Looking in Category:Murder in Scotland
+  203 unused articles
+Trying: Murder of Suzanne Pilley
+  failed: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=120)
+Trying: Dennis Nilsen
+  not the right kind of case (Category:British LGBTQ military personnel), skipping
+Trying: Murder of Kriss Donald
+  case involves sexual violence or child victims (Category:Child murder in Scotland), skipping
+Trying: Thomas Neill Cream
+  failed: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=120)
+Trying: Henry Stuart, Lord Darnley
   case involves sexual violence or child victims (sexual violence in the article), skipping
-Trying: Porn Murders
+Trying: Peter Manuel
+  case involves sexual violence or child victims (Category:American people convicted of rape), skipping
+Trying: James Stewart, 1st Earl of Moray
   Gemini gemini-3.8-flash busy (503), retrying
-  failed: Gemini's safety filter refused this case (PROHIBITED_CONTENT)
-Trying: Murder of Gabriel Kisch
+  failed: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=120)
+Trying: Appin Murder
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
+  failed: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=120)
+Looking in Category:English serial killers
+  216 unused articles
+Trying: Aaron Kosminski
+  not a murder case, skipping
+Trying: Murder of Jayne MacDonald
+  case involves sexual violence or child victims (Category:Child murder in England), skipping
+Trying: Colin Wilson
+  not the right kind of case (Category:English science fiction writers), skipping
+Trying: Gordon Cummins
+  not the right kind of case (Category:Royal Air Force personnel killed in World War II), skipping
+Trying: Fred West
+  case involves sexual violence or child victims (Category:English people convicted of child sexual abuse), skipping
+Trying: Whitechapel murders
+  not the right kind of case (Category:Crimes adapted into films), skipping
+Trying: Mary Ann Nichols
+  Gemini gemini-3.8-flash busy (429), retrying
+  Gemini gemini-3.8-flash busy (429), retrying
+  Gemini gemini-3.8-flash busy (429), retrying
+  Gemini gemini-3.8-flash failed: 429 {
   "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota ex
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash busy (503), retrying
   script written by gemini-3.6-flash
-  skipped by writer: The case involves severe sexual violence and post-mortem sexual mutilation.
+  skipped by writer: The case involves sexual violence.
+Trying: Annie Chapman
+  Gemini gemini-3.8-flash busy (429), retrying
+  failed: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=120)
+Looking in Category:Murder in Germany
+  612 unused articles
+Trying: Herberts Cukurs
+  not the right kind of case (Category:Assassinated military personnel), skipping
+Trying: Spartacist uprising
+  not the right kind of case (Category:1919 conflicts), skipping
+Trying: Hinterkaifeck murders
+  case involves sexual violence or child victims (Category:Child murder in Germany), skipping
+Trying: 2009 Winnenden shootings
+  case involves sexual violence or child victims (Category:Child murder in Germany), skipping
+Trying: Erich Mielke
+  not the right kind of case (Category:German people of the Spanish Civil War), skipping
+Trying: Aktion T4
+  not the right kind of case (Category:Attacks on hospitals during World War II), skipping
+Trying: August Lütgens
+  failed: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=120)
+Trying: Walther Rathenau
+  not the right kind of case (Category:German science fiction writers), skipping
+Looking in Category:Unsolved murders in the United Kingdom
+  222 unused articles
 No usable article this run; try again.
