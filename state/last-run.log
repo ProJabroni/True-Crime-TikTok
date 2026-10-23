@@ -40,42 +40,11 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Murder in Scotland
-  203 unused articles
-Trying: Murder of Suzanne Pilley
-  failed: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=120)
-Trying: Dennis Nilsen
-  not the right kind of case (Category:British LGBTQ military personnel), skipping
-Trying: Murder of Kriss Donald
-  case involves sexual violence or child victims (Category:Child murder in Scotland), skipping
-Trying: Thomas Neill Cream
-  failed: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=120)
-Trying: Henry Stuart, Lord Darnley
-  case involves sexual violence or child victims (sexual violence in the article), skipping
-Trying: Peter Manuel
-  case involves sexual violence or child victims (Category:American people convicted of rape), skipping
-Trying: James Stewart, 1st Earl of Moray
-  Gemini gemini-3.8-flash busy (503), retrying
-  failed: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=120)
-Trying: Appin Murder
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  failed: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=120)
-Looking in Category:English serial killers
-  216 unused articles
-Trying: Aaron Kosminski
-  not a murder case, skipping
-Trying: Murder of Jayne MacDonald
-  case involves sexual violence or child victims (Category:Child murder in England), skipping
-Trying: Colin Wilson
-  not the right kind of case (Category:English science fiction writers), skipping
-Trying: Gordon Cummins
-  not the right kind of case (Category:Royal Air Force personnel killed in World War II), skipping
-Trying: Fred West
-  case involves sexual violence or child victims (Category:English people convicted of child sexual abuse), skipping
-Trying: Whitechapel murders
-  not the right kind of case (Category:Crimes adapted into films), skipping
-Trying: Mary Ann Nichols
+Looking in Category:Murder in Sweden
+  180 unused articles
+Trying: Melissa Nordell
+  too short, skipping
+Trying: Assassination of Olof Palme
   Gemini gemini-3.8-flash busy (429), retrying
   Gemini gemini-3.8-flash busy (429), retrying
   Gemini gemini-3.8-flash busy (429), retrying
@@ -86,28 +55,77 @@ Trying: Mary Ann Nichols
   Gemini gemini-3.6-flash busy (503), retrying
   Gemini gemini-3.6-flash busy (503), retrying
   script written by gemini-3.6-flash
-  skipped by writer: The case involves sexual violence.
-Trying: Annie Chapman
+  11 scenes, 206 words, first half is missing the place
+  asking for a rewrite
   Gemini gemini-3.8-flash busy (429), retrying
-  failed: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=120)
-Looking in Category:Murder in Germany
-  612 unused articles
-Trying: Herberts Cukurs
-  not the right kind of case (Category:Assassinated military personnel), skipping
-Trying: Spartacist uprising
-  not the right kind of case (Category:1919 conflicts), skipping
-Trying: Hinterkaifeck murders
-  case involves sexual violence or child victims (Category:Child murder in Germany), skipping
-Trying: 2009 Winnenden shootings
-  case involves sexual violence or child victims (Category:Child murder in Germany), skipping
-Trying: Erich Mielke
-  not the right kind of case (Category:German people of the Spanish Civil War), skipping
-Trying: Aktion T4
-  not the right kind of case (Category:Attacks on hospitals during World War II), skipping
-Trying: August Lütgens
-  failed: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=120)
-Trying: Walther Rathenau
-  not the right kind of case (Category:German science fiction writers), skipping
-Looking in Category:Unsolved murders in the United Kingdom
-  222 unused articles
-No usable article this run; try again.
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash busy (503), retrying
+  Gemini gemini-3.6-flash failed: 503 {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+  script written by gemini-3.5-flash-lite
+  11 scenes, 194 words, avoid-words used: ['dead'], first half is missing the place
+  asking for a rewrite
+  Gemini gemini-3.8-flash busy (429), retrying
+  Gemini gemini-3.8-flash busy (429), retrying
+  Gemini gemini-3.8-flash busy (429), retrying
+  Gemini gemini-3.8-flash failed: 429 {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota ex
+  Gemini gemini-3.6-flash busy (503), retrying
+  script written by gemini-3.6-flash
+  10 scenes, 222 words, first half is missing the place
+  asking for a rewrite
+Making video: The Unsolved Attack on Sweden's Prime Minister (Assassination of Olof Palme)
+  picture 1/10
+  picture 2/10
+  painted over 5 bits of lettering
+  picture 3/10
+  picture 4/10
+  picture 5/10
+  picture text check (Gemini vision) failed: gemini-3.5-flash-lite: unreadable reply (Expecting ',' delimiter: line 2 column 42 (char 43)): {'candidates': [{'content': {'parts': [{'text': '[\n  {"boxes": [[369, 959, 389, 991], "text": "CHART"},\n  {"boxes": [[428, 668, 442, 705], "text": "MERK"}\n]', 'thoughtSignature': 'EmAKXgFpFH0Tl3EDG
+  picture text check (Gemini vision) failed: gemini-3.5-flash-lite: unreadable reply (Expecting property name enclosed in double quotes: line 3 column 3 (char 40)): {'candidates': [{'content': {'parts': [{'text': '[\n  {"boxes": [[432, 668, 442, 704]],\n  {"boxes": [[368, 955, 388, 990]]}\n]', 'thoughtSignature': 'EmAKXgFpFH0T7LwYkRo8GTiDGuiyQ
+  Gemini vision keeps failing; using OCR only for the rest of this video
+  picture 6/10
+  picture 7/10
+  picture 8/10
+  picture 9/10
+  picture 10/10
+  narrating
+  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
+  narration voice: gemini
+  rendering scene 1/10
+  rendering scene 2/10
+  rendering scene 3/10
+  rendering scene 4/10
+  rendering scene 5/10
+  rendering scene 6/10
+  rendering scene 7/10
+  rendering scene 8/10
+  rendering scene 9/10
+  rendering scene 10/10
+  background music added
+Video ready: 118.0 seconds, 21.9 MB
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-23-assassination-of-olof-palme.mp4
+Using Buffer TikTok channel: truecrimedaily001
+Queued in Buffer for TikTok (post 6adbc86be4be8a4d86259a41).

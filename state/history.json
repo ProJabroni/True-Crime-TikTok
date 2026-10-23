@@ -118,5 +118,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-22-death-of-john-o-keefe.mp4",
     "buffer_post": "6ada698480b62e6575035058",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-23",
+    "title": "The Unsolved Attack on Sweden's Prime Minister",
+    "wikipedia": "https://en.wikipedia.org/wiki/Assassination_of_Olof_Palme",
+    "seconds": 118.0,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-23-assassination-of-olof-palme.mp4",
+    "buffer_post": "6adbc86be4be8a4d86259a41",
+    "ai_label": true
   }
 ]
