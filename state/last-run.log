@@ -40,13 +40,26 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Murder in the United States
-  974 unused articles
-Trying: Texas Killing Fields
+Looking in Category:Murder in Sweden
+  116 unused articles
+Trying: Saint Erik
+  not the right kind of case (Category:Finnish folklore), skipping
+Trying: Anna Lindh
+  failed: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=240)
+Trying: Murder of Katarina Jakobsson
+  case involves sexual violence or child victims (Category:Cannibalism in Europe), skipping
+Trying: 2015 Trollhättan school attack
+  not the right kind of case (Category:Neo-fascist terrorist incidents in the 2010s), skipping
+Trying: Historical murders and executions in Stockholm
+  Gemini gemini-3.8-flash busy (503), retrying
+  script written by gemini-3.8-flash
+  skipped by writer: The article is a broad historical overview of crime and executions across several centuries rather than a specific criminal case or individual criminal.
+Trying: Brandbergen murders
   case involves sexual violence or child victims (sexual violence in the article), skipping
-Trying: Sarah Jo Pender
-  case involves sexual violence or child victims (sexual violence in the article), skipping
-Trying: Knockout game
+Trying: Porn Murders
+  Gemini gemini-3.8-flash busy (503), retrying
+  failed: Gemini's safety filter refused this case (PROHIBITED_CONTENT)
+Trying: Murder of Gabriel Kisch
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
@@ -58,78 +71,6 @@ Trying: Knockout game
   }
 }
 
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  script written by gemini-3.5-flash-lite
-  12 scenes, 171 words, avoid-words used: ['killed'], first half is missing the place
-  asking for a rewrite
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  Gemini gemini-3.6-flash busy (503), retrying
   script written by gemini-3.6-flash
-  skipped by writer: The article is about a general crime trend and media phenomenon rather than a single specific real criminal case or real criminal.
-Trying: Navajo reservations and domestic abuse
-  case involves sexual violence or child victims (sexual violence in the article), skipping
-Trying: Murder trial of O. J. Simpson
-  not the right kind of case (Category:1994 in American television), skipping
-Trying: Death of John O'Keefe
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  script written by gemini-3.8-flash
-  11 scenes, 203 words, first half is missing the place
-  asking for a rewrite
-  script written by gemini-3.8-flash
-  11 scenes, 207 words
-Making video: The Blizzard on Fairview Road (Death of John O'Keefe)
-  picture 1/11
-  picture 2/11
-  picture 3/11
-  picture 4/11
-  picture text check (Gemini vision) unavailable; using OCR only
-  picture 5/11
-  picture 6/11
-  picture 7/11
-  picture 8/11
-  picture 9/11
-  picture 10/11
-  picture 11/11
-  narrating
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  narration voice: gemini
-  rendering scene 1/11
-  rendering scene 2/11
-  rendering scene 3/11
-  rendering scene 4/11
-  rendering scene 5/11
-  rendering scene 6/11
-  rendering scene 7/11
-  rendering scene 8/11
-  rendering scene 9/11
-  rendering scene 10/11
-  rendering scene 11/11
-  background music added
-Video ready: 121.0 seconds, 21.2 MB
-  waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-22-death-of-john-o-keefe.mp4
-Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6ada698480b62e6575035058).
+  skipped by writer: The case involves severe sexual violence and post-mortem sexual mutilation.
+No usable article this run; try again.
