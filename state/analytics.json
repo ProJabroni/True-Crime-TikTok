@@ -7,7 +7,7 @@
     "buffer_post": "6acedf9eb610c3011f9803c3",
     "buffer_status": "sent",
     "sent_at": "2026-10-14T10:01:47.793Z",
-    "metrics_updated": "2026-10-22T06:06:42.744Z",
+    "metrics_updated": "2026-10-23T05:07:18.587Z",
     "metrics": {
       "reactions": 0,
       "comments": 0,
@@ -47,12 +47,12 @@
     "buffer_post": "6ad12b9ad27a77f8514d983f",
     "buffer_status": "sent",
     "sent_at": "2026-10-15T23:01:28.273Z",
-    "metrics_updated": "2026-10-22T06:06:42.744Z",
+    "metrics_updated": "2026-10-23T05:07:18.587Z",
     "metrics": {
       "reactions": 1,
       "comments": 0,
-      "engagementRate": 0.95,
-      "views": 105,
+      "engagementRate": 0.94,
+      "views": 106,
       "shares": 0,
       "reach": 93,
       "totalTimeWatched": 16.73,
@@ -67,16 +67,16 @@
     "buffer_post": "6ad27e05346e510ac44f50c4",
     "buffer_status": "sent",
     "sent_at": "2026-10-16T23:01:11.480Z",
-    "metrics_updated": "2026-10-22T06:06:42.744Z",
+    "metrics_updated": "2026-10-23T05:07:18.587Z",
     "metrics": {
       "reactions": 5,
       "comments": 0,
-      "engagementRate": 3.68,
-      "views": 136,
+      "engagementRate": 3.62,
+      "views": 138,
       "shares": 0,
-      "reach": 122,
-      "totalTimeWatched": 73.97,
-      "averageTimeWatched": 29.2
+      "reach": 123,
+      "totalTimeWatched": 74.03,
+      "averageTimeWatched": 28.85
     }
   },
   {
@@ -99,16 +99,16 @@
     "buffer_post": "6ad3dbb40b0d72757af2e188",
     "buffer_status": "sent",
     "sent_at": "2026-10-18T23:02:29.312Z",
-    "metrics_updated": "2026-10-22T06:06:42.744Z",
+    "metrics_updated": "2026-10-23T05:07:18.587Z",
     "metrics": {
       "reactions": 1,
       "comments": 0,
-      "engagementRate": 0.92,
-      "views": 109,
+      "engagementRate": 0.91,
+      "views": 110,
       "shares": 0,
       "reach": 109,
-      "totalTimeWatched": 42.52,
-      "averageTimeWatched": 21.81
+      "totalTimeWatched": 42.57,
+      "averageTimeWatched": 21.65
     }
   },
   {
@@ -119,16 +119,16 @@
     "buffer_post": "6ad684624d4b4350314f7670",
     "buffer_status": "sent",
     "sent_at": "2026-10-19T23:02:26.488Z",
-    "metrics_updated": "2026-10-22T06:06:42.744Z",
+    "metrics_updated": "2026-10-23T05:07:18.587Z",
     "metrics": {
       "reactions": 4,
       "comments": 0,
-      "engagementRate": 2.76,
-      "views": 145,
+      "engagementRate": 2.72,
+      "views": 147,
       "shares": 0,
       "reach": 141,
-      "totalTimeWatched": 32.77,
-      "averageTimeWatched": 13.38
+      "totalTimeWatched": 32.92,
+      "averageTimeWatched": 13.26
     }
   },
   {
@@ -139,16 +139,16 @@
     "buffer_post": "6ad7c67f3a8f826b37f9b751",
     "buffer_status": "sent",
     "sent_at": "2026-10-20T23:02:02.287Z",
-    "metrics_updated": "2026-10-22T06:06:42.744Z",
+    "metrics_updated": "2026-10-23T05:07:18.587Z",
     "metrics": {
       "reactions": 5,
       "comments": 0,
-      "engagementRate": 3.65,
-      "views": 137,
+      "engagementRate": 3.6,
+      "views": 139,
       "shares": 0,
-      "reach": 9,
-      "totalTimeWatched": 64.22,
-      "averageTimeWatched": 27.33
+      "reach": 124,
+      "totalTimeWatched": 64.32,
+      "averageTimeWatched": 26.99
     }
   },
   {
@@ -159,16 +159,56 @@
     "buffer_post": "6ad918a9199855ce0d3cb84e",
     "buffer_status": "sent",
     "sent_at": "2026-10-21T23:01:24.194Z",
-    "metrics_updated": "2026-10-22T06:06:42.744Z",
+    "metrics_updated": "2026-10-23T05:07:18.587Z",
     "metrics": {
-      "reactions": 1,
+      "reactions": 3,
       "comments": 0,
-      "engagementRate": 1.03,
-      "views": 97,
+      "engagementRate": 2.5,
+      "views": 120,
+      "shares": 0,
+      "reach": 77,
+      "totalTimeWatched": 41.8,
+      "averageTimeWatched": 20.39
+    }
+  },
+  {
+    "date": "2026-10-22",
+    "title": "The Blizzard on Fairview Road",
+    "seconds": 121.0,
+    "wikipedia": "https://en.wikipedia.org/wiki/Death_of_John_O%27Keefe",
+    "buffer_post": "6ada698480b62e6575035058",
+    "buffer_status": "sent",
+    "sent_at": "2026-10-22T23:02:02.249Z",
+    "metrics_updated": "2026-10-23T05:07:18.587Z",
+    "metrics": {
+      "reactions": 0,
+      "comments": 0,
+      "engagementRate": 0,
+      "views": 110,
       "shares": 0,
       "reach": 0,
-      "totalTimeWatched": 23.67,
-      "averageTimeWatched": 14.64
+      "totalTimeWatched": 16.75,
+      "averageTimeWatched": 9.06
+    }
+  },
+  {
+    "date": "2026-10-23",
+    "title": "The Unsolved Attack on Sweden's Prime Minister",
+    "seconds": 118.0,
+    "wikipedia": "https://en.wikipedia.org/wiki/Assassination_of_Olof_Palme",
+    "buffer_post": "6adbc86be4be8a4d86259a41",
+    "buffer_status": "scheduled",
+    "sent_at": null,
+    "metrics_updated": "2026-10-23T20:49:47.936Z",
+    "metrics": {
+      "reactions": 0,
+      "comments": 0,
+      "engagementRate": 0,
+      "views": 0,
+      "shares": 0,
+      "reach": 0,
+      "totalTimeWatched": 0,
+      "averageTimeWatched": 0
     }
   }
 ]
