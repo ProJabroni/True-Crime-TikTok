@@ -199,7 +199,8 @@ def article(title):
 
 
 def candidates(used):
-    """A shortlist of unused, substantial articles from one random category."""
+    """Unused, substantial articles: a shortlist from one random category, then the next category,
+    and so on, so one category full of unsuitable cases can't stop the day's video."""
     groups = CFG.get("category_groups") or {"all": CFG.get("categories", [])}
     names = list(groups)
     random.shuffle(names)  # each region equally likely, whatever the number of categories in it
@@ -223,9 +224,7 @@ def candidates(used):
         # Longer articles = better documented cases = richer stories.
         top = sorted(lengths, key=lengths.get, reverse=True)[:8]
         random.shuffle(top)
-        if top:
-            return top
-    sys.exit("No unused articles found in any category. Add categories to config.json.")
+        yield from top
 
 
 # ---------------------------------------------------------------- script
@@ -316,7 +315,7 @@ def call_gemini(system, user):
     for model in CFG["gemini_models"]:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
         for attempt in range(3):
-            r = requests.post(url, headers={"x-goog-api-key": GEMINI_KEY}, json=body, timeout=240)
+            r = requests.post(url, headers={"x-goog-api-key": GEMINI_KEY}, json=body, timeout=120)
             if r.status_code in (429, 500, 502, 503, 504):
                 log(f"  Gemini {model} busy ({r.status_code}), retrying")
                 time.sleep(15 * (attempt + 1))
@@ -1168,7 +1167,9 @@ def main():
         log("Cloudflare's free allowance is not available right now; using the local picture generator.")
 
     script = None
-    for title in candidates(set(used))[:8]:
+    for n, title in enumerate(candidates(set(used))):
+        if n >= CFG.get("max_candidates", 24):
+            break
         log(f"Trying: {title}")
         used.append(title)
         try:
