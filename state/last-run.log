@@ -40,34 +40,15 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Murder in Sweden
-  180 unused articles
-Trying: Melissa Nordell
-  too short, skipping
-Trying: Assassination of Olof Palme
-  Gemini gemini-3.8-flash busy (429), retrying
-  Gemini gemini-3.8-flash busy (429), retrying
-  Gemini gemini-3.8-flash busy (429), retrying
-  Gemini gemini-3.8-flash failed: 429 {
-  "error": {
-    "code": 429,
-    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota ex
-  Gemini gemini-3.6-flash busy (503), retrying
+Looking in Category:American murderers
+  3572 unused articles
+Trying: Charles Coleman (murderer)
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
   Gemini gemini-3.6-flash busy (503), retrying
   script written by gemini-3.6-flash
-  11 scenes, 206 words, first half is missing the place
+  11 scenes, 201 words, first half is missing the place
   asking for a rewrite
-  Gemini gemini-3.8-flash busy (429), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
   Gemini gemini-3.6-flash busy (503), retrying
   Gemini gemini-3.6-flash busy (503), retrying
   Gemini gemini-3.6-flash busy (503), retrying
@@ -80,52 +61,60 @@ Trying: Assassination of Olof Palme
 }
 
   script written by gemini-3.5-flash-lite
-  11 scenes, 194 words, avoid-words used: ['dead'], first half is missing the place
+  10 scenes, 177 words, avoid-words used: ['murder'], first half is missing the place
   asking for a rewrite
-  Gemini gemini-3.8-flash busy (429), retrying
-  Gemini gemini-3.8-flash busy (429), retrying
-  Gemini gemini-3.8-flash busy (429), retrying
-  Gemini gemini-3.8-flash failed: 429 {
-  "error": {
-    "code": 429,
-    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota ex
-  Gemini gemini-3.6-flash busy (503), retrying
-  script written by gemini-3.6-flash
-  10 scenes, 222 words, first half is missing the place
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
+  Gemini keeps timing out; using the backup script writer for the rest of this run
+  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
+  10 scenes, 206 words, avoid-words used: ['dead', 'killing', 'murder', 'shot'], first half is missing the place
   asking for a rewrite
-Making video: The Unsolved Attack on Sweden's Prime Minister (Assassination of Olof Palme)
-  picture 1/10
-  picture 2/10
-  painted over 5 bits of lettering
-  picture 3/10
-  picture 4/10
-  picture 5/10
-  picture text check (Gemini vision) failed: gemini-3.5-flash-lite: unreadable reply (Expecting ',' delimiter: line 2 column 42 (char 43)): {'candidates': [{'content': {'parts': [{'text': '[\n  {"boxes": [[369, 959, 389, 991], "text": "CHART"},\n  {"boxes": [[428, 668, 442, 705], "text": "MERK"}\n]', 'thoughtSignature': 'EmAKXgFpFH0Tl3EDG
-  picture text check (Gemini vision) failed: gemini-3.5-flash-lite: unreadable reply (Expecting property name enclosed in double quotes: line 3 column 3 (char 40)): {'candidates': [{'content': {'parts': [{'text': '[\n  {"boxes": [[432, 668, 442, 704]],\n  {"boxes": [[368, 955, 388, 990]]}\n]', 'thoughtSignature': 'EmAKXgFpFH0T7LwYkRo8GTiDGuiyQ
-  Gemini vision keeps failing; using OCR only for the rest of this video
-  picture 6/10
-  picture 7/10
-  picture 8/10
-  picture 9/10
-  picture 10/10
+Making video: The Routine Stop That Solved Everything (Charles Coleman (murderer))
+  picture 1/11
+  picture has lettering on it (1 spots), making another
+  picture has lettering on it (1 spots), making another
+  picture has lettering on it (1 spots), making another
+  every try had some lettering; keeping the cleanest and painting it out
+  painted over 1 bits of lettering
+  picture 2/11
+  picture 3/11
+  picture 4/11
+  picture 5/11
+  picture 6/11
+  picture has lettering on it (2 spots), making another
+  picture 7/11
+  picture 8/11
+  picture has lettering on it (2 spots), making another
+  picture 9/11
+  picture 10/11
+  picture has lettering on it (1 spots), making another
+  picture has lettering on it (1 spots), making another
+  picture 11/11
+  picture has lettering on it (2 spots), making another
   narrating
+  Gemini voice (gemini-3.8-flash-tts) busy (503), waiting
+  Gemini voice (gemini-3.8-flash-tts) error: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=60)
+  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
+  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
+  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
+  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   narration voice: gemini
-  rendering scene 1/10
-  rendering scene 2/10
-  rendering scene 3/10
-  rendering scene 4/10
-  rendering scene 5/10
-  rendering scene 6/10
-  rendering scene 7/10
-  rendering scene 8/10
-  rendering scene 9/10
-  rendering scene 10/10
+  rendering scene 1/11
+  rendering scene 2/11
+  rendering scene 3/11
+  rendering scene 4/11
+  rendering scene 5/11
+  rendering scene 6/11
+  rendering scene 7/11
+  rendering scene 8/11
+  rendering scene 9/11
+  rendering scene 10/11
+  rendering scene 11/11
   background music added
-Video ready: 118.0 seconds, 21.9 MB
+Video ready: 112.3 seconds, 22.9 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-23-assassination-of-olof-palme.mp4
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-24-charles-coleman-murderer.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6adbc86be4be8a4d86259a41).
+Queued in Buffer for TikTok (post 6add0f5c8b3d437ddcd72a62).

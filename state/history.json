@@ -128,5 +128,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-23-assassination-of-olof-palme.mp4",
     "buffer_post": "6adbc86be4be8a4d86259a41",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-24",
+    "title": "The Routine Stop That Solved Everything",
+    "wikipedia": "https://en.wikipedia.org/wiki/Charles_Coleman_%28murderer%29",
+    "seconds": 112.3,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-24-charles-coleman-murderer.mp4",
+    "buffer_post": "6add0f5c8b3d437ddcd72a62",
+    "ai_label": true
   }
 ]
