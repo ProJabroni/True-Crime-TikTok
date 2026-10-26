@@ -138,5 +138,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-24-charles-coleman-murderer.mp4",
     "buffer_post": "6add0f5c8b3d437ddcd72a62",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-26",
+    "title": "Unsolved Mystery on the Canal Towpath",
+    "wikipedia": "https://en.wikipedia.org/wiki/Mary_Pinchot_Meyer",
+    "seconds": 117.3,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-26-mary-pinchot-meyer.mp4",
+    "buffer_post": "6adfb999a72c078abdb72fac",
+    "ai_label": true
   }
 ]
