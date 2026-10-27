@@ -148,5 +148,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-26-mary-pinchot-meyer.mp4",
     "buffer_post": "6adfb999a72c078abdb72fac",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-27",
+    "title": "The Haymarket Conspiracy Trial",
+    "wikipedia": "https://en.wikipedia.org/wiki/Albert_Parsons",
+    "seconds": 119.8,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-27-albert-parsons.mp4",
+    "buffer_post": "6ae105fae8126ef614216437",
+    "ai_label": true
   }
 ]

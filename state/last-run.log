@@ -40,9 +40,9 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Unsolved murders in the United States
-  596 unused articles
-Trying: Mary Pinchot Meyer
+Looking in Category:American murderers
+  3571 unused articles
+Trying: Curtis Flowers
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
@@ -56,7 +56,15 @@ Trying: Mary Pinchot Meyer
 
   Gemini gemini-3.6-flash busy (503), retrying
   script written by gemini-3.6-flash
-  11 scenes, 212 words, first half is missing the place
+  skipped by writer: The case involves a victim who was a child.
+Trying: Thomas Eugene Creech
+  case involves sexual violence or child victims (sexual violence in the article), skipping
+Trying: Samuel Little
+  case involves sexual violence or child victims (Category:American people convicted of rape), skipping
+Trying: Albert Parsons
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
+  script written by gemini-3.6-flash
+  11 scenes, 213 words, first half is missing the place
   asking for a rewrite
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
@@ -81,71 +89,63 @@ Trying: Mary Pinchot Meyer
 }
 
   script written by gemini-3.5-flash-lite
-  12 scenes, 228 words, first half is missing the place
+  11 scenes, 162 words, first half is missing the place
   asking for a rewrite
-  Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
   Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  script written by gemini-3.5-flash-lite
-  10 scenes, 134 words, first half is missing the place
+  script written by gemini-3.6-flash
+  11 scenes, 205 words, first half is missing the place
   asking for a rewrite
-Making video: Unsolved Mystery on the Canal Towpath (Mary Pinchot Meyer)
-  picture 1/12
-  picture 2/12
-  picture 3/12
-  painted over 1 bits of lettering
-  picture 4/12
-  picture 5/12
+Making video: The Haymarket Conspiracy Trial (Albert Parsons)
+  picture 1/11
+  picture 2/11
+  picture has lettering on it (1 spots), making another
+  picture has lettering on it (2 spots), making another
+  picture 3/11
   picture has lettering on it (3 spots), making another
+  picture has lettering on it (5 spots), making another
+  picture has lettering on it (1 spots), making another
+  every try had some lettering; keeping the cleanest and painting it out
+  painted over 1 bits of lettering
+  picture 4/11
+  picture has lettering on it (5 spots), making another
   picture has lettering on it (2 spots), making another
-  picture has lettering on it (2 spots), making another
+  picture has lettering on it (7 spots), making another
   every try had some lettering; keeping the cleanest and painting it out
   painted over 2 bits of lettering
-  picture 6/12
+  picture 5/11
+  picture has lettering on it (2 spots), making another
+  picture has lettering on it (4 spots), making another
+  picture 6/11
+  picture 7/11
+  picture 8/11
+  picture 9/11
+  picture 10/11
+  picture 11/11
   picture has lettering on it (1 spots), making another
-  picture has lettering on it (1 spots), making another
-  picture 7/12
-  picture 8/12
-  picture 9/12
-  picture 10/12
-  picture has lettering on it (3 spots), making another
-  picture 11/12
-  picture 12/12
-  picture has lettering on it (1 spots), making another
+  painted over 1 bits of lettering
   narrating
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   narration voice: gemini
-  rendering scene 1/12
-  rendering scene 2/12
-  rendering scene 3/12
-  rendering scene 4/12
-  rendering scene 5/12
-  rendering scene 6/12
-  rendering scene 7/12
-  rendering scene 8/12
-  rendering scene 9/12
-  rendering scene 10/12
-  rendering scene 11/12
-  rendering scene 12/12
+  rendering scene 1/11
+  rendering scene 2/11
+  rendering scene 3/11
+  rendering scene 4/11
+  rendering scene 5/11
+  rendering scene 6/11
+  rendering scene 7/11
+  rendering scene 8/11
+  rendering scene 9/11
+  rendering scene 10/11
+  rendering scene 11/11
   background music added
-Video ready: 117.3 seconds, 23.8 MB
+Video ready: 119.8 seconds, 22.3 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-26-mary-pinchot-meyer.mp4
+  waiting for GitHub Pages (404)
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-27-albert-parsons.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6adfb999a72c078abdb72fac).
+Queued in Buffer for TikTok (post 6ae105fae8126ef614216437).
