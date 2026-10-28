@@ -158,5 +158,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-27-albert-parsons.mp4",
     "buffer_post": "6ae105fae8126ef614216437",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-28",
+    "title": "The Locked Water Facility Mystery",
+    "wikipedia": "https://en.wikipedia.org/wiki/Killing_of_Geetha_Angara",
+    "seconds": 128.7,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-28-killing-of-geetha-angara.mp4",
+    "buffer_post": "6ae2574844c308f29b5373fd",
+    "ai_label": true
   }
 ]
