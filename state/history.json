@@ -168,5 +168,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-28-killing-of-geetha-angara.mp4",
     "buffer_post": "6ae2574844c308f29b5373fd",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-29",
+    "title": "The Mystery of the Missing Dossier",
+    "wikipedia": "https://en.wikipedia.org/wiki/Murder_of_Valerio_Verbano",
+    "seconds": 119.8,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-29-murder-of-valerio-verbano.mp4",
+    "buffer_post": "6ae3aa6674dca2a545c5088a",
+    "ai_label": true
   }
 ]
