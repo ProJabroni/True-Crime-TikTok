@@ -31,81 +31,64 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Murder in Italy
-  124 unused articles
-Trying: Louis Till
-  not the right kind of case (Category:African-American military personnel of World War II), skipping
-Trying: Beasts of Satan
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  script written by gemini-3.5-flash-lite
-  10 scenes, 146 words, first half is missing the place
-  asking for a rewrite
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  failed: Gemini's safety filter refused this case (PROHIBITED_CONTENT)
-Trying: Murder of Valerio Verbano
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
+Looking in Category:American serial killers
+  830 unused articles
+Trying: James Allen Red Dog
+  case involves sexual violence or child victims (Category:American people convicted of rape), skipping
+Trying: Patrick Kearney
+  case involves sexual violence or child victims (Category:American rapists), skipping
+Trying: Dr. No (serial killer)
+  case involves sexual violence or child victims (sexual violence in the article), skipping
+Trying: Anthony LaRette
+  case involves sexual violence or child victims (Category:American people convicted of rape), skipping
+Trying: Angelo Buono Jr.
+  case involves sexual violence or child victims (Category:American people convicted of rape), skipping
+Trying: Tommy Lynn Sells
+  case involves sexual violence or child victims (Category:American rapists), skipping
+Trying: San Diego serial murders
+  case involves sexual violence or child victims (sexual violence in the article), skipping
+Trying: Richard Beasley (serial killer)
+  case involves sexual violence or child victims (sexual violence in the article), skipping
+Looking in Category:Unsolved murders in the United States
+  593 unused articles
+Trying: Redhead murders
+  case involves sexual violence or child victims (sexual violence in the article), skipping
+Trying: Zodiac Killer
+  case involves sexual violence or child victims (Category:Child murder in California), skipping
+Trying: Joseph Barboza
   Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
   Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
   script written by gemini-3.6-flash
-  10 scenes, 209 words, first half is missing the place
+  10 scenes, 191 words, first half is missing the place
   asking for a rewrite
   Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
   Gemini gemini-3.6-flash busy (503), retrying
   script written by gemini-3.6-flash
-  10 scenes, 202 words, first half is missing the place
+  11 scenes, 192 words, first half is missing the place
   asking for a rewrite
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  Gemini keeps timing out; using the backup script writer for the rest of this run
-  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
-  10 scenes, 167 words, avoid-words used: ['murder', 'shot'], first half is missing the place
-  asking for a rewrite
-Making video: The Mystery of the Missing Dossier (Murder of Valerio Verbano)
+  script written by gemini-3.8-flash
+  10 scenes, 204 words
+Making video: The Informant's Hundred Million Dollar Lie (Joseph Barboza)
   picture 1/10
   picture 2/10
+  picture has lettering on it (1 spots), making another
+  picture has lettering on it (2 spots), making another
+  picture has lettering on it (1 spots), making another
+  every try had some lettering; keeping the cleanest and painting it out
+  painted over 1 bits of lettering
   picture 3/10
+  picture has lettering on it (1 spots), making another
   picture 4/10
+  picture has lettering on it (1 spots), making another
   picture 5/10
   picture 6/10
   picture 7/10
   picture 8/10
   picture 9/10
-  picture has lettering on it (1 spots), making another
   picture 10/10
   narrating
+  Gemini voice (gemini-3.8-flash-tts) error: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=60)
+  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   narration voice: gemini
   rendering scene 1/10
@@ -119,10 +102,23 @@ Making video: The Mystery of the Missing Dossier (Murder of Valerio Verbano)
   rendering scene 9/10
   rendering scene 10/10
   background music added
-Video ready: 119.8 seconds, 22.9 MB
+Video ready: 114.0 seconds, 21.1 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-29-murder-of-valerio-verbano.mp4
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+  waiting for GitHub Pages (404)
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-30-joseph-barboza.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6ae3aa6674dca2a545c5088a).
+Queued in Buffer for TikTok (post 6ae4fc69189147209396c5ff).
