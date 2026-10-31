@@ -188,5 +188,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-30-joseph-barboza.mp4",
     "buffer_post": "6ae4fc69189147209396c5ff",
     "ai_label": true
+  },
+  {
+    "date": "2026-10-31",
+    "title": "The Mystery on Fuencarral Street",
+    "wikipedia": "https://en.wikipedia.org/wiki/Crime_of_Fuencarral_street",
+    "seconds": 121.6,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-31-crime-of-fuencarral-street.mp4",
+    "buffer_post": "6ae64ac5f0984eef332b6df0",
+    "ai_label": true
   }
 ]
