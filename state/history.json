@@ -198,5 +198,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-31-crime-of-fuencarral-street.mp4",
     "buffer_post": "6ae64ac5f0984eef332b6df0",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-02",
+    "title": "The Mysterious Case of the Red Barn",
+    "wikipedia": "https://en.wikipedia.org/wiki/Red_Barn_Murder",
+    "seconds": 111.5,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-02-red-barn-murder.mp4",
+    "buffer_post": "6ae8f0be85630a54c7af4d30",
+    "ai_label": true
   }
 ]

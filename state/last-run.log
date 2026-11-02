@@ -31,86 +31,69 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Murder in Spain
-  238 unused articles
-Trying: Manuel Simó Marín
-  not the right kind of case (Category:Spanish casualties of the Spanish Civil War), skipping
-Trying: Murder of Asunta Basterra
-  case involves sexual violence or child victims (Category:Child abuse resulting in death), skipping
-Trying: Juan Bautista Soler Martí
-  not the right kind of case (Category:Spanish casualties of the Spanish Civil War), skipping
-Trying: Crime of Fuencarral street
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  script written by gemini-3.5-flash-lite
-  10 scenes, 186 words, first half is missing the place
-  asking for a rewrite
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
+Looking in Category:Murder in England
+  1281 unused articles
+Trying: HM Prison Wandsworth
+  not a murder case, skipping
+Trying: Tottenham Outrage
+  case involves sexual violence or child victims (Category:Child murder in England), skipping
+Trying: Murder in English law
   Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
   script written by gemini-3.6-flash
-  10 scenes, 199 words, first half is missing the place
+  skipped by writer: The provided article is a legal concept overview of murder under English common law rather than a narrative about a specific real criminal case or criminal.
+Trying: William of Norwich
+  case involves sexual violence or child victims (Category:Child murder in England), skipping
+Trying: Red Barn Murder
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
+  script written by gemini-3.6-flash
+  12 scenes, 202 words, first half is missing the place
   asking for a rewrite
   Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  script written by gemini-3.6-flash
-  10 scenes, 214 words, first half is missing the place
+  Gemini keeps timing out; using the backup script writer for the rest of this run
+  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
+  10 scenes, 205 words, avoid-words used: ['dead', 'murder', 'murdered', 'shot'], first half is missing the place
   asking for a rewrite
-Making video: The Mystery on Fuencarral Street (Crime of Fuencarral street)
-  picture 1/10
-  picture 2/10
-  picture 3/10
-  picture 4/10
+  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
+  10 scenes, 167 words, first half is missing the place
+  asking for a rewrite
+Making video: The Mysterious Case of the Red Barn (Red Barn Murder)
+  picture 1/12
+  picture 2/12
   picture has lettering on it (1 spots), making another
-  picture 5/10
-  picture 6/10
-  picture 7/10
-  picture 8/10
-  picture 9/10
-  picture 10/10
+  picture has lettering on it (2 spots), making another
+  picture 3/12
+  picture 4/12
+  picture 5/12
+  picture 6/12
   picture has lettering on it (1 spots), making another
+  picture has lettering on it (1 spots), making another
+  picture 7/12
+  picture 8/12
+  picture 9/12
+  picture 10/12
+  picture 11/12
+  picture 12/12
   narrating
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   narration voice: gemini
-  rendering scene 1/10
-  rendering scene 2/10
-  rendering scene 3/10
-  rendering scene 4/10
-  rendering scene 5/10
-  rendering scene 6/10
-  rendering scene 7/10
-  rendering scene 8/10
-  rendering scene 9/10
-  rendering scene 10/10
+  rendering scene 1/12
+  rendering scene 2/12
+  rendering scene 3/12
+  rendering scene 4/12
+  rendering scene 5/12
+  rendering scene 6/12
+  rendering scene 7/12
+  rendering scene 8/12
+  rendering scene 9/12
+  rendering scene 10/12
+  rendering scene 11/12
+  rendering scene 12/12
   background music added
-Video ready: 121.6 seconds, 22.1 MB
+Video ready: 111.5 seconds, 23.1 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-31-crime-of-fuencarral-street.mp4
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-02-red-barn-murder.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6ae64ac5f0984eef332b6df0).
+Queued in Buffer for TikTok (post 6ae8f0be85630a54c7af4d30).
