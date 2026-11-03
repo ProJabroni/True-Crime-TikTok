@@ -208,5 +208,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-02-red-barn-murder.mp4",
     "buffer_post": "6ae8f0be85630a54c7af4d30",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-03",
+    "title": "The Koreatown Slasher Spree",
+    "wikipedia": "https://en.wikipedia.org/wiki/Joseph_Danks",
+    "seconds": 116.0,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-03-joseph-danks.mp4",
+    "buffer_post": "6aea42cb52391758e2e92c6f",
+    "ai_label": true
   }
 ]
