@@ -40,13 +40,9 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:American serial killers
-  822 unused articles
-Trying: Zebra murders
-  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  script written by gemini-3.6-flash
-  skipped by writer: The case involves sexual violence and child victims.
-Trying: Joseph Danks
+Looking in Category:Murder in Belgium
+  110 unused articles
+Trying: Nathalie Maillet
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
@@ -60,58 +56,43 @@ Trying: Joseph Danks
 
   Gemini gemini-3.6-flash busy (503), retrying
   script written by gemini-3.6-flash
-  10 scenes, 202 words, first half is missing the place
+  10 scenes, 199 words, first half is missing the place
   asking for a rewrite
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
+  script written by gemini-3.6-flash
+  11 scenes, 201 words, first half is missing the place
+  asking for a rewrite
   Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  script written by gemini-3.5-flash-lite
-  12 scenes, 208 words
-Making video: The Koreatown Slasher Spree (Joseph Danks)
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
+  script written by gemini-3.6-flash
+  12 scenes, 213 words
+Making video: Tragedy at the Belgian Circuit (Nathalie Maillet)
   picture 1/12
+  picture has lettering on it (4 spots), making another
+  picture has lettering on it (1 spots), making another
   picture 2/12
-  picture has lettering on it (1 spots), making another
-  picture has lettering on it (1 spots), making another
   picture 3/12
   picture 4/12
-  picture has lettering on it (1 spots), making another
   picture 5/12
   picture 6/12
   picture 7/12
-  picture 8/12
-  picture has lettering on it (5 spots), making another
-  picture has lettering on it (75 spots), making another
-  picture has lettering on it (15 spots), making another
+  picture has lettering on it (2 spots), making another
+  picture has lettering on it (2 spots), making another
+  picture has lettering on it (1 spots), making another
   every try had some lettering; keeping the cleanest and painting it out
   painted over 1 bits of lettering
+  picture 8/12
   picture 9/12
+  picture has lettering on it (1 spots), making another
   picture 10/12
   picture 11/12
+  picture has lettering on it (2 spots), making another
+  picture has lettering on it (2 spots), making another
   picture 12/12
   narrating
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   narration voice: gemini
   rendering scene 1/12
@@ -127,13 +108,11 @@ Making video: The Koreatown Slasher Spree (Joseph Danks)
   rendering scene 11/12
   rendering scene 12/12
   background music added
-Video ready: 116.0 seconds, 19.2 MB
+Video ready: 118.8 seconds, 19.5 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-03-joseph-danks.mp4
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-04-nathalie-maillet.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6aea42cb52391758e2e92c6f).
+Queued in Buffer for TikTok (post 6aeb9518565fb498f4315608).
