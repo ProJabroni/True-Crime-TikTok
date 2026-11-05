@@ -228,5 +228,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-04-nathalie-maillet.mp4",
     "buffer_post": "6aeb9518565fb498f4315608",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-05",
+    "title": "The Mystery of Room 1046",
+    "wikipedia": "https://en.wikipedia.org/wiki/Murder_of_Artemus_Ogletree",
+    "seconds": 121.9,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-05-murder-of-artemus-ogletree.mp4",
+    "buffer_post": "6aece6d9be5773ab370777c0",
+    "ai_label": true
   }
 ]
