@@ -238,5 +238,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-05-murder-of-artemus-ogletree.mp4",
     "buffer_post": "6aece6d9be5773ab370777c0",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-06",
+    "title": "The Attack on a Legendary Crime Reporter",
+    "wikipedia": "https://en.wikipedia.org/wiki/Murder_of_Peter_R._de_Vries",
+    "seconds": 120.4,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-06-murder-of-peter-r-de-vries.mp4",
+    "buffer_post": "6aee35a2d6bbae6fa145a3fb",
+    "ai_label": true
   }
 ]

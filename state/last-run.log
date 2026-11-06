@@ -40,15 +40,13 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Unsolved murders in the United States
-  589 unused articles
-Trying: Nicole Brown Simpson
-  not the right kind of case (Category:20th-century German women non-fiction writers), skipping
-Trying: Murder of Evelyn Colon
-  case involves sexual violence or child victims (Category:Child murder in Pennsylvania), skipping
-Trying: Moore's Ford lynchings
-  not the right kind of case (Category:Aftermath of World War II in the United States), skipping
-Trying: Murder of Artemus Ogletree
+Looking in Category:Murder in the Netherlands
+  100 unused articles
+Trying: Murder of Peter R. de Vries
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
+  script written by gemini-3.6-flash
+  9 scenes, 196 words, first half is missing the place
+  asking for a rewrite
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
@@ -60,70 +58,47 @@ Trying: Murder of Artemus Ogletree
   }
 }
 
-  Gemini gemini-3.6-flash busy (503), retrying
   script written by gemini-3.6-flash
   11 scenes, 207 words, first half is missing the place
   asking for a rewrite
   Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
   script written by gemini-3.6-flash
-  12 scenes, 229 words, first half is missing the place
+  10 scenes, 220 words, first half is missing the place
   asking for a rewrite
-  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  Gemini gemini-3.6-flash busy (503), retrying
-  script written by gemini-3.6-flash
-  11 scenes, 222 words, first half is missing the place
-  asking for a rewrite
-Making video: The Mystery of Room 1046 (Murder of Artemus Ogletree)
-  picture 1/12
-  picture text check (Gemini vision) failed: gemini-3.5-flash-lite: busy (503)
-  picture 2/12
-  picture has lettering on it (1 spots), making another
-  picture 3/12
-  picture 4/12
-  picture 5/12
+Making video: The Attack on a Legendary Crime Reporter (Murder of Peter R. de Vries)
+  picture 1/10
+  picture 2/10
+  picture 3/10
+  picture 4/10
+  picture 5/10
+  picture has lettering on it (7 spots), making another
+  picture 6/10
+  picture 7/10
+  picture 8/10
+  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (8d982e69-96ff-4b03-b253-467acaa758ea)","code":8007}],"success":false,"result":{},"messages":[]}
   picture has lettering on it (1 spots), making another
   picture has lettering on it (1 spots), making another
-  picture has lettering on it (1 spots), making another
-  every try had some lettering; keeping the cleanest and painting it out
-  painted over 1 bits of lettering
-  picture 6/12
-  picture has lettering on it (2 spots), making another
-  picture has lettering on it (1 spots), making another
-  picture has lettering on it (1 spots), making another
-  every try had some lettering; keeping the cleanest and painting it out
-  painted over 1 bits of lettering
-  picture 7/12
-  picture 8/12
-  picture has lettering on it (1 spots), making another
-  picture has lettering on it (2 spots), making another
-  picture has lettering on it (1 spots), making another
-  picture 9/12
-  picture 10/12
-  picture 11/12
-  picture 12/12
+  picture 9/10
+  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (786554df-bb1f-4445-b006-05990c1e3dea)","code":8007}],"success":false,"result":{},"messages":[]}
+  picture 10/10
   narrating
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   narration voice: gemini
-  rendering scene 1/12
-  rendering scene 2/12
-  rendering scene 3/12
-  rendering scene 4/12
-  rendering scene 5/12
-  rendering scene 6/12
-  rendering scene 7/12
-  rendering scene 8/12
-  rendering scene 9/12
-  rendering scene 10/12
-  rendering scene 11/12
-  rendering scene 12/12
+  rendering scene 1/10
+  rendering scene 2/10
+  rendering scene 3/10
+  rendering scene 4/10
+  rendering scene 5/10
+  rendering scene 6/10
+  rendering scene 7/10
+  rendering scene 8/10
+  rendering scene 9/10
+  rendering scene 10/10
   background music added
-Video ready: 121.9 seconds, 19.9 MB
+Video ready: 120.4 seconds, 21.9 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-05-murder-of-artemus-ogletree.mp4
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-06-murder-of-peter-r-de-vries.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6aece6d9be5773ab370777c0).
+Queued in Buffer for TikTok (post 6aee35a2d6bbae6fa145a3fb).
