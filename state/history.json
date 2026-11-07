@@ -248,5 +248,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-06-murder-of-peter-r-de-vries.mp4",
     "buffer_post": "6aee35a2d6bbae6fa145a3fb",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-07",
+    "title": "The Mysterious End of Thomas Simpson",
+    "wikipedia": "https://en.wikipedia.org/wiki/Thomas_Simpson_%28explorer%29",
+    "seconds": 127.8,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-07-thomas-simpson-explorer.mp4",
+    "buffer_post": "6aef86cad6bbae6fa1ab7389",
+    "ai_label": true
   }
 ]
