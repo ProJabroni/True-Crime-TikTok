@@ -258,5 +258,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-07-thomas-simpson-explorer.mp4",
     "buffer_post": "6aef86cad6bbae6fa1ab7389",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-09",
+    "title": "The Intruder Who Cooked a Meal",
+    "wikipedia": "https://en.wikipedia.org/wiki/Stephen_Wayne_Anderson",
+    "seconds": 119.6,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-09-stephen-wayne-anderson.mp4",
+    "buffer_post": "6af22d1aee5eb299379c2808",
+    "ai_label": true
   }
 ]
