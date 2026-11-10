@@ -268,5 +268,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-09-stephen-wayne-anderson.mp4",
     "buffer_post": "6af22d1aee5eb299379c2808",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-10",
+    "title": "The Shopping Spree Mystery",
+    "wikipedia": "https://en.wikipedia.org/wiki/Dana_Sue_Gray",
+    "seconds": 128.8,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-10-dana-sue-gray.mp4",
+    "buffer_post": "6af37d737c81278dfdb744d0",
+    "ai_label": true
   }
 ]
