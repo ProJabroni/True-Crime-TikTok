@@ -40,23 +40,13 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:American serial killers
-  842 unused articles
-Trying: Dana Sue Gray
+Looking in Category:Murder in the Netherlands
+  99 unused articles
+Trying: Murder of Derk Wiersum
+  Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  script written by gemini-3.5-flash-lite
-  12 scenes, 218 words, avoid-words used: ['strangled'], first half is missing the place
+  script written by gemini-3.6-flash
+  11 scenes, 232 words, first half is missing the place
   asking for a rewrite
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
@@ -70,62 +60,39 @@ Trying: Dana Sue Gray
 }
 
   script written by gemini-3.6-flash
-  11 scenes, 225 words, first half is missing the place
+  10 scenes, 217 words, first half is missing the place
   asking for a rewrite
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  Gemini gemini-3.5-flash-lite busy (503), retrying
-  script written by gemini-3.5-flash-lite
-  12 scenes, 209 words, avoid-words used: ['killer'], first half is missing the place
-  asking for a rewrite
-Making video: The Shopping Spree Mystery (Dana Sue Gray)
+  script written by gemini-3.8-flash
+  11 scenes, 227 words
+Making video: The Ambush on an Amsterdam Street (Murder of Derk Wiersum)
   picture 1/11
   picture 2/11
   picture 3/11
-  picture has lettering on it (3 spots), making another
   picture has lettering on it (1 spots), making another
-  picture has lettering on it (1 spots), making another
-  every try had some lettering; keeping the cleanest and painting it out
-  painted over 1 bits of lettering
   picture 4/11
-  picture has lettering on it (1 spots), making another
   picture 5/11
-  picture has lettering on it (2 spots), making another
-  picture has lettering on it (6 spots), making another
-  picture has lettering on it (1 spots), making another
-  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (bd87bd70-40db-464f-93d9-4c6f98cc44e6)","code":8007}],"success":false,"result":{},"messages":[]}
-  image attempt 2 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (37f4816f-4fb1-44eb-9bf0-f8e0ae9aada8)","code":8007}],"success":false,"result":{},"messages":[]}
-  every try had some lettering; keeping the cleanest and painting it out
-  painted over 1 bits of lettering
-  painted over 1 bits of lettering
   picture 6/11
   picture 7/11
+  picture has lettering on it (5 spots), making another
+  picture has lettering on it (1 spots), making another
+  picture has lettering on it (2 spots), making another
+  every try had some lettering; keeping the cleanest and painting it out
+  painted over 1 bits of lettering
+  painted over 2 bits of lettering
   picture 8/11
   picture 9/11
-  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (442094bd-dd9e-4d97-8c45-98755e307b56)","code":8007}],"success":false,"result":{},"messages":[]}
+  picture has lettering on it (1 spots), making another
+  picture has lettering on it (1 spots), making another
+  picture has lettering on it (2 spots), making another
+  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (cc6f3945-8bf5-4451-a432-2542b5f9c40d)","code":8007}],"success":false,"result":{},"messages":[]}
+  every try had some lettering; keeping the cleanest and painting it out
+  painted over 1 bits of lettering
   picture 10/11
   picture 11/11
   narrating
+  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   narration voice: gemini
   rendering scene 1/11
@@ -140,10 +107,4 @@ Making video: The Shopping Spree Mystery (Dana Sue Gray)
   rendering scene 10/11
   rendering scene 11/11
   background music added
-Video ready: 128.8 seconds, 21.8 MB
-  waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-10-dana-sue-gray.mp4
-Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6af37d737c81278dfdb744d0).
+Video ready: 130.7 seconds, 22.6 MB
