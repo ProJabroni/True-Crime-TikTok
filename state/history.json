@@ -278,5 +278,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-10-dana-sue-gray.mp4",
     "buffer_post": "6af37d737c81278dfdb744d0",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-11",
+    "title": "The Mystery of Meadow Run",
+    "wikipedia": "https://en.wikipedia.org/wiki/Deaths_of_John_and_Joyce_Sheridan",
+    "seconds": 125.5,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-11-deaths-of-john-and-joyce-sheridan.mp4",
+    "buffer_post": "6af4f605bc9f3773a1a7addd",
+    "ai_label": true
   }
 ]
