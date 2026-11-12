@@ -8,7 +8,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-14-daniel-khalife.mp4",
     "buffer_post": "6acedf9eb610c3011f9803c3",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -20,7 +20,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-14-baker-street-robbery.mp4",
     "buffer_post": "6acf9b08f16b5a3e782933ae",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -32,7 +32,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-15-operation-bringing-home-the-goods.mp4",
     "buffer_post": "6ad12b9ad27a77f8514d983f",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -44,7 +44,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-16-orinda-shooting.mp4",
     "buffer_post": "6ad27e05346e510ac44f50c4",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -56,7 +56,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-17-james-greenacre.mp4",
     "buffer_post": "6ad3cea20a208cb32335e272",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -68,7 +68,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-17-franco-fuschi.mp4",
     "buffer_post": "6ad3dbb40b0d72757af2e188",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -80,7 +80,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-19-daniel-m-naghten.mp4",
     "buffer_post": "6ad684624d4b4350314f7670",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -92,7 +92,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-20-lady-in-the-lake-trial.mp4",
     "buffer_post": "6ad7c67f3a8f826b37f9b751",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -104,7 +104,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-21-billy-papke.mp4",
     "buffer_post": "6ad918a9199855ce0d3cb84e",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -116,7 +116,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-22-death-of-john-o-keefe.mp4",
     "buffer_post": "6ada698480b62e6575035058",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -128,7 +128,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-23-assassination-of-olof-palme.mp4",
     "buffer_post": "6adbc86be4be8a4d86259a41",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -140,7 +140,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-24-charles-coleman-murderer.mp4",
     "buffer_post": "6add0f5c8b3d437ddcd72a62",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -152,7 +152,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-26-mary-pinchot-meyer.mp4",
     "buffer_post": "6adfb999a72c078abdb72fac",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -164,7 +164,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-27-albert-parsons.mp4",
     "buffer_post": "6ae105fae8126ef614216437",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -176,7 +176,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-28-killing-of-geetha-angara.mp4",
     "buffer_post": "6ae2574844c308f29b5373fd",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -188,7 +188,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-29-murder-of-valerio-verbano.mp4",
     "buffer_post": "6ae3aa6674dca2a545c5088a",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -200,7 +200,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-30-joseph-barboza.mp4",
     "buffer_post": "6ae4fc69189147209396c5ff",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -212,7 +212,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-10-31-crime-of-fuencarral-street.mp4",
     "buffer_post": "6ae64ac5f0984eef332b6df0",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -224,7 +224,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-02-red-barn-murder.mp4",
     "buffer_post": "6ae8f0be85630a54c7af4d30",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -236,7 +236,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-03-joseph-danks.mp4",
     "buffer_post": "6aea42cb52391758e2e92c6f",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -248,7 +248,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-04-nathalie-maillet.mp4",
     "buffer_post": "6aeb9518565fb498f4315608",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -260,7 +260,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-05-murder-of-artemus-ogletree.mp4",
     "buffer_post": "6aece6d9be5773ab370777c0",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -272,7 +272,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-06-murder-of-peter-r-de-vries.mp4",
     "buffer_post": "6aee35a2d6bbae6fa145a3fb",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -284,7 +284,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-07-thomas-simpson-explorer.mp4",
     "buffer_post": "6aef86cad6bbae6fa1ab7389",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -296,7 +296,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-09-stephen-wayne-anderson.mp4",
     "buffer_post": "6af22d1aee5eb299379c2808",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -308,7 +308,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-10-dana-sue-gray.mp4",
     "buffer_post": "6af37d737c81278dfdb744d0",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   },
   {
@@ -320,7 +320,7 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-11-deaths-of-john-and-joyce-sheridan.mp4",
     "buffer_post": "6af4f605bc9f3773a1a7addd",
     "ai_label": true,
-    "buffer_status": "not found (deleted in Buffer?)",
+    "buffer_status": "error: [{'message': 'Access token is not valid', 'extensions': {'code': 'UNAUTHENTICATED'}}]",
     "metrics": {}
   }
 ]
