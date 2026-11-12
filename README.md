@@ -57,7 +57,13 @@ Edit `config.json` (pencil icon on GitHub):
   Only murder cases in the United States or Europe are used (`murder_cases_only`, `us_and_europe_only`)
 - `gemini_voice`: narrator voice. Good serious male voices: `Charon`, `Algenib` (gravelly), `Orus`,
   `Iapetus`, `Gacrux`; female: `Kore`, `Schedar`, `Achernar`. `gemini_voice_style` sets the delivery
-- `words_min` / `words_max`: video length (about 150 words ≈ 1 minute)
+- `scenes_min` / `scenes_max` and `words_min` / `words_max`: video length. 115–135 words in 6–8 scenes
+  ≈ 65–75 seconds (short enough that people watch to the end, which is what TikTok rewards)
+- `hook_on_screen`: shows the opening question in big letters in the middle of the screen while the
+  narrator says it (`false` brings back the small title card, `show_title_card`)
+- `extra_hashtags`: added to every post first (#truecrime #truecrimetok #coldcase), then 2–3 picked for
+  the case, up to `max_hashtags`. Every caption ends with a question to get comments; if the writer
+  forgets, one from `caption_questions` is added
 - `cloudflare_voice`: narrator voice, e.g. `zeus`, `orion`, `arcas`, `apollo` (male) or `luna`, `athena`, `hera` (female)
 - `buffer_mode`: `addToQueue` (next queue slot) or `shareNow`
 - `image_style`: the art style. Default is color comic book; for manga, copy the text of

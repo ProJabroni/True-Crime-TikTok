@@ -256,7 +256,7 @@ Otherwise return JSON exactly like:
   "hashtags": ["..."]
 }
 - {scenes_min} to {scenes_max} scenes.
-- Scene 1 is the HOOK, and it decides whether people keep watching. It is ONE short, intriguing line (under 18 words), usually a question, built on the strangest or most surprising TRUE detail in the article, that makes the viewer need the answer. Tease the mystery; do not give away the ending, and never exaggerate or mislead. Good hooks for the style (do not copy them): "How was this man able to hitch a ride out of prison?", "Why did a quiet bank clerk walk out with a million dollars and never come back?", "What were police looking for under a suburban kitchen floor for forty years?". Avoid weak openers such as "This is the story of", "Meet", "Have you ever heard of", "You won't believe".
+- Scene 1 is the HOOK, and it decides whether people keep watching. It is ONE short, intriguing line (under 15 words), usually a question, and it is also shown in big letters on screen, so it must read well on its own. It is built on the strangest or most surprising TRUE detail in the article, that makes the viewer need the answer. Tease the mystery; do not give away the ending, and never exaggerate or mislead. Good hooks for the style (do not copy them): "How was this man able to hitch a ride out of prison?", "Why did a quiet bank clerk walk out with a million dollars and never come back?", "What were police looking for under a suburban kitchen floor for forty years?". Avoid weak openers such as "This is the story of", "Meet", "Have you ever heard of", "You won't believe".
 - Scene 2 starts the story properly with who, where and when: it MUST say out loud the date (always the year, plus the month and day when the article gives them) and the place (the town or city and the state or country). The viewer must know when and where this happened within the first half of the video, so never save the date or place for later. Then tell the story in order: background, what happened, the investigation and evidence, key turning points, suspects or trial. The last scene says how the case ended or where it stands today. Do not add any "like", "follow" or "subscribe" line yourself; the closing call to action is added automatically.
 - Total narration {words_min} to {words_max} words. Short spoken sentences. No emojis, no stage directions.
 - NEVER use digits in narration. Spell out every number, date, year, time and amount exactly as a narrator says it: "August thirty-first, nineteen eighty-five", "the third of March", "seven thirty in the evening", "twenty-three years old", "one point five million dollars".
@@ -264,7 +264,7 @@ Otherwise return JSON exactly like:
 - characters: the 2 to 5 key people in the story (victim, suspect, detective, witness, family member...). tag is a short role in square brackets, e.g. "[Victim]", "[Detective]", "[Suspect]". look is a fixed visual description used in every picture: gender, approximate age, build, hair, and clothing typical of the era and place (e.g. "a woman in her twenties with shoulder-length brown hair, wearing a 1970s denim jacket and flared jeans"). Do not try to describe the real person's actual face; these are illustrated characters.
 - Use the [Tag] form ONLY inside image_prompt. In narration, title and caption, write normally (names or "the detective").
 - image_prompt: ONE bright, clear, SIMPLE illustrated picture for that moment (the art style is added automatically). Less is more: in most scenes show just one thing (one person, one object or one place) against a plain, uncluttered background, like a single key, a lit window at night, a car on an empty road, a face in shadow, a closed door. Keep each image_prompt under 25 words and never list many objects. Each picture shows AT MOST ONE PERSON: a single character, alone in the frame. Never two or more people, no groups, crowds or bystanders; when a moment involves several people, show just the most important one, or the place or an object. Most scenes should SHOW one of the characters, referred to ONLY by their tag (e.g. "[Detective] kneels beside a car on a rainy roadside, looking at the ground"), doing what the story says at that moment, with the setting, era, time of day and camera angle. Never put a real person's name in image_prompt. Show people alive and in ordinary or tense moments only: never violence, attacks, guns, knives or any weapon (not even on a table or as evidence), bullets or casings, blood, injuries, bodies or crime-scene remains; for those moments show the place, a detail, or the investigators instead. Never show a child in danger. Everything in the picture must fit the real country and era of the case: local architecture, streets, transport (horse-drawn carriages before about 1900, never cars), lighting, police uniforms, courtrooms and clothing (e.g. a German case gets German buildings, German police and a German courtroom, never American ones). Never show flags. Avoid anything that normally carries writing: signs, shop fronts, newspapers, documents, screens, license plates, badges, posters, uniforms with lettering.
-- title, caption and hashtags follow the same language rules. caption: under 150 characters, intriguing, no spoilers. hashtags: 4 to 6, lowercase, without the # sign."""
+- title, caption and hashtags follow the same language rules. caption: under 150 characters, intriguing, no spoilers, and it MUST end with a short question to the viewer that invites comments, e.g. "Who do you think did it?", "Would you have trusted him?", "Should this case be reopened?". hashtags: 2 or 3 specific to this case (e.g. unsolved, coldcase, the city or country, the era), lowercase, without the # sign."""
 
 
 def avoid_regex():
@@ -441,25 +441,30 @@ def write_script(title, text):
         if len(scenes) < 5:
             log(f"  script has only {len(scenes)} usable scenes")
             continue
-        script["scenes"] = scenes[: CFG["scenes_max"] + 2]
+        script["scenes"] = scenes[: max(CFG["scenes_max"] + 2, 12)]  # never cut off the ending
         words = sum(len(s["narration"].split()) for s in script["scenes"])
         banned = bad_words(script)
         long_enough = words >= CFG["words_min"] * 0.9
+        short_enough = words <= CFG["words_max"] * 1.15 and len(script["scenes"]) <= CFG["scenes_max"] + 1
         hook_words = len(script["scenes"][0]["narration"].split())
-        hook_ok = hook_words <= 25
+        hook_ok = hook_words <= 20
         no_setting = missing_setting(script)
         log(f"  {len(script['scenes'])} scenes, {words} words" + (f", avoid-words used: {banned}" if banned else "")
             + (f", first half is missing the {' and '.join(no_setting)}" if no_setting else ""))
-        score = (long_enough, not banned, not no_setting, hook_ok, words)
+        score = (long_enough, not banned, short_enough, not no_setting, hook_ok, -abs(words - CFG["words_max"]))
         if best_score is None or score > best_score:
             best, best_score = script, score
-        if long_enough and not banned and not no_setting and hook_ok:
+        if long_enough and short_enough and not banned and not no_setting and hook_ok:
             break
         fixes = []
         if not long_enough:
             fixes.append(f"Your last script was only {words} words. The total narration MUST be "
                          f"{CFG['words_min']} to {CFG['words_max']} words: add more specific true details "
                          f"from the article (names, dates, places, evidence, investigation, aftermath).")
+        if not short_enough:
+            fixes.append(f"Your last script was {words} words in {len(script['scenes'])} scenes: too long. The total "
+                         f"narration MUST be {CFG['words_min']} to {CFG['words_max']} words in {CFG['scenes_min']} to "
+                         f"{CFG['scenes_max']} scenes. Keep only the most gripping facts.")
         if banned:
             fixes.append(f"Your last script used these words, which are not allowed: {', '.join(banned)}. "
                          f"Rewrite without them, using calm PG alternatives.")
@@ -468,14 +473,14 @@ def write_script(title, text):
                          "article gives them) and WHERE (town or city plus state or country), and fill in \"setting\" "
                          f"with the same date and place. Your last script's first half was missing the {' and '.join(no_setting)}.")
         if not hook_ok:
-            fixes.append(f"Scene 1 must be ONE short intriguing hook line under 18 words (yours was {hook_words}); "
+            fixes.append(f"Scene 1 must be ONE short intriguing hook line under 15 words (yours was {hook_words}); "
                          "move the details into scene 2.")
         log("  asking for a rewrite")
         user = "IMPORTANT: " + " ".join(fixes) + "\n\n" + article_part
     if best is None:
         raise ValueError("no usable script")
     if not best_score[0]:
-        raise ValueError(f"script still too short ({best_score[-1]} words), trying another case")
+        raise ValueError("script still too short, trying another case")
     if set(bad_words(best)) & {"rape", "raped", "molested", "sexual", "torture", "tortured", "dismembered",
                                "decapitated", "corpse"}:
         raise ValueError(f"script keeps needing words like {bad_words(best)}; case too dark, trying another")
@@ -1053,10 +1058,18 @@ def build_captions(scenes, title):
         "Style: Cap,Comic Neue,78,&H00000000,&H00000000,&H0099F5FF,&H00000000,-1,0,0,0,100,100,0,0,3,16,0,2,90,90,560,1",
         "Style: Title,Bangers,104,&H0000E1FF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,3,0,1,8,6,8,70,70,230,1",
         "Style: SFX,Bangers,190,&H0000E1FF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,4,0,1,11,8,5,40,40,0,1",
+        # Opening hook: big, centred, readable with the sound off.
+        "Style: Hook,Bangers,104,&H0000E1FF,&H00FFFFFF,&H00000000,&H96000000,0,0,0,0,100,100,2,0,1,9,6,5,70,70,0,1",
         "", "[Events]",
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
     ]
-    if CFG.get("show_title_card", True) and title:
+    hook_on_screen = CFG.get("hook_on_screen", True) and scenes
+    if hook_on_screen:
+        first = scenes[0]
+        lines.append(f"Dialogue: 2,{ass_time(0)},{ass_time(first['start'] + first['dur'])},Hook,,0,0,0,,"
+                     f"{{\\fad(0,250)\\fscx85\\fscy85\\t(0,180,\\fscx100\\fscy100)}}"
+                     f"{ass_text(first['narration'].upper())}")
+    elif CFG.get("show_title_card", True) and title:
         end = min(scenes[0]["start"] + scenes[0]["dur"], 4.0)
         lines.append(f"Dialogue: 1,{ass_time(0)},{ass_time(end)},Title,,0,0,0,,"
                      f"{{\\fad(200,300)}}{ass_text(title.upper())}")
@@ -1071,7 +1084,7 @@ def build_captions(scenes, title):
             f"{{\\pos({x},560)\\frz{angle}\\fscx30\\fscy30\\t(0,140,\\fscx120\\fscy120)"
             f"\\t(140,260,\\fscx100\\fscy100)\\fad(0,250)}}{ass_text(sc['sfx'])}")
     if CFG.get("captions", True):
-        for sc in scenes:
+        for sc in (scenes[1:] if hook_on_screen else scenes):  # the hook is already on screen in big text
             chunks = chunk_words(sc["narration"])
             weights = [len(c) + (6 if re.search(r"[.!?]$", c) else 2 if re.search(r"[,;:—]$", c) else 0)
                        for c in chunks]
@@ -1240,9 +1253,13 @@ def main():
 
     avoid = [w.lower() for w in CFG.get("avoid_words", [])]
     tags = list(dict.fromkeys([t.strip().lstrip("#").lower().replace(" ", "")
-                               for t in script.get("hashtags", []) + CFG.get("extra_hashtags", [])
+                               for t in CFG.get("extra_hashtags", []) + script.get("hashtags", [])
                                if t.strip()]))
-    tags = [t for t in tags if not any(w in t for w in avoid)]
+    tags = [t for t in tags if not any(w in t for w in avoid)][: CFG.get("max_hashtags", 6)]
+    teaser = script.get("caption", "").strip()
+    if not teaser.endswith("?"):  # always invite comments
+        teaser = (teaser + " " if teaser else "") + random.choice(CFG.get("caption_questions", ["What do you think happened?"]))
+    script["caption"] = teaser
     rx = avoid_regex()
     source = "Wikipedia" if rx and rx.search(real_title) else f"Wikipedia, \"{real_title}\""
     caption = (f"{script.get('caption', '').strip()}\n\n"

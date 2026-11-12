@@ -26,10 +26,10 @@
   "murder_cases_only": true,
   "us_and_europe_only": true,
   "min_article_chars": 4000,
-  "scenes_min": 9,
-  "scenes_max": 12,
-  "words_min": 200,
-  "words_max": 250,
+  "scenes_min": 6,
+  "scenes_max": 8,
+  "words_min": 115,
+  "words_max": 135,
   "min_seconds": 61,
 
   "gemini_models": ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-3.5-flash-lite", "gemini-3.1-flash-lite"],
@@ -72,9 +72,12 @@
   "music_volume": 0.22,
   "captions": true,
   "show_title_card": true,
+  "hook_on_screen": true,
 
   "buffer_mode": "addToQueue",
   "max_waiting_in_buffer": 1,
-  "extra_hashtags": ["truecrime"],
+  "extra_hashtags": ["truecrime", "truecrimetok", "coldcase"],
+  "max_hashtags": 6,
+  "caption_questions": ["Who do you think did it?", "What do you think really happened?", "Should this case be reopened?", "Would you have noticed the signs?"],
   "keep_videos_online": 10
 }
