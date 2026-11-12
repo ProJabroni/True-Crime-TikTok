@@ -111,6 +111,7 @@ jobs:
           python -u make_video.py 2>&1 | grep --line-buffered -v "it/s\]\|s/it\]" | tee out/run.log
 
       - name: Attach the video to this run (download it from the run summary)
+        continue-on-error: true   # a GitHub hiccup here must not stop the video being posted
         uses: actions/upload-artifact@v4
         with:
           name: video
