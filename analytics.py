@@ -37,7 +37,7 @@ def main():
             continue
         d = gql(query, {"input": {"id": pid}})
         if d.get("errors"):
-            rows.append({**h, "buffer_status": "not found (deleted in Buffer?)", "metrics": {}})
+            rows.append({**h, "buffer_status": "error: " + str(d["errors"])[:300], "metrics": {}})
             continue
         p = d["data"]["post"]
         metrics = {m["type"]: m["value"] for m in (p.get("metrics") or [])}
@@ -45,6 +45,8 @@ def main():
                      "wikipedia": h.get("wikipedia"), "buffer_post": pid, "buffer_status": p["status"],
                      "sent_at": p.get("sentAt"), "metrics_updated": p.get("metricsUpdatedAt"),
                      "metrics": metrics})
+    schema = gql('{ __type(name: "Post") { fields { name type { name kind ofType { name kind } } } } }')
+    (ROOT / "state" / "post-schema.json").write_text(json.dumps(schema, indent=1) + "\n")
     (ROOT / "state" / "analytics.json").write_text(json.dumps(rows, indent=2, ensure_ascii=False) + "\n")
 
     cols = ["views", "reactions", "comments", "shares", "reach", "engagementRate"]
