@@ -83,6 +83,11 @@ vision (which also spots garbled letters); it is remade up to 3 times and anythi
 Editing `check-buffer.txt` also writes `state/analytics.md`: views, likes, watch time and more for
 every posted video, straight from Buffer.
 
+**If a video was made but not posted** (for example, Buffer's API key expired: Buffer keys last 30 days
+unless you pick a longer time when you make one): make a new key at publish.buffer.com/settings/api
+(choose 1 year), paste it into the `BUFFER_API_KEY` secret, then edit `post-latest.txt` (change any
+character and commit). That sends the latest video to Buffer without making a new one.
+
 `state/history.json` lists every video made; `state/used.json` stops cases repeating.
 
 ## Please keep in mind

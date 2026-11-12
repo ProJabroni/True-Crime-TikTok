@@ -56,7 +56,11 @@ def gql(key, query, variables=None):
     except ValueError:
         sys.exit(f"Buffer API error {r.status_code}: {r.text[:300]}")
     if r.status_code == 401:
-        sys.exit("Buffer rejected the API key. Check the BUFFER_API_KEY secret.")
+        if os.environ.get("BUFFER_DRAFT", "").lower() != "true":
+            # Today's video exists; backups skip it and post-latest.txt posts it once the key is fixed.
+            record("made, not posted (Buffer key expired)", video=os.environ.get("VIDEO_URL", ""))
+        sys.exit("Buffer rejected the API key (Buffer keys expire, 30 days by default). Make a new key at "
+                 "publish.buffer.com/settings/api, put it in the BUFFER_API_KEY secret, then edit post-latest.txt.")
     return data
 
 

@@ -1,0 +1,79 @@
+name: Post the latest video
+
+# Sends the most recent video to TikTok through Buffer without making a new one.
+# Use it when a video was made but not posted (for example, the Buffer key had expired):
+# fix the BUFFER_API_KEY secret, then edit post-latest.txt (any change) to run this.
+on:
+  push:
+    branches: [main]
+    paths: [post-latest.txt]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: daily-video
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q requests
+
+      - name: Find the latest video and its caption
+        id: latest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          URL=$(cat state/latest-video.txt)
+          SLUG=$(basename "$URL" .mp4)
+          if jq -e --arg u "$URL" 'map(select(.video == $u and (.status | test("queued")))) | length > 0' state/history.json > /dev/null; then
+            echo "That video ($SLUG) is already in Buffer; nothing to do." | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          mkdir -p out
+          if [ -f state/latest-meta.json ] && [ "$(jq -r .slug state/latest-meta.json)" = "$SLUG" ]; then
+            cp state/latest-meta.json out/meta.json
+          else
+            # Older runs didn't save the details in state/, so take them from the run's attachment.
+            ID=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?name=video&per_page=10" \
+                   --jq '[.artifacts[] | select(.expired | not)][0].id')
+            gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$ID/zip" > video.zip
+            unzip -o -q video.zip -d out
+          fi
+          if [ "$(jq -r .slug out/meta.json)" != "$SLUG" ]; then
+            echo "Couldn't find the caption for $SLUG." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          [ -f out/video.mp4 ] || curl -sSfL -o out/video.mp4 "$URL"
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Send to TikTok through Buffer
+        if: steps.latest.outputs.skip == 'false'
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_CHANNEL_ID: ${{ secrets.BUFFER_CHANNEL_ID }}
+          VIDEO_URL: ${{ steps.latest.outputs.url }}
+        run: |
+          set -o pipefail
+          python post_buffer.py 2>&1 | tee state/last-post.log
+
+      - name: Save the result
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/
+          git diff --cached --quiet && exit 0
+          git commit -qm "Post the latest video"
+          git pull -q --rebase origin "$GITHUB_REF_NAME"
+          git push -q origin "HEAD:$GITHUB_REF_NAME"

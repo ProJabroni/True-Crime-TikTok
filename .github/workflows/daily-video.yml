@@ -153,6 +153,7 @@ jobs:
           URL="${BASE%/}/videos/$SLUG.mp4"
           echo "url=$URL" >> "$GITHUB_OUTPUT"
           echo "$URL" > ../state/latest-video.txt
+          jq 'del(.narration)' ../out/meta.json > ../state/latest-meta.json
           echo "### Watch the video: $URL" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Send to TikTok through Buffer (test runs save a draft instead)

@@ -451,7 +451,7 @@ def write_script(title, text):
         no_setting = missing_setting(script)
         log(f"  {len(script['scenes'])} scenes, {words} words" + (f", avoid-words used: {banned}" if banned else "")
             + (f", first half is missing the {' and '.join(no_setting)}" if no_setting else ""))
-        score = (long_enough, not banned, short_enough, not no_setting, hook_ok, -abs(words - CFG["words_max"]))
+        score = (long_enough, short_enough, not banned, not no_setting, hook_ok, -abs(words - CFG["words_max"]))
         if best_score is None or score > best_score:
             best, best_score = script, score
         if long_enough and short_enough and not banned and not no_setting and hook_ok:
@@ -484,7 +484,7 @@ def write_script(title, text):
     if set(bad_words(best)) & {"rape", "raped", "molested", "sexual", "torture", "tortured", "dismembered",
                                "decapitated", "corpse"}:
         raise ValueError(f"script keeps needing words like {bad_words(best)}; case too dark, trying another")
-    if not best_score[1]:  # last resort: swap the remaining words for PG ones
+    if bad_words(best):  # last resort: swap the remaining words for PG ones
         log(f"  softening remaining words: {bad_words(best)}")
         best["title"] = soften(best.get("title", ""))
         best["caption"] = soften(best.get("caption", ""))
@@ -1059,7 +1059,7 @@ def build_captions(scenes, title):
         "Style: Title,Bangers,104,&H0000E1FF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,3,0,1,8,6,8,70,70,230,1",
         "Style: SFX,Bangers,190,&H0000E1FF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,4,0,1,11,8,5,40,40,0,1",
         # Opening hook: big, centred, readable with the sound off.
-        "Style: Hook,Bangers,104,&H0000E1FF,&H00FFFFFF,&H00000000,&H96000000,0,0,0,0,100,100,2,0,1,9,6,5,70,70,0,1",
+        "Style: Hook,Bangers,124,&H0000E1FF,&H00FFFFFF,&H00000000,&H96000000,0,0,0,0,100,100,2,0,1,9,6,5,70,70,0,1",
         "", "[Events]",
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
     ]
