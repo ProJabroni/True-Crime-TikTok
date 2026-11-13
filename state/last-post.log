@@ -1,2 +1,41 @@
 Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-12-benjamin-geen.mp4
-Buffer rejected the API key (Buffer keys expire, 30 days by default). Make a new key at publish.buffer.com/settings/api, put it in the BUFFER_API_KEY secret, then edit post-latest.txt.
+Traceback (most recent call last):
+  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/post_buffer.py", line 132, in <module>
+    main()
+  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/post_buffer.py", line 92, in main
+    channel = os.environ.get("BUFFER_CHANNEL_ID", "").strip() or tiktok_channel(key)
+                                                                 ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/post_buffer.py", line 68, in tiktok_channel
+    data = gql(key, "query { account { organizations { id name } } }")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/True-Crime-TikTok/True-Crime-TikTok/post_buffer.py", line 52, in gql
+    r = requests.post(API, headers={"Authorization": f"Bearer {key}"},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/requests/api.py", line 134, in post
+    return request("post", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/urllib3/connectionpool.py", line 499, in _make_request
+    conn.request(
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/urllib3/connection.py", line 566, in request
+    self.putheader(header, value)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/urllib3/connection.py", line 480, in putheader
+    super().putheader(header, *values)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/http/client.py", line 1359, in putheader
+    values[i] = one_value.encode('latin-1')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 7-45: ordinal not in range(256)
