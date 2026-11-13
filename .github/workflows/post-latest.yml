@@ -3,6 +3,7 @@ name: Post the latest video
 # Sends the most recent video to TikTok through Buffer without making a new one.
 # Use it when a video was made but not posted (for example, the Buffer key had expired):
 # fix the BUFFER_API_KEY secret, then edit post-latest.txt (any change) to run this.
+# Put "share now" in the commit message to post immediately instead of at the next 7pm slot.
 on:
   push:
     branches: [main]
@@ -63,6 +64,8 @@ jobs:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_CHANNEL_ID: ${{ secrets.BUFFER_CHANNEL_ID }}
           VIDEO_URL: ${{ steps.latest.outputs.url }}
+          # "share now" in the commit message posts straight away instead of at the next queue slot
+          BUFFER_MODE: ${{ contains(github.event.head_commit.message, 'share now') && 'shareNow' || '' }}
         run: |
           set -o pipefail
           python post_buffer.py 2>&1 | tee state/last-post.log

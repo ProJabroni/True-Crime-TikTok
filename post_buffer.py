@@ -100,7 +100,7 @@ def main():
     }"""
     draft = os.environ.get("BUFFER_DRAFT", "").lower() == "true"
     post = {"channelId": channel, "text": META["caption"], "schedulingType": "automatic",
-            "mode": CFG.get("buffer_mode", "addToQueue"), "assets": [{"video": {"url": url}}]}
+            "mode": os.environ.get("BUFFER_MODE", "").strip() or CFG.get("buffer_mode", "addToQueue"), "assets": [{"video": {"url": url}}]}
     if draft:  # test runs: save as a Buffer draft, which never publishes
         post["saveToDraft"] = True
         log("Test run: saving to Buffer as a draft (it will not be published).")
