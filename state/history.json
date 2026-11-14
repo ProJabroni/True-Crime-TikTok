@@ -314,5 +314,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-12-benjamin-geen.mp4",
     "buffer_post": "6af67ddfda25c4db3e8faca1",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-14",
+    "title": "The Mystery of Jane Doe Fifty-Nine",
+    "wikipedia": "https://en.wikipedia.org/wiki/Murder_of_Reet_Jurvetson",
+    "seconds": 77.1,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-14-murder-of-reet-jurvetson.mp4",
+    "buffer_post": "6af7af169257ce33981f6566",
+    "ai_label": true
   }
 ]

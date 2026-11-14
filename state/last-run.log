@@ -19,9 +19,6 @@ No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 
-[notice] A new release of pip is available: 26.2.2 -> 26.3
-[notice] To update, run: pip install --upgrade pip
-
 Running kernel seems to be up-to-date.
 
 No services need to be restarted.
@@ -31,61 +28,30 @@ No containers need to be restarted.
 No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
-
-[notice] A new release of pip is available: 26.2.2 -> 26.3
-[notice] To update, run: pip install --upgrade pip
-
-[notice] A new release of pip is available: 26.2.2 -> 26.3
-[notice] To update, run: pip install --upgrade pip
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Murder in England
-  1230 unused articles
-Trying: Benjamin Geen
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  Gemini gemini-3.5-flash-lite busy (503), retrying
-  Gemini gemini-3.5-flash-lite busy (503), retrying
-  Gemini gemini-3.5-flash-lite busy (503), retrying
-  Gemini gemini-3.5-flash-lite failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  script written by gemini-3.1-flash-lite
-  8 scenes, 139 words, avoid-words used: ['murders'], first half is missing the place
-  asking for a rewrite
-  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  script written by gemini-3.5-flash-lite
-  8 scenes, 166 words, first half is missing the place
-  asking for a rewrite
+Looking in Category:American serial killers
+  817 unused articles
+Trying: Dennis Rader
+  case involves sexual violence or child victims (sexual violence in the article), skipping
+Trying: Danny Rolling
+  case involves sexual violence or child victims (Category:American rapists), skipping
+Trying: Atlanta murders of 1979–1981
+  case involves sexual violence or child victims (Category:Child murder in Georgia (U.S. state)), skipping
+Trying: Reginald McFadden
+  case involves sexual violence or child victims (Category:American people convicted of rape), skipping
+Trying: Stanley Theodore Adams
+  case involves sexual violence or child victims (sexual violence in the article), skipping
+Trying: Terry Hyatt
+  case involves sexual violence or child victims (Category:American people convicted of rape), skipping
+Trying: Austin serial bombings
+  not the right kind of case (Category:Terrorist incidents in Texas), skipping
+Trying: Anthony Sowell
+  case involves sexual violence or child victims (Category:American people convicted of attempted rape), skipping
+Looking in Category:Unsolved murders in the United States
+  583 unused articles
+Trying: Murder of Reet Jurvetson
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash busy (503), retrying
@@ -97,42 +63,52 @@ Trying: Benjamin Geen
   }
 }
 
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash did not answer (ReadTimeout); trying the next writer
-  Gemini keeps timing out; using the backup script writer for the rest of this run
-  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
-  6 scenes, 96 words, avoid-words used: ['murders'], first half is missing the place
+  script written by gemini-3.6-flash
+  7 scenes, 128 words, first half is missing the place
   asking for a rewrite
-Making video: Why did patients keep crashing around him? (Benjamin Geen)
-  picture 1/8
-  picture 2/8
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
+  script written by gemini-3.6-flash
+  7 scenes, 124 words, first half is missing the place
+  asking for a rewrite
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
+  script written by gemini-3.6-flash
+  8 scenes, 121 words, first half is missing the place
+  asking for a rewrite
+Making video: The Mystery of Jane Doe Fifty-Nine (Murder of Reet Jurvetson)
+  picture 1/7
+  picture has lettering on it (1 spots), making another
+  picture has lettering on it (6 spots), making another
+  picture has lettering on it (1 spots), making another
+  every try had some lettering; keeping the cleanest and painting it out
+  painted over 1 bits of lettering
+  picture 2/7
+  picture 3/7
+  picture has lettering on it (2 spots), making another
+  picture 4/7
+  picture has lettering on it (1 spots), making another
+  picture 5/7
   picture has lettering on it (2 spots), making another
   picture has lettering on it (2 spots), making another
-  picture has lettering on it (2 spots), making another
-  picture 3/8
-  picture 4/8
-  picture 5/8
-  picture 6/8
-  picture has lettering on it (1 spots), making another
-  picture has lettering on it (1 spots), making another
-  picture has lettering on it (1 spots), making another
-  picture 7/8
-  picture 8/8
+  picture 6/7
+  picture 7/7
   narrating
+  Gemini voice (gemini-3.8-flash-tts) busy (503), waiting
   narration voice: gemini
-  rendering scene 1/8
-  rendering scene 2/8
-  rendering scene 3/8
-  rendering scene 4/8
-  rendering scene 5/8
-  rendering scene 6/8
-  rendering scene 7/8
-  rendering scene 8/8
+  rendering scene 1/7
+  rendering scene 2/7
+  rendering scene 3/7
+  rendering scene 4/7
+  rendering scene 5/7
+  rendering scene 6/7
+  rendering scene 7/7
   background music added
-Video ready: 95.0 seconds, 12.1 MB
+Video ready: 77.1 seconds, 12.4 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-12-benjamin-geen.mp4
-Buffer rejected the API key. Check the BUFFER_API_KEY secret.
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-14-murder-of-reet-jurvetson.mp4
+Using Buffer TikTok channel: truecrimedaily001
+Queued in Buffer for TikTok (post 6af7af169257ce33981f6566).
