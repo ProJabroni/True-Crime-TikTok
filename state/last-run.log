@@ -31,71 +31,52 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:American serial killers
-  817 unused articles
-Trying: Dennis Rader
-  case involves sexual violence or child victims (sexual violence in the article), skipping
-Trying: Danny Rolling
-  case involves sexual violence or child victims (Category:American rapists), skipping
-Trying: Atlanta murders of 1979–1981
-  case involves sexual violence or child victims (Category:Child murder in Georgia (U.S. state)), skipping
-Trying: Reginald McFadden
-  case involves sexual violence or child victims (Category:American people convicted of rape), skipping
-Trying: Stanley Theodore Adams
-  case involves sexual violence or child victims (sexual violence in the article), skipping
-Trying: Terry Hyatt
-  case involves sexual violence or child victims (Category:American people convicted of rape), skipping
-Trying: Austin serial bombings
-  not the right kind of case (Category:Terrorist incidents in Texas), skipping
-Trying: Anthony Sowell
-  case involves sexual violence or child victims (Category:American people convicted of attempted rape), skipping
-Looking in Category:Unsolved murders in the United States
-  583 unused articles
-Trying: Murder of Reet Jurvetson
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
+Looking in Category:English serial killers
+  207 unused articles
+Trying: Joe Nickell
+  not the right kind of case (Category:20th-century American male non-fiction writers), skipping
+Trying: John Straffen
+  case involves sexual violence or child victims (Category:Child murder in England), skipping
+Trying: Voyagers!
+  not the right kind of case (Category:1980s American science fiction television series), skipping
+Trying: Stephen Port
+  case involves sexual violence or child victims (Category:English people convicted of rape), skipping
+Trying: Bruce Jones (actor)
+  not the right kind of case (Category:English male television actors), skipping
+Trying: Jack the Ripper
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
+  Gemini gemini-3.6-flash busy (503), retrying
   script written by gemini-3.6-flash
-  7 scenes, 128 words, first half is missing the place
-  asking for a rewrite
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
+  skipped by writer: The case involves sexual violence.
+Trying: Steven Wright (serial killer)
   Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
   script written by gemini-3.6-flash
-  7 scenes, 124 words, first half is missing the place
-  asking for a rewrite
-  Gemini gemini-3.8-flash busy (503), retrying
+  skipped by writer: The case involves a victim who was a child (17 years old).
+Trying: Jack the Ripper suspects
   Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  script written by gemini-3.6-flash
-  8 scenes, 121 words, first half is missing the place
+  Gemini keeps timing out; using the backup script writer for the rest of this run
+  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
+  8 scenes, 130 words, avoid-words used: ['murderer', 'murders'], first half is missing the place
   asking for a rewrite
-Making video: The Mystery of Jane Doe Fifty-Nine (Murder of Reet Jurvetson)
+  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
+  6 scenes, 71 words, avoid-words used: ['murders'], first half is missing the place
+  asking for a rewrite
+  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
+  7 scenes, 115 words, avoid-words used: ['murders']
+  asking for a rewrite
+  softening remaining words: ['murders']
+Making video: Jack the Ripper Mystery (Jack the Ripper suspects)
   picture 1/7
-  picture has lettering on it (1 spots), making another
-  picture has lettering on it (6 spots), making another
-  picture has lettering on it (1 spots), making another
-  every try had some lettering; keeping the cleanest and painting it out
-  painted over 1 bits of lettering
   picture 2/7
   picture 3/7
-  picture has lettering on it (2 spots), making another
   picture 4/7
-  picture has lettering on it (1 spots), making another
   picture 5/7
-  picture has lettering on it (2 spots), making another
-  picture has lettering on it (2 spots), making another
   picture 6/7
   picture 7/7
+  picture has lettering on it (2 spots), making another
+  picture has lettering on it (6 spots), making another
   narrating
-  Gemini voice (gemini-3.8-flash-tts) busy (503), waiting
+  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   narration voice: gemini
   rendering scene 1/7
   rendering scene 2/7
@@ -105,10 +86,10 @@ Making video: The Mystery of Jane Doe Fifty-Nine (Murder of Reet Jurvetson)
   rendering scene 6/7
   rendering scene 7/7
   background music added
-Video ready: 77.1 seconds, 12.4 MB
+Video ready: 63.8 seconds, 9.6 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-14-murder-of-reet-jurvetson.mp4
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-15-jack-the-ripper-suspects.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6af7af169257ce33981f6566).
+Queued in Buffer for TikTok (post 6af90aa3b9a106584c7e31b3).
