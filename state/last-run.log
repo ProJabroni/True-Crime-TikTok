@@ -31,65 +31,72 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:English serial killers
-  207 unused articles
-Trying: Joe Nickell
-  not the right kind of case (Category:20th-century American male non-fiction writers), skipping
-Trying: John Straffen
-  case involves sexual violence or child victims (Category:Child murder in England), skipping
-Trying: Voyagers!
-  not the right kind of case (Category:1980s American science fiction television series), skipping
-Trying: Stephen Port
-  case involves sexual violence or child victims (Category:English people convicted of rape), skipping
-Trying: Bruce Jones (actor)
-  not the right kind of case (Category:English male television actors), skipping
-Trying: Jack the Ripper
+Looking in Category:Murder in Spain
+  115 unused articles
+Trying: 2017 Barcelona attacks
+  not the right kind of case (Category:Islamic State terrorist incidents in 2017), skipping
+Trying: 2006 Madrid–Barajas Airport bombing
+  not the right kind of case (Category:Terrorist attacks on airports in Spain), skipping
+Trying: 2004 Madrid train bombings
+  not the right kind of case (Category:Islamic terrorism in Spain), skipping
+Trying: Events of Yeste
+  not the right kind of case (Category:1936 conflicts), skipping
+Trying: 2009 Palma Nova bombing
+  not the right kind of case (Category:Terrorist incidents in Europe in 2009), skipping
+Trying: Asturian Revolution of 1934
+  not the right kind of case (Category:1934 conflicts), skipping
+Trying: Murder of Eva Blanco
+  case involves sexual violence or child victims (Category:Child murder in Spain), skipping
+Trying: 1977 Atocha massacre
+  not the right kind of case (Category:Far-right terrorism in Spain), skipping
+Looking in Category:Murder in Italy
+  260 unused articles
+Trying: Kidnapping and murder of Aldo Moro
+  not the right kind of case (Category:Communist terrorist incidents in Europe), skipping
+Trying: Giovanni Falcone
   Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  Gemini gemini-3.6-flash busy (503), retrying
   script written by gemini-3.6-flash
-  skipped by writer: The case involves sexual violence.
-Trying: Steven Wright (serial killer)
+  8 scenes, 116 words, first half is missing the place
+  asking for a rewrite
   Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
   script written by gemini-3.6-flash
-  skipped by writer: The case involves a victim who was a child (17 years old).
-Trying: Jack the Ripper suspects
-  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  Gemini keeps timing out; using the backup script writer for the rest of this run
-  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
-  8 scenes, 130 words, avoid-words used: ['murderer', 'murders'], first half is missing the place
+  8 scenes, 128 words, first half is missing the place
   asking for a rewrite
-  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
-  6 scenes, 71 words, avoid-words used: ['murders'], first half is missing the place
-  asking for a rewrite
-  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
-  7 scenes, 115 words, avoid-words used: ['murders']
-  asking for a rewrite
-  softening remaining words: ['murders']
-Making video: Jack the Ripper Mystery (Jack the Ripper suspects)
-  picture 1/7
-  picture 2/7
-  picture 3/7
-  picture 4/7
-  picture 5/7
-  picture 6/7
-  picture 7/7
-  picture has lettering on it (2 spots), making another
-  picture has lettering on it (6 spots), making another
+  script written by gemini-3.8-flash
+  8 scenes, 125 words
+Making video: The Blast That Shook Sicily (Giovanni Falcone)
+  picture 1/8
+  picture 2/8
+  picture has lettering on it (4 spots), making another
+  picture 3/8
+  picture has lettering on it (29 spots), making another
+  picture has lettering on it (5 spots), making another
+  picture has lettering on it (27 spots), making another
+  every try had some lettering; keeping the cleanest and painting it out
+  painted over 5 bits of lettering
+  painted over 30 bits of lettering
+  picture 4/8
+  picture 5/8
+  picture 6/8
+  picture 7/8
+  picture has lettering on it (1 spots), making another
+  picture has lettering on it (1 spots), making another
+  picture 8/8
   narrating
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   narration voice: gemini
-  rendering scene 1/7
-  rendering scene 2/7
-  rendering scene 3/7
-  rendering scene 4/7
-  rendering scene 5/7
-  rendering scene 6/7
-  rendering scene 7/7
+  rendering scene 1/8
+  rendering scene 2/8
+  rendering scene 3/8
+  rendering scene 4/8
+  rendering scene 5/8
+  rendering scene 6/8
+  rendering scene 7/8
+  rendering scene 8/8
   background music added
-Video ready: 63.8 seconds, 9.6 MB
+Video ready: 84.4 seconds, 16.4 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-15-jack-the-ripper-suspects.mp4
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-16-giovanni-falcone.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6af90aa3b9a106584c7e31b3).
+Queued in Buffer for TikTok (post 6afa5dad06e1675856bb95f0).

@@ -334,5 +334,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-15-jack-the-ripper-suspects.mp4",
     "buffer_post": "6af90aa3b9a106584c7e31b3",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-16",
+    "title": "The Blast That Shook Sicily",
+    "wikipedia": "https://en.wikipedia.org/wiki/Giovanni_Falcone",
+    "seconds": 84.4,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-16-giovanni-falcone.mp4",
+    "buffer_post": "6afa5dad06e1675856bb95f0",
+    "ai_label": true
   }
 ]
