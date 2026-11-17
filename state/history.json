@@ -344,5 +344,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-16-giovanni-falcone.mp4",
     "buffer_post": "6afa5dad06e1675856bb95f0",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-17",
+    "title": "The Store Robbery That Escalated",
+    "wikipedia": "https://en.wikipedia.org/wiki/Richard_Bernard_Moore",
+    "seconds": 76.0,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-17-richard-bernard-moore.mp4",
+    "buffer_post": "6afbc1a23e42cd001e48c82c",
+    "ai_label": true
   }
 ]
