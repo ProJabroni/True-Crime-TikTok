@@ -354,5 +354,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-17-richard-bernard-moore.mp4",
     "buffer_post": "6afbc1a23e42cd001e48c82c",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-18",
+    "title": "Patty Cannon's Dark Secret",
+    "wikipedia": "https://en.wikipedia.org/wiki/Patty_Cannon",
+    "seconds": 67.9,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-18-patty-cannon.mp4",
+    "buffer_post": "6afd070393fa11d37dfc30f0",
+    "ai_label": true
   }
 ]
