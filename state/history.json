@@ -374,5 +374,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-19-ardlamont-mystery.mp4",
     "buffer_post": "6afe54ca59eff0b616d0454c",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-20",
+    "title": "A False Millionaire and a Missing Trust",
+    "wikipedia": "https://en.wikipedia.org/wiki/Dana_Ewell",
+    "seconds": 73.5,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-20-dana-ewell.mp4",
+    "buffer_post": "6affa6617b0a126ceb9b1e44",
+    "ai_label": true
   }
 ]

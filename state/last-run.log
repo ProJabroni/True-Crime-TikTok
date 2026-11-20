@@ -31,75 +31,39 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:Murder in Scotland
-  196 unused articles
-Trying: Ardlamont mystery
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  Gemini gemini-3.6-flash did not answer (ReadTimeout); trying the next writer
-  script written by gemini-3.5-flash-lite
-  7 scenes, 124 words, first half is missing the place
-  asking for a rewrite
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash busy (503), retrying
-  Gemini gemini-3.6-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
-  script written by gemini-3.5-flash-lite
-  7 scenes, 112 words, first half is missing the place
-  asking for a rewrite
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash failed: 503 {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-    "status": "UNAVAILABLE"
-  }
-}
-
+Looking in Category:American murderers
+  3555 unused articles
+Trying: Dana Ewell
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
   script written by gemini-3.6-flash
-  7 scenes, 117 words, first half is missing the place
+  7 scenes, 115 words, first half is missing the place
   asking for a rewrite
-Making video: The Ardlamont Estate Mystery (Ardlamont mystery)
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
+  script written by gemini-3.6-flash
+  7 scenes, 131 words, first half is missing the place
+  asking for a rewrite
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
+  Gemini keeps timing out; using the backup script writer for the rest of this run
+  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
+  8 scenes, 139 words, avoid-words used: ['murder', 'murders', 'shot'], first half is missing the place
+  asking for a rewrite
+Making video: A False Millionaire and a Missing Trust (Dana Ewell)
   picture 1/7
-  picture text check (Gemini vision) failed: gemini-3.5-flash-lite: ReadTimeout
-  picture text check (Gemini vision) failed: gemini-3.5-flash-lite: ReadTimeout
-  Gemini vision keeps failing; using OCR only for the rest of this video
+  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (a45578f3-ce2c-45e4-870a-24e106db409a)","code":8007}],"success":false,"result":{},"messages":[]}
   picture 2/7
+  picture has lettering on it (1 spots), making another
+  picture has lettering on it (1 spots), making another
   picture 3/7
+  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (2162e368-0861-4d31-9107-e20fd5c6b80b)","code":8007}],"success":false,"result":{},"messages":[]}
   picture 4/7
+  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (930cd18c-cb37-4f8d-8ea4-0b6fdd3541bd)","code":8007}],"success":false,"result":{},"messages":[]}
   picture 5/7
+  picture has lettering on it (3 spots), making another
+  painted over 2 bits of lettering
   picture 6/7
   picture 7/7
   narrating
+  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   narration voice: gemini
   rendering scene 1/7
@@ -110,9 +74,9 @@ Making video: The Ardlamont Estate Mystery (Ardlamont mystery)
   rendering scene 6/7
   rendering scene 7/7
   background music added
-Video ready: 69.0 seconds, 13.3 MB
+Video ready: 73.5 seconds, 12.1 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-19-ardlamont-mystery.mp4
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-20-dana-ewell.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6afe54ca59eff0b616d0454c).
+Queued in Buffer for TikTok (post 6affa6617b0a126ceb9b1e44).
