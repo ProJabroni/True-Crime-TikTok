@@ -384,5 +384,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-20-dana-ewell.mp4",
     "buffer_post": "6affa6617b0a126ceb9b1e44",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-21",
+    "title": "The Questions Behind Ruben Cantu",
+    "wikipedia": "https://en.wikipedia.org/wiki/Ruben_Cantu",
+    "seconds": 71.4,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-21-ruben-cantu.mp4",
+    "buffer_post": "6b00ec3320a2d09a0ac233c3",
+    "ai_label": true
   }
 ]

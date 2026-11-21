@@ -33,37 +33,39 @@ Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
 Looking in Category:American murderers
   3555 unused articles
-Trying: Dana Ewell
-  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  script written by gemini-3.6-flash
-  7 scenes, 115 words, first half is missing the place
+Trying: Servant Girl Annihilator
+  script written by gemini-3.8-flash
+  skipped by writer: The case involves a victim who was a child (eleven-year-old Mary Ramey).
+Trying: Margaret Garner
+  case involves sexual violence or child victims (Category:Child filicides in the United States), skipping
+Trying: Billy Mansfield
+  case involves sexual violence or child victims (Category:American people convicted of child sexual abuse), skipping
+Trying: Gilgo Beach serial killings
+  failed: Gemini's safety filter refused this case (PROHIBITED_CONTENT)
+Trying: Ruben Cantu
+  script written by gemini-3.8-flash
+  7 scenes, 117 words, first half is missing the place
   asking for a rewrite
-  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  script written by gemini-3.6-flash
-  7 scenes, 131 words, first half is missing the place
+  script written by gemini-3.8-flash
+  6 scenes, 119 words, first half is missing the place
   asking for a rewrite
-  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  Gemini keeps timing out; using the backup script writer for the rest of this run
-  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
-  8 scenes, 139 words, avoid-words used: ['murder', 'murders', 'shot'], first half is missing the place
+  script written by gemini-3.8-flash
+  7 scenes, 123 words, first half is missing the place
   asking for a rewrite
-Making video: A False Millionaire and a Missing Trust (Dana Ewell)
+Making video: The Questions Behind Ruben Cantu (Ruben Cantu)
   picture 1/7
-  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (a45578f3-ce2c-45e4-870a-24e106db409a)","code":8007}],"success":false,"result":{},"messages":[]}
+  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (48426dfe-857d-4fa5-8b11-b575e5375faa)","code":8007}],"success":false,"result":{},"messages":[]}
+  image attempt 2 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (d10f079c-54ef-4b95-9aa9-3d46b089714a)","code":8007}],"success":false,"result":{},"messages":[]}
   picture 2/7
   picture has lettering on it (1 spots), making another
   picture has lettering on it (1 spots), making another
   picture 3/7
-  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (2162e368-0861-4d31-9107-e20fd5c6b80b)","code":8007}],"success":false,"result":{},"messages":[]}
   picture 4/7
-  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (930cd18c-cb37-4f8d-8ea4-0b6fdd3541bd)","code":8007}],"success":false,"result":{},"messages":[]}
+  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (9271d092-6a36-43ec-b5f9-2bafb5b93b5c)","code":8007}],"success":false,"result":{},"messages":[]}
   picture 5/7
-  picture has lettering on it (3 spots), making another
-  painted over 2 bits of lettering
   picture 6/7
   picture 7/7
   narrating
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   narration voice: gemini
   rendering scene 1/7
@@ -74,9 +76,9 @@ Making video: A False Millionaire and a Missing Trust (Dana Ewell)
   rendering scene 6/7
   rendering scene 7/7
   background music added
-Video ready: 73.5 seconds, 12.1 MB
+Video ready: 71.4 seconds, 11.4 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-20-dana-ewell.mp4
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-21-ruben-cantu.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6affa6617b0a126ceb9b1e44).
+Queued in Buffer for TikTok (post 6b00ec3320a2d09a0ac233c3).
