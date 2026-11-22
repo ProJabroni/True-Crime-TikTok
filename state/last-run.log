@@ -31,54 +31,70 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:American murderers
-  3555 unused articles
-Trying: Servant Girl Annihilator
+Looking in Category:Murder in England
+  1148 unused articles
+Trying: Lucy Letby
+  case involves sexual violence or child victims (Category:Infanticide in the United Kingdom), skipping
+Trying: History of the Jews in England
+  not a murder case, skipping
+Trying: Hungerford massacre
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
+  script written by gemini-3.6-flash
+  skipped by writer: The case involves victims who were children.
+Trying: Richard Huckle
+  case involves sexual violence or child victims (Category:British people convicted of sexual assault), skipping
+Trying: 2017 London Bridge attack
+  not the right kind of case (Category:Islamic State terrorist incidents in the United Kingdom), skipping
+Trying: Antoinette Saint-Huberty
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
+  script written by gemini-3.6-flash
+  skipped by writer: The provided text cuts off before detailing the murder, leaving insufficient facts about the crime and investigation to construct a story.
+Trying: White House Farm murders
+  case involves sexual violence or child victims (Category:Child murder in England), skipping
+Trying: George Villiers, 1st Duke of Buckingham
+  not the right kind of case (Category:English people of the Thirty Years' War), skipping
+Looking in Category:Murder in Belgium
+  109 unused articles
+Trying: 2011 Liège attack
+  case involves sexual violence or child victims (Category:Child murder in Belgium), skipping
+Trying: Battle of Rossignol
+  not the right kind of case (Category:1914 conflicts), skipping
+Trying: Marc Dutroux
+  case involves sexual violence or child victims (Category:Belgian people convicted of child sexual abuse), skipping
+Trying: Sack of Louvain
+  not the right kind of case (Category:Friendly fire incidents of World War I), skipping
+Trying: 2018 Liège attack
+  not the right kind of case (Category:Islamic terrorism in Belgium), skipping
+Trying: 2023 Brussels shooting
+  not the right kind of case (Category:Islamic State terrorist incidents in 2023), skipping
+Trying: Malmedy massacre
+  not the right kind of case (Category:Massacres in Belgium during World War II), skipping
+Trying: Arnaud Fraiteur
+  not the right kind of case (Category:Child soldiers in World War II), skipping
+Looking in Category:Murder in Spain
+  138 unused articles
+Trying: Álvaro Alcalá-Galiano y Osma
+  Gemini gemini-3.8-flash busy (503), retrying
   script written by gemini-3.8-flash
-  skipped by writer: The case involves a victim who was a child (eleven-year-old Mary Ramey).
-Trying: Margaret Garner
-  case involves sexual violence or child victims (Category:Child filicides in the United States), skipping
-Trying: Billy Mansfield
-  case involves sexual violence or child victims (Category:American people convicted of child sexual abuse), skipping
-Trying: Gilgo Beach serial killings
-  failed: Gemini's safety filter refused this case (PROHIBITED_CONTENT)
-Trying: Ruben Cantu
-  script written by gemini-3.8-flash
-  7 scenes, 117 words, first half is missing the place
-  asking for a rewrite
-  script written by gemini-3.8-flash
-  6 scenes, 119 words, first half is missing the place
-  asking for a rewrite
-  script written by gemini-3.8-flash
-  7 scenes, 123 words, first half is missing the place
-  asking for a rewrite
-Making video: The Questions Behind Ruben Cantu (Ruben Cantu)
-  picture 1/7
-  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (48426dfe-857d-4fa5-8b11-b575e5375faa)","code":8007}],"success":false,"result":{},"messages":[]}
-  image attempt 2 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (d10f079c-54ef-4b95-9aa9-3d46b089714a)","code":8007}],"success":false,"result":{},"messages":[]}
-  picture 2/7
-  picture has lettering on it (1 spots), making another
-  picture has lettering on it (1 spots), making another
-  picture 3/7
-  picture 4/7
-  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (9271d092-6a36-43ec-b5f9-2bafb5b93b5c)","code":8007}],"success":false,"result":{},"messages":[]}
-  picture 5/7
-  picture 6/7
-  picture 7/7
-  narrating
-  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
-  narration voice: gemini
-  rendering scene 1/7
-  rendering scene 2/7
-  rendering scene 3/7
-  rendering scene 4/7
-  rendering scene 5/7
-  rendering scene 6/7
-  rendering scene 7/7
-  background music added
-Video ready: 71.4 seconds, 11.4 MB
-  waiting for GitHub Pages (404)
-  waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-21-ruben-cantu.mp4
-Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6b00ec3320a2d09a0ac233c3).
+  skipped by writer: The article is a biographical entry about a political writer executed during the Spanish Civil War, which is part of a wartime and political conflict rather than a criminal investigation or standard true-crime case.
+Trying: Casimiro Sangenís Bertrán
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
+  Gemini keeps timing out; using the backup script writer for the rest of this run
+  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
+  skipped by writer: The article is about a person who was executed, but the details of the case do not fit the requirements for a true-crime story.
+Trying: Teodoro de Mas y Nadal
+  not the right kind of case (Category:Spanish military personnel of the Third Carlist War (Legitimist faction)), skipping
+Trying: Morral affair
+  not the right kind of case (Category:20th-century anarchist terrorist incidents), skipping
+Trying: José Antonio Primo de Rivera
+  not the right kind of case (Category:Spanish people of the Spanish Civil War (National faction)), skipping
+Trying: Ricardo Gómez Roji
+  not the right kind of case (Category:People of the Spanish Civil War), skipping
+Trying: Murder of Marta del Castillo
+  case involves sexual violence or child victims (Category:Child murder in Spain), skipping
+Trying: Mateo García de los Reyes
+  not the right kind of case (Category:Spanish military personnel of the Rif War), skipping
+Looking in Category:Murder in London
+  449 unused articles
+No usable article this run; try again.
