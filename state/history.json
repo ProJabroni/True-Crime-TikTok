@@ -394,5 +394,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-21-ruben-cantu.mp4",
     "buffer_post": "6b00ec3320a2d09a0ac233c3",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-22",
+    "title": "The Vanishing at Wounded Knee",
+    "wikipedia": "https://en.wikipedia.org/wiki/Ray_Robinson_%28activist%29",
+    "seconds": 74.4,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-22-ray-robinson-activist.mp4",
+    "buffer_post": "6b0248c5d5eabfb8cc74f375",
+    "ai_label": true
   }
 ]
