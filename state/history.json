@@ -404,5 +404,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-22-ray-robinson-activist.mp4",
     "buffer_post": "6b0248c5d5eabfb8cc74f375",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-23",
+    "title": "From Prison Cell to Courtroom Clerk",
+    "wikipedia": "https://en.wikipedia.org/wiki/Calvin_Duncan_%28legal_advocate%29",
+    "seconds": 74.0,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-23-calvin-duncan-legal-advocate.mp4",
+    "buffer_post": "6b038b2ad864a011050a0ba6",
+    "ai_label": true
   }
 ]
