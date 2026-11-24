@@ -414,5 +414,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-23-calvin-duncan-legal-advocate.mp4",
     "buffer_post": "6b038b2ad864a011050a0ba6",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-24",
+    "title": "The Hospital Nurse with a Secret",
+    "wikipedia": "https://en.wikipedia.org/wiki/Niels_H%C3%B6gel",
+    "seconds": 81.2,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-24-niels-h-gel.mp4",
+    "buffer_post": "6b051b54db52b449cf28df55",
+    "ai_label": true
   }
 ]
