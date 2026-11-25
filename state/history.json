@@ -424,5 +424,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-24-niels-h-gel.mp4",
     "buffer_post": "6b051b54db52b449cf28df55",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-25",
+    "title": "The Parade Tragedy in Apeldoorn",
+    "wikipedia": "https://en.wikipedia.org/wiki/2009_attack_on_the_Dutch_royal_family",
+    "seconds": 73.1,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-25-2009-attack-on-the-dutch-royal-family.mp4",
+    "buffer_post": "6b0654d29cddd8483aa4da41",
+    "ai_label": true
   }
 ]
