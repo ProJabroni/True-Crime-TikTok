@@ -434,5 +434,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-25-2009-attack-on-the-dutch-royal-family.mp4",
     "buffer_post": "6b0654d29cddd8483aa4da41",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-26",
+    "title": "Doctor with Deadly Secret",
+    "wikipedia": "https://en.wikipedia.org/wiki/Harold_Shipman",
+    "seconds": 69.6,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-26-harold-shipman.mp4",
+    "buffer_post": "6b07995bd4eda4b659cde6d4",
+    "ai_label": true
   }
 ]
