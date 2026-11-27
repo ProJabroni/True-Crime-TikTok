@@ -444,5 +444,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-26-harold-shipman.mp4",
     "buffer_post": "6b07995bd4eda4b659cde6d4",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-27",
+    "title": "Bluebeard of Fehmarn",
+    "wikipedia": "https://en.wikipedia.org/wiki/Arwed_Imiela",
+    "seconds": 74.5,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-27-arwed-imiela.mp4",
+    "buffer_post": "6b08eb3e70e2a88e2cede5b6",
+    "ai_label": true
   }
 ]

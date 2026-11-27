@@ -33,73 +33,63 @@ Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
 Looking in Category:German serial killers
-  74 unused articles
-Trying: Uwe Mundlos
+  66 unused articles
+Trying: Peter Hößl
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  Gemini gemini-3.6-flash did not answer (ReadTimeout); trying the next writer
-  Gemini gemini-3.5-flash-lite busy (503), retrying
-  script written by gemini-3.5-flash-lite
-  7 scenes, 117 words, first half is missing the place
-  asking for a rewrite
+  script written by gemini-3.6-flash
+  skipped by writer: The case involves victims who were children.
+Trying: Gabor Sprungk
+  case involves sexual violence or child victims (Category:German people convicted of rape), skipping
+Trying: Adolf Seefeldt
+  case involves sexual violence or child victims (Category:German people convicted of child sexual abuse), skipping
+Trying: Manfred Seel
+  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
+  script written by gemini-3.6-flash
+  skipped by writer: The case involves sexual violence.
+Trying: Arwed Imiela
+  Gemini gemini-3.8-flash busy (503), retrying
+  Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
   Gemini keeps timing out; using the backup script writer for the rest of this run
   script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
-  8 scenes, 110 words, avoid-words used: ['murders', 'shot'], first half is missing the place
+  8 scenes, 122 words, avoid-words used: ['murders'], first half is missing the place
   asking for a rewrite
   script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
-  skipped by writer: the case involves violent crimes and the article contains words that are not allowed
-Trying: Volker Eckert
-  case involves sexual violence or child victims (sexual violence in the article), skipping
-Trying: Peter Stumpp
-  too short, skipping
-Trying: Karl Denke
-  case involves sexual violence or child victims (Category:German cannibals), skipping
-Trying: Paul Ogorzow
-  case involves sexual violence or child victims (Category:German people convicted of rape), skipping
-Trying: Martin Ney
-  case involves sexual violence or child victims (Category:German people convicted of child sexual abuse), skipping
-Trying: Heinrich Pommerenke
-  case involves sexual violence or child victims (Category:German people convicted of rape), skipping
-Trying: Peter Niers
-  case involves sexual violence or child victims (Category:German cannibals), skipping
-Looking in Category:Murder in England
-  1267 unused articles
-Trying: Harold Shipman
-  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
-  7 scenes, 132 words, avoid-words used: ['killed', 'murdering'], first half is missing the place
+  7 scenes, 98 words, first half is missing the place
   asking for a rewrite
   script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
-  7 scenes, 94 words, avoid-words used: ['murder'], first half is missing the place
+  8 scenes, 99 words, avoid-words used: ['killer', 'murders'], first half is missing the date and place
   asking for a rewrite
-  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
-  8 scenes, 196 words, first half is missing the place
-  asking for a rewrite
-  softening remaining words: ['killed', 'murdering']
-Making video: Doctor with Deadly Secret (Harold Shipman)
-  picture 1/7
-  picture has lettering on it (12 spots), making another
-  picture has lettering on it (4 spots), making another
-  picture 2/7
-  picture 3/7
-  picture 4/7
-  picture 5/7
-  picture 6/7
-  picture 7/7
+  softening remaining words: ['murders']
+Making video: Bluebeard of Fehmarn (Arwed Imiela)
+  picture 1/8
+  picture 2/8
+  picture 3/8
+  picture has lettering on it (1 spots), making another
+  picture 4/8
+  picture 5/8
+  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (f76abafe-d973-4efc-a37e-dd2d6e4818ad)","code":8007}],"success":false,"result":{},"messages":[]}
+  picture 6/8
+  picture 7/8
+  picture has lettering on it (1 spots), making another
+  picture has lettering on it (1 spots), making another
+  picture 8/8
   narrating
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   narration voice: gemini
-  rendering scene 1/7
-  rendering scene 2/7
-  rendering scene 3/7
-  rendering scene 4/7
-  rendering scene 5/7
-  rendering scene 6/7
-  rendering scene 7/7
+  rendering scene 1/8
+  rendering scene 2/8
+  rendering scene 3/8
+  rendering scene 4/8
+  rendering scene 5/8
+  rendering scene 6/8
+  rendering scene 7/8
+  rendering scene 8/8
   background music added
-Video ready: 69.6 seconds, 12.3 MB
+Video ready: 74.5 seconds, 10.5 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-26-harold-shipman.mp4
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-27-arwed-imiela.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6b07995bd4eda4b659cde6d4).
+Queued in Buffer for TikTok (post 6b08eb3e70e2a88e2cede5b6).
