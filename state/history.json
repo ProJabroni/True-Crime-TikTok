@@ -454,5 +454,15 @@
     "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-27-arwed-imiela.mp4",
     "buffer_post": "6b08eb3e70e2a88e2cede5b6",
     "ai_label": true
+  },
+  {
+    "date": "2026-11-28",
+    "title": "Cleveland Racketeer Who Kept Walking Free",
+    "wikipedia": "https://en.wikipedia.org/wiki/Shondor_Birns",
+    "seconds": 69.7,
+    "status": "queued in Buffer",
+    "video": "https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-28-shondor-birns.mp4",
+    "buffer_post": "6b0a395deab081a3f516dd46",
+    "ai_label": true
   }
 ]

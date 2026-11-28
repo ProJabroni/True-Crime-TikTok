@@ -32,64 +32,55 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Local voice and picture generators ready
 Bangers font ready
 ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-Looking in Category:German serial killers
-  66 unused articles
-Trying: Peter Hößl
+Looking in Category:Unsolved murders in the United States
+  577 unused articles
+Trying: Keddie murders
+  case involves sexual violence or child victims (Category:Child murder in California), skipping
+Trying: Wyatt Outlaw
+  not the right kind of case (Category:African-American military personnel of the American Civil War), skipping
+Trying: Shondor Birns
+  script written by gemini-3.8-flash
+  7 scenes, 121 words, first half is missing the place
+  asking for a rewrite
   Gemini gemini-3.8-flash busy (503), retrying
   Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
   script written by gemini-3.6-flash
-  skipped by writer: The case involves victims who were children.
-Trying: Gabor Sprungk
-  case involves sexual violence or child victims (Category:German people convicted of rape), skipping
-Trying: Adolf Seefeldt
-  case involves sexual violence or child victims (Category:German people convicted of child sexual abuse), skipping
-Trying: Manfred Seel
+  7 scenes, 117 words, first half is missing the place
+  asking for a rewrite
   Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
   script written by gemini-3.6-flash
-  skipped by writer: The case involves sexual violence.
-Trying: Arwed Imiela
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash busy (503), retrying
-  Gemini gemini-3.8-flash did not answer (ReadTimeout); trying the next writer
-  Gemini keeps timing out; using the backup script writer for the rest of this run
-  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
-  8 scenes, 122 words, avoid-words used: ['murders'], first half is missing the place
+  7 scenes, 122 words, first half is missing the place
   asking for a rewrite
-  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
-  7 scenes, 98 words, first half is missing the place
-  asking for a rewrite
-  script written by @cf/meta/llama-3.3-70b-instruct-fp8-fast
-  8 scenes, 99 words, avoid-words used: ['killer', 'murders'], first half is missing the date and place
-  asking for a rewrite
-  softening remaining words: ['murders']
-Making video: Bluebeard of Fehmarn (Arwed Imiela)
-  picture 1/8
-  picture 2/8
-  picture 3/8
-  picture has lettering on it (1 spots), making another
-  picture 4/8
-  picture 5/8
-  image attempt 1 failed: 400 {"errors":[{"message":"AiError: AiError: Input prompt contains NSFW content. (f76abafe-d973-4efc-a37e-dd2d6e4818ad)","code":8007}],"success":false,"result":{},"messages":[]}
-  picture 6/8
-  picture 7/8
+Making video: Cleveland Racketeer Who Kept Walking Free (Shondor Birns)
+  picture 1/7
+  picture 2/7
+  picture 3/7
+  picture 4/7
+  picture 5/7
+  picture has lettering on it (9 spots), making another
+  picture has lettering on it (7 spots), making another
+  picture has lettering on it (3 spots), making another
+  every try had some lettering; keeping the cleanest and painting it out
+  painted over 3 bits of lettering
+  picture 6/7
+  picture 7/7
   picture has lettering on it (1 spots), making another
   picture has lettering on it (1 spots), making another
-  picture 8/8
   narrating
   Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
+  Gemini voice (gemini-3.8-flash-tts) busy (429), waiting
   narration voice: gemini
-  rendering scene 1/8
-  rendering scene 2/8
-  rendering scene 3/8
-  rendering scene 4/8
-  rendering scene 5/8
-  rendering scene 6/8
-  rendering scene 7/8
-  rendering scene 8/8
+  rendering scene 1/7
+  rendering scene 2/7
+  rendering scene 3/7
+  rendering scene 4/7
+  rendering scene 5/7
+  rendering scene 6/7
+  rendering scene 7/7
   background music added
-Video ready: 74.5 seconds, 10.5 MB
+Video ready: 69.7 seconds, 12.7 MB
   waiting for GitHub Pages (404)
   waiting for GitHub Pages (404)
-Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-27-arwed-imiela.mp4
+Video is online: https://projabroni.github.io/True-Crime-TikTok/videos/2026-11-28-shondor-birns.mp4
 Using Buffer TikTok channel: truecrimedaily001
-Queued in Buffer for TikTok (post 6b08eb3e70e2a88e2cede5b6).
+Queued in Buffer for TikTok (post 6b0a395deab081a3f516dd46).
